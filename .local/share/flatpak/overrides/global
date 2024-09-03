@@ -1,0 +1,2 @@
+[Context]
+filesystems=xdg-config/gtk-3.0:ro;/home/deck/.themes;xdg-config/MangoHud:ro;/home/deck/Games;/home/deck/.icons;/home/deck/Music;

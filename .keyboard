@@ -1,0 +1,21 @@
+
+  dolphin ~/.local/share/applications
+  launch = Meta + Shift + D
+
+  flatpak run com.visualstudio.code .bash_aliases
+  launch = Meta + Shift + A
+
+  flatpak run org.flameshot.Flameshot gui
+  launch = Meta + Shift + Print
+
+  kwrite ~/.config/MangoHud/MangoHud.conf
+  launch = Meta + Shift + H
+
+  # killall -SIGUSR1 gpu-screen-recorder
+  # launch = *
+
+  kate ~/.nix-config/configuration.nix
+  launch = Meta + Shift + C
+
+  kate ~/.nix-config/home.nix
+  launch = Meta + Shift + M

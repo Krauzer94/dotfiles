@@ -195,7 +195,6 @@ setup-nixpm:
     nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
     nix-channel --update
     nix-shell '<home-manager>' -A install
-    home-manager init
     rm ~/.config/home-manager/home.nix
     sudo ln -sf ~/.nix-config/home.nix ~/.config/home-manager
     home-manager switch

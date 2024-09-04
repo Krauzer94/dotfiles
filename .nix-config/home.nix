@@ -6,7 +6,7 @@
   home.homeDirectory = "/home/deck";
 
   # Home Manager release version compatibility
-  home.stateVersion = "24.04";
+  home.stateVersion = "23.11";
 
   # https://search.nixos.org/packages
   home.packages = with pkgs; [

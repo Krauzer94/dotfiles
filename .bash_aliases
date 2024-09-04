@@ -10,9 +10,9 @@ alias aclean='sudo pacman -Rns $(pacman -Qtdq) --noconfirm'
 alias wclean='find ~/ -type f -name "*.Identifier" -delete'
 
 # NixOS specific
-alias nupdate='sudo nixos-rebuild switch --upgrade'
-alias hupdate='home-manager switch'
-alias nclean='sudo nix-collect-garbage --delete-older-than 5d'
+alias nupdate='sudo nixos-rebuild switch --flake ~/.flake && hupdate'
+alias hupdate='home-manager switch --flake ~/.flake'
+alias nclean='sudo nix-collect-garbage -d'
 
 # Git routines
 alias status='git status'

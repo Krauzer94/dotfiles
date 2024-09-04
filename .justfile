@@ -88,10 +88,7 @@ installs-arch:
 installs-common:
     #!/usr/bin/env bash
 
-    wget https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch
-    mv neofetch .neofetch.sh
     just setup-filesys
-
     apps=(
         com.google.Chrome
         org.gimp.GIMP
@@ -119,15 +116,12 @@ installs-nixos:
     #!/usr/bin/env bash
 
     echo -e '\n Installing all NixOS apps\n'
-    sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
-    sudo nix-channel --update
-    sudo chown deck /etc/nixos/*
-    mkdir -p ~/.nix-config
-    sudo mv /etc/nixos/* ~/.nix-config
-    curl -L https://raw.githubusercontent.com/Krauzer94/dotfiles/main/.nix-config/configuration.nix -o ~/.nix-config/configuration.nix
-    sudo ln -sf ~/.nix-config/configuration.nix /etc/nixos
-    sudo ln -sf ~/.nix-config/hardware-configuration.nix /etc/nixos
-    sudo nixos-rebuild switch
+    mkdir -p ~/.config/nix
+    echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
+    sudo rm /etc/nixos/*
+    sudo ln -sf ~/.flake/flake.nix /etc/nixos
+    sudo nixos-rebuild switch --flake ~/.flake
+    nix run home-manager/master -- switch --flake ~/.flake
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     flatpak install -y flathub \
         org.freedesktop.Platform.VulkanLayer.MangoHud \
@@ -155,13 +149,11 @@ setup-archwsl:
     #!/usr/bin/env bash
 
     echo -e '\n Installing ArchWSL specific apps\n'
-    packages=( which wget git openssh )
+    packages=( which openssh wget )
     for package in "${packages[@]}"; do
         sudo pacman -S --needed "$package" --noconfirm
     done
-    wget https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch
-    mv neofetch .neofetch.sh
-    just setup-github
+    just setup-nixpm
     echo -e '\n Finished installing all ArchWSL apps\n'
 
 # Set up flatpak permissions
@@ -191,13 +183,10 @@ setup-nixpm:
     sh <(curl -L https://nixos.org/nix/install) --no-daemon
     . $HOME/.nix-profile/etc/profile.d/nix.sh
     mkdir -p ~/.nix-config
-    curl -L https://raw.githubusercontent.com/Krauzer94/dotfiles/main/.nix-config/home.nix -o ~/.nix-config/home.nix
-    nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-    nix-channel --update
-    nix-shell '<home-manager>' -A install
-    rm ~/.config/home-manager/home.nix
-    sudo ln -sf ~/.nix-config/home.nix ~/.config/home-manager
-    home-manager switch
+    echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
+    sudo rm /etc/nixos/*
+    sudo ln -sf ~/.flake/flake.nix /etc/nixos
+    nix run home-manager/master -- switch --flake ~/.flake
     echo -e "\n Finished setting up the Nix Package Manager\n"
 
 # Upload savegame folder files

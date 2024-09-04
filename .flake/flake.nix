@@ -23,7 +23,68 @@
     homeConfigurations."deck@nixos" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
-        ./nixos.nix
+        {
+          home.username = "deck";
+          home.homeDirectory = "/home/deck";
+          home.stateVersion = "23.11";
+          home.packages = with pkgs; [
+            just
+            direnv
+            fastfetch
+          ];
+          programs.home-manager.enable = true;
+        }
+      ];
+    };
+    # deck@archinux > home.nix
+    homeConfigurations."deck@archinux" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [
+        {
+          home.username = "deck";
+          home.homeDirectory = "/home/deck";
+          home.stateVersion = "23.11";
+          home.packages = with pkgs; [
+            just
+            direnv
+            fastfetch
+          ];
+          programs.home-manager.enable = true;
+        }
+      ];
+    };
+    # deck@steamos > home.nix
+    homeConfigurations."deck@steamos" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [
+        {
+          home.username = "deck";
+          home.homeDirectory = "/home/deck";
+          home.stateVersion = "23.11";
+          home.packages = with pkgs; [
+            just
+            direnv
+            fastfetch
+          ];
+          programs.home-manager.enable = true;
+        }
+      ];
+    };
+    # deck@archwsl > home.nix
+    homeConfigurations."deck@archwsl" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [
+        {
+          home.username = "deck";
+          home.homeDirectory = "/home/deck";
+          home.stateVersion = "23.11";
+          home.packages = with pkgs; [
+            just
+            direnv
+            fastfetch
+          ];
+          programs.home-manager.enable = true;
+        }
       ];
     };
   };

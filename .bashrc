@@ -34,11 +34,3 @@ function paste() {
     echo ""
     echo ""
 }
-
-# Just a command runner
-install_just() {
-    echo -e '\n Installing just to your "~/.local/bin" folder\n'
-    curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/.local/bin
-    curl -LJO https://raw.githubusercontent.com/Krauzer94/dotfiles/main/.justfile
-    echo -e '\n All done, run "just" to see your recipes list\n'
-}

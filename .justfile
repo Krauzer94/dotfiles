@@ -118,8 +118,6 @@ installs-nixos:
     echo -e '\n Installing all NixOS apps\n'
     mkdir -p ~/.config/nix
     echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
-    sudo rm /etc/nixos/*
-    sudo ln -sf ~/.flake/flake.nix /etc/nixos
     sudo nixos-rebuild switch --flake ~/.flake
     nix run home-manager/master -- switch --flake ~/.flake
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -182,10 +180,8 @@ setup-nixpm:
     echo -e '\n Setting up the Nix Package Manager\n'
     sh <(curl -L https://nixos.org/nix/install) --no-daemon
     . $HOME/.nix-profile/etc/profile.d/nix.sh
-    mkdir -p ~/.nix-config
+    mkdir -p ~/.config/nix
     echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
-    sudo rm /etc/nixos/*
-    sudo ln -sf ~/.flake/flake.nix /etc/nixos
     nix run home-manager/master -- switch --flake ~/.flake
     echo -e "\n Finished setting up the Nix Package Manager\n"
 

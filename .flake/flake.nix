@@ -19,5 +19,12 @@
         ./configuration.nix
       ];
     };
+    # deck@nixos > home.nix
+    homeConfigurations."deck@nixos" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [
+        ./nixos.nix
+      ];
+    };
   };
 }

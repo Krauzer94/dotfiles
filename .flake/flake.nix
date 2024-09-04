@@ -70,8 +70,8 @@
         }
       ];
     };
-    # deck@archwsl > home.nix
-    homeConfigurations."deck@archwsl" = home-manager.lib.homeManagerConfiguration {
+    # deck@POAN23090675 > home.nix
+    homeConfigurations."deck@POAN23090675" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
         {
@@ -82,6 +82,8 @@
             just
             direnv
             fastfetch
+            wget
+            which
           ];
           programs.home-manager.enable = true;
         }

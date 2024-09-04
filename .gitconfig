@@ -1,0 +1,12 @@
+[user]
+	name = Krauzer94
+	email = 13894059+Krauzer94@users.noreply.github.com
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[pull]
+	rebase = false
+[core]
+	editor = flatpak run com.visualstudio.code --wait
+	pager = cat

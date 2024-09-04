@@ -142,18 +142,6 @@ installs-steamos:
         flathub com.obsproject.Studio
     echo -e '\n Finished installing all SteamOS apps\n'
 
-# Set up Arch Linux for WSL usage
-setup-archwsl:
-    #!/usr/bin/env bash
-
-    echo -e '\n Installing ArchWSL specific apps\n'
-    packages=( which openssh wget )
-    for package in "${packages[@]}"; do
-        sudo pacman -S --needed "$package" --noconfirm
-    done
-    just setup-nixpm
-    echo -e '\n Finished installing all ArchWSL apps\n'
-
 # Set up flatpak permissions
 setup-filesys:
     #!/usr/bin/env bash

@@ -177,7 +177,6 @@ setup-nixpm:
 upload-savegame:
     #!/usr/bin/env bash
 
-    cd ~/Games/save-game
     git add .
     git commit -m "Save game upload"
     git push

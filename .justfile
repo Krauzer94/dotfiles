@@ -111,6 +111,30 @@ installs-common:
         flatpak install flathub "$app" -y
     done
 
+# Install Fedora specific apps
+installs-fedora:
+    #!/usr/bin/env bash
+
+    echo -e '\n Installing all Fedora apps\n'
+    flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+    packages=(
+        git flatpak btrfs-assistant steam ffmpeg mangohud
+        # Fill with specific applications
+
+    )
+    for package in "${packages[@]}"; do
+        sudo dnf install "$package" -y
+    done
+    just installs-common
+    flatpak install -y flathub \
+        # Fill with specific applications
+        #org.kde.okular \
+        #org.kde.gwenview \
+        #org.mozilla.firefox \
+        #org.kde.kcalc \
+        com.dec05eba.gpu_screen_recorder
+    echo -e '\n Finished installing all Fedora apps\n'
+
 # Install SteamOS specific apps
 installs-steamos:
     #!/usr/bin/env bash

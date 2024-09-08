@@ -119,8 +119,7 @@ installs-fedora:
     flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     packages=(
         git flatpak btrfs-assistant steam ffmpeg mangohud
-        # Fill with specific applications
-
+        akmod-nvidia xorg-x11-drv-nvidia-cuda
     )
     for package in "${packages[@]}"; do
         sudo dnf install "$package" -y

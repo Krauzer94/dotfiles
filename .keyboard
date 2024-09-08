@@ -13,9 +13,3 @@
 
   # killall -SIGUSR1 gpu-screen-recorder
   # launch = *
-
-  kate ~/.flake/configuration.nix
-  launch = Meta + Shift + C
-
-  kate ~/.flake/flake.nix
-  launch = Meta + Shift + F

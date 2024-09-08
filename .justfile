@@ -111,25 +111,6 @@ installs-common:
         flatpak install flathub "$app" -y
     done
 
-# Install NixOS specific apps
-installs-nixos:
-    #!/usr/bin/env bash
-
-    echo -e '\n Installing all NixOS apps\n'
-    mkdir -p ~/.config/nix
-    echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
-    sudo nixos-rebuild switch --flake ~/.flake
-    nix run home-manager/master -- switch --flake ~/.flake
-    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-    flatpak install -y flathub \
-        org.freedesktop.Platform.VulkanLayer.MangoHud \
-        org.videolan.VLC \
-        org.mozilla.firefox \
-        org.kde.kcalc \
-        com.dec05eba.gpu_screen_recorder
-    just installs-common
-    echo -e '\n Finished installing all NixOS apps\n'
-
 # Install SteamOS specific apps
 installs-steamos:
     #!/usr/bin/env bash
@@ -160,18 +141,6 @@ setup-github:
     echo -e '\n Copy the newly created key\n'
     cat ~/.ssh/id_ed25519.pub
     echo -e '\n Paste it into a new SSH key: https://github.com/settings/keys\n'
-
-# Set up the Nix Package Manager
-setup-nixpm:
-    #!/usr/bin/env bash
-
-    echo -e '\n Setting up the Nix Package Manager\n'
-    sh <(curl -L https://nixos.org/nix/install) --no-daemon
-    . $HOME/.nix-profile/etc/profile.d/nix.sh
-    mkdir -p ~/.config/nix
-    echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
-    nix run home-manager/master -- switch --flake ~/.flake
-    echo -e "\n Finished setting up the Nix Package Manager\n"
 
 # Upload savegame folder files
 upload-savegame:

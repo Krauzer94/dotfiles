@@ -179,6 +179,7 @@ setup-github:
     echo -e '\n Paste it into a new SSH key: https://github.com/settings/keys\n'
 
 # Upload savegame folder files
+[no-cd]
 upload-savegame:
     #!/usr/bin/env bash
 

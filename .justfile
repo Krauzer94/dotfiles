@@ -95,6 +95,7 @@ installs-arch:
 installs-common:
     #!/usr/bin/env bash
 
+    curl -L https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch -o .neofetch.sh
     just setup-filesys
     apps=(
         com.google.Chrome

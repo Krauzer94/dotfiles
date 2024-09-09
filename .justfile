@@ -68,8 +68,16 @@ installs-arch:
     echo -e '\n Installing all Arch Linux apps\n'
     flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     packages=(
-        git flatpak timeshift steam ffmpeg mangohud
-        firefox spectacle packagekit-qt6 noto-fonts-cjk
+        git
+        flatpak
+        timeshift
+        steam
+        ffmpeg
+        mangohud
+        firefox
+        spectacle
+        packagekit-qt6
+        noto-fonts-cjk
     )
     for package in "${packages[@]}"; do
         sudo pacman -S --needed "$package" --noconfirm
@@ -77,10 +85,9 @@ installs-arch:
     sudo systemctl enable --now cronie.service bluetooth.service NetworkManager.service
     just installs-common
     flatpak install -y flathub \
+        org.kde.kcalc \
         org.kde.okular \
         org.kde.gwenview \
-        org.mozilla.firefox \
-        org.kde.kcalc \
         com.dec05eba.gpu_screen_recorder
     echo -e '\n Finished installing all Arch Linux apps\n'
 
@@ -118,19 +125,24 @@ installs-fedora:
     echo -e '\n Installing all Fedora apps\n'
     flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     packages=(
-        git flatpak btrfs-assistant steam ffmpeg mangohud
-        akmod-nvidia xorg-x11-drv-nvidia-cuda
+        git
+        flatpak
+        btrfs-assistant
+        steam
+        ffmpeg
+        mangohud
+        firefox
+        akmod-nvidia
+        xorg-x11-drv-nvidia-cuda
     )
     for package in "${packages[@]}"; do
         sudo dnf install "$package" -y
     done
     just installs-common
     flatpak install -y flathub \
-        # Fill with specific applications
-        #org.kde.okular \
-        #org.kde.gwenview \
-        #org.mozilla.firefox \
-        #org.kde.kcalc \
+        org.kde.kcalc \
+        org.kde.gwenview \
+        org.videolan.VLC \
         com.dec05eba.gpu_screen_recorder
     echo -e '\n Finished installing all Fedora apps\n'
 
@@ -142,8 +154,10 @@ installs-steamos:
     flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     just installs-common
     flatpak install -y flathub \
-        flathub org.videolan.VLC \
-        flathub com.obsproject.Studio
+        org.kde.kcalc \
+        org.mozilla.firefox \
+        org.videolan.VLC \
+        com.obsproject.Studio
     echo -e '\n Finished installing all SteamOS apps\n'
 
 # Set up flatpak permissions

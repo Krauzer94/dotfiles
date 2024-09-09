@@ -2,22 +2,22 @@
 
 # Install Git
 install_git() {
-    if [ -f /etc/os-release ]; then
-        . /etc/os-release
-        case "$ID" in
-            fedora)
-                sudo dnf install git -y
-                ;;
-            arch)
-                sudo pacman --needed -S git --noconfirm
-                ;;
-            *)
-                echo "Nothing to do here"
-                ;;
-        esac
-    else
-        echo "Nothing to do here"
-    fi
+    HOST=$(hostname)
+
+    case "$HOST" in
+        fedora*)
+            sudo dnf install git -y
+            ;;
+        archlinux*)
+            sudo pacman --needed -S git --noconfirm
+            ;;
+        steamdeck*)
+            echo "SteamOS detected, git is already pre-installed"
+            ;;
+        *)
+            echo "Unknown Linux distro"
+            ;;
+    esac
 }
 
 # Set up dotfiles
@@ -31,31 +31,34 @@ setup_dotfiles() {
 }
 
 # Install Just
-mkdir -p ~/.local/bin
-curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/.local/bin
-source .bashrc
+install_just () {
+    mkdir -p ~/.local/bin
+    curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/.local/bin
+    source ~/.bashrc
+}
 
 # Install remaining apps
 remaining_apps() {
-    if [ -f /etc/os-release ]; then
-        . /etc/os-release
-        case "$ID" in
-            fedora)
-                just installs-fedora
-                ;;
-            arch)
-                just installs-arch
-                ;;
-            *)
-                echo "Nothing to do here"
-                ;;
-        esac
-    else
-        echo "Nothing to do here"
-    fi
+    HOST=$(hostname)
+
+    case "$HOST" in
+        fedora)
+            just installs-fedora
+            ;;
+        archlinux)
+            just installs-arch
+            ;;
+        steamdeck*)
+            just installs-steamos
+            ;;
+        *)
+            echo "Unknown Linux distro"
+            ;;
+    esac
 }
 
 # Execute all functions
 install_git
 setup_dotfiles
+install_just
 remaining_apps

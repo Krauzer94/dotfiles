@@ -85,7 +85,6 @@ installs-arch:
     sudo systemctl enable --now cronie.service bluetooth.service NetworkManager.service
     just installs-common
     flatpak install -y flathub \
-        org.kde.kcalc \
         org.kde.okular \
         org.kde.gwenview \
         com.dec05eba.gpu_screen_recorder
@@ -114,6 +113,7 @@ installs-common:
         net.davidotek.pupgui2
         net.lutris.Lutris
         com.visualstudio.code
+        org.kde.kcalc
     )
     for app in "${apps[@]}"; do
         flatpak install flathub "$app" -y
@@ -141,7 +141,6 @@ installs-fedora:
     done
     just installs-common
     flatpak install -y flathub \
-        org.kde.kcalc \
         org.kde.gwenview \
         org.videolan.VLC \
         com.dec05eba.gpu_screen_recorder
@@ -155,7 +154,6 @@ installs-steamos:
     flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     just installs-common
     flatpak install -y flathub \
-        org.kde.kcalc \
         org.mozilla.firefox \
         org.videolan.VLC \
         com.obsproject.Studio

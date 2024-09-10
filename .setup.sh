@@ -39,6 +39,7 @@ install_just () {
 
 # Install remaining apps
 remaining_apps() {
+    curl -L https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch -o ~/.neofetch.sh
     HOST=$HOSTNAME
 
     case "$HOST" in

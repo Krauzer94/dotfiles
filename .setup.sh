@@ -15,7 +15,7 @@ install_git() {
             echo "SteamOS detected, git is already pre-installed"
             ;;
         *)
-            echo "Unknown Linux distro"
+            sudo pacman --needed -S git --noconfirm
             ;;
     esac
 }
@@ -53,7 +53,7 @@ remaining_apps() {
             just installs-steamos
             ;;
         *)
-            echo "Unknown Linux distro"
+            just installs-wsl
             ;;
     esac
 }

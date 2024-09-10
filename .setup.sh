@@ -27,7 +27,6 @@ setup_dotfiles() {
     git clone https://github.com/Krauzer94/dotfiles.git
     mv ~/dotfiles/.git ~/
     rm -rdf ~/dotfiles
-    ln -s ~/.var/app ~/.flatpaks
     git restore .
 }
 

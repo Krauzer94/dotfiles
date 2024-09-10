@@ -150,7 +150,7 @@ installs-wsl:
 
     echo -e '\n Installing all WSL apps\n'
     packages=(
-        git wget openssh distrobox podman
+        git wget which openssh distrobox podman
     )
     for package in "${packages[@]}"; do
         sudo pacman -S --needed "$package" --noconfirm

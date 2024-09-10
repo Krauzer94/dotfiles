@@ -68,16 +68,8 @@ installs-arch:
     echo -e '\n Installing all Arch Linux apps\n'
     flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     packages=(
-        git
-        flatpak
-        timeshift
-        steam
-        ffmpeg
-        mangohud
-        firefox
-        spectacle
-        packagekit-qt6
-        noto-fonts-cjk
+        git flatpak timeshift steam ffmpeg mangohud
+        firefox spectacle packagekit-qt6 noto-fonts-cjk
     )
     for package in "${packages[@]}"; do
         sudo pacman -S --needed "$package" --noconfirm
@@ -125,15 +117,8 @@ installs-fedora:
     echo -e '\n Installing all Fedora apps\n'
     flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     packages=(
-        git
-        flatpak
-        btrfs-assistant
-        steam
-        ffmpeg
-        mangohud
-        firefox
-        akmod-nvidia
-        xorg-x11-drv-nvidia-cuda
+        git flatpak btrfs-assistant steam ffmpeg mangohud
+        firefox akmod-nvidia xorg-x11-drv-nvidia-cuda
     )
     for package in "${packages[@]}"; do
         sudo dnf install "$package" -y
@@ -164,11 +149,7 @@ installs-wsl:
 
     echo -e '\n Installing all WSL apps\n'
     packages=(
-        git
-        wget
-        openssh
-        distrobox
-        podman
+        git wget openssh distrobox podman
     )
     for package in "${packages[@]}"; do
         sudo pacman -S --needed "$package" --noconfirm

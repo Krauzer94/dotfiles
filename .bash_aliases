@@ -9,6 +9,10 @@ alias aupdate='sudo pacman -Syu --noconfirm'
 alias aclean='sudo pacman -Rns $(pacman -Qtdq) --noconfirm'
 alias wclean='find ~/ -type f -name "*.Identifier" -delete'
 
+# Ubuntu specific
+alias uupdate='sudo apt update && sudo apt upgrade -y'
+alias uclean='sudo apt autoremove --purge'
+
 # Git routines
 alias status='git status'
 alias commit='git add . && git commit'

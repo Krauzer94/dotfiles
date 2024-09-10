@@ -158,6 +158,23 @@ installs-steamos:
         com.obsproject.Studio
     echo -e '\n Finished installing all SteamOS apps\n'
 
+# Install all WSL specific apps
+installs-wsl:
+    #!/usr/bin/env bash
+
+    echo -e '\n Installing all WSL apps\n'
+    packages=(
+        git
+        wget
+        openssh
+        distrobox
+        podman
+    )
+    for package in "${packages[@]}"; do
+        sudo pacman -S --needed "$package" --noconfirm
+    done
+    echo -e '\n Finished installing all WSL apps\n'
+
 # Set up flatpak permissions
 setup-filesys:
     #!/usr/bin/env bash

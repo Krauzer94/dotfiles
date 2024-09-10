@@ -2,7 +2,7 @@
 
 # Install Git
 install_git() {
-    HOST=$(hostname)
+    HOST=$HOSTNAME
 
     case "$HOST" in
         fedora*)
@@ -39,7 +39,7 @@ install_just () {
 
 # Install remaining apps
 remaining_apps() {
-    HOST=$(hostname)
+    HOST=$HOSTNAME
 
     case "$HOST" in
         fedora)

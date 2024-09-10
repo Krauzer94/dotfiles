@@ -148,6 +148,10 @@ installs-wsl:
     #!/usr/bin/env bash
 
     echo -e '\n Installing all WSL apps\n'
+    sudo pacman-key --init --noconfirm
+    sudo pacman-key --populate --noconfirm
+    sudo pacman -Sy archlinux-keyring --noconfirm
+    sudo pacman -Su --noconfirm
     packages=(
         git wget openssh distrobox podman
     )

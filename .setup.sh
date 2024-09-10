@@ -32,6 +32,7 @@ setup_dotfiles() {
     mv ~/dotfiles/.git ~/
     rm -rdf ~/dotfiles
     git restore .
+    source ~/.bashrc
 }
 
 # Install Just

@@ -46,10 +46,10 @@ remaining_apps() {
     HOST=$HOSTNAME
 
     case "$HOST" in
-        fedora)
+        fedora*)
             just installs-fedora
             ;;
-        archlinux)
+        archlinux*)
             just installs-arch
             ;;
         steamdeck*)

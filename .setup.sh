@@ -56,7 +56,7 @@ remaining_apps() {
             just installs-steamos
             ;;
         *)
-            just installs-wsl
+            echo -e "\n  source ~/.bashrc && just installs-wsl\n"
             ;;
     esac
 }

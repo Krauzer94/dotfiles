@@ -15,10 +15,10 @@ install_git() {
             echo "SteamOS detected, git is already pre-installed"
             ;;
         *)
-            sudo pacman-key --init --noconfirm
-            sudo pacman-key --populate --noconfirm
-            sudo pacman -Sy archlinux-keyring --noconfirm
-            sudo pacman -Su --noconfirm
+            sudo pacman-key --init
+            sudo pacman-key --populate
+            sudo pacman -Sy archlinux-keyring
+            sudo pacman -Syu
             sudo pacman --needed -S git --noconfirm
             ;;
     esac

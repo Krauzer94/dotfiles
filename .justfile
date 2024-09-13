@@ -159,12 +159,12 @@ installs-ubuntu:
     sudo apt install -y \
         steam-installer \
         ffmpeg \
-        mangohud \
+        mangohud
     just installs-common
-    #flatpak install -y flathub \
-    #    org.kde.gwenview \
-    #    org.videolan.VLC \
-    #    com.dec05eba.gpu_screen_recorder
+    flatpak install -y flathub \
+        org.mozilla.firefox \
+        org.videolan.VLC \
+        com.obsproject.Studio
     echo -e '\n Finished installing all Ubuntu apps \n'
 
 # Install all WSL specific apps

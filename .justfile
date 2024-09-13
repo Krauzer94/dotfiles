@@ -150,6 +150,23 @@ installs-steamos:
         com.obsproject.Studio
     echo -e '\n Finished installing all SteamOS apps \n'
 
+# Install Ubuntu specific apps
+installs-ubuntu:
+    #!/usr/bin/env bash
+
+    echo -e '\n Installing all Ubuntu apps \n'
+    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+    sudo apt install -y \
+        steam-installer \
+        ffmpeg \
+        mangohud \
+    just installs-common
+    #flatpak install -y flathub \
+    #    org.kde.gwenview \
+    #    org.videolan.VLC \
+    #    com.dec05eba.gpu_screen_recorder
+    echo -e '\n Finished installing all Ubuntu apps \n'
+
 # Install all WSL specific apps
 installs-wsl:
     #!/usr/bin/env bash

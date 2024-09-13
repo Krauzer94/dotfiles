@@ -149,17 +149,16 @@ installs-wsl:
     #!/usr/bin/env bash
 
     echo -e '\n Installing all WSL apps \n'
-    sudo dnf update -y
-    packages=(
-        sudo util-linux systemd openssh wget distrobox podman
-    )
-    for package in "${packages[@]}"; do
-        sudo dnf install "$package" -y
-    done
-    sudo chmod u+s /usr/bin/newuidmap
-    sudo chmod u+s /usr/bin/newgidmap
+    echo -e "[boot]\nsystemd=true\nnetworkingMode=mirrored" >> /etc/wsl.conf
+    sudo apt install -y \
+        git \
+        systemd \
+        systemctl \
+        openssh-client \
+        wget \
+        distrobox \
+        podman
     echo -e '\n Finished installing all WSL apps \n'
-    echo -e "\n Add this to > /etc/wsl.conf\n[user]\ndefault=deck\n\n[boot]\nsystemd=true\nnetworkingMode=mirrored \n"
 
 # Set up flatpak permissions
 setup-filesys:

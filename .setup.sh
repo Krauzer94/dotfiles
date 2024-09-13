@@ -18,7 +18,7 @@ install_git() {
             echo -e "\n SteamOS detected, git is already pre-installed \n"
             ;;
         *)
-            sudo dnf install git -y
+            sudo apt install git -y
             ;;
     esac
 }

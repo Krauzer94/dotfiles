@@ -66,15 +66,20 @@ installs-arch:
     #!/usr/bin/env bash
 
     echo -e '\n Installing all Arch Linux apps \n'
-    flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    packages=(
-        git flatpak timeshift steam ffmpeg mangohud
-        firefox spectacle packagekit-qt6 noto-fonts-cjk
-    )
-    for package in "${packages[@]}"; do
-        sudo pacman -S --needed "$package" --noconfirm
-    done
-    sudo systemctl enable --now cronie.service bluetooth.service NetworkManager.service
+    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+    sudo pacman -S --needed --noconfirm \
+        timeshift \
+        steam \
+        ffmpeg \
+        mangohud \
+        firefox \
+        spectacle \
+        packagekit-qt6 \
+        noto-fonts-cjk
+    sudo systemctl enable --now \
+        cronie.service \
+        bluetooth.service \
+        NetworkManager.service
     just installs-common
     flatpak install -y flathub \
         org.kde.okular \
@@ -108,7 +113,7 @@ installs-common:
         org.kde.kcalc
     )
     for app in "${apps[@]}"; do
-        flatpak install flathub "$app" -y
+        flatpak install -y flathub "$app" -y
     done
 
 # Install Fedora specific apps
@@ -116,14 +121,15 @@ installs-fedora:
     #!/usr/bin/env bash
 
     echo -e '\n Installing all Fedora apps \n'
-    flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    packages=(
-        git flatpak btrfs-assistant steam ffmpeg mangohud
-        firefox akmod-nvidia xorg-x11-drv-nvidia-cuda
-    )
-    for package in "${packages[@]}"; do
-        sudo dnf install "$package" -y
-    done
+    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+    sudo dnf install -y \
+        btrfs-assistant \
+        steam \
+        ffmpeg \
+        mangohud \
+        firefox \
+        akmod-nvidia \
+        xorg-x11-drv-nvidia-cuda
     just installs-common
     flatpak install -y flathub \
         org.kde.gwenview \
@@ -136,7 +142,7 @@ installs-steamos:
     #!/usr/bin/env bash
 
     echo -e '\n Installing all SteamOS apps \n'
-    flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     just installs-common
     flatpak install -y flathub \
         org.mozilla.firefox \
@@ -151,7 +157,6 @@ installs-wsl:
     echo -e '\n Installing all WSL apps \n'
     echo -e "[boot]\nsystemd=true\nnetworkingMode=mirrored" >> /etc/wsl.conf
     sudo apt install -y \
-        git \
         systemd \
         systemctl \
         openssh-client \

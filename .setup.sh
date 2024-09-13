@@ -8,18 +8,17 @@ install_git() {
         fedora*)
             sudo dnf install git -y
             ;;
+        ubuntu*)
+            sudo apt install git -y
+            ;;
         archlinux*)
             sudo pacman --needed -S git --noconfirm
             ;;
         steamdeck*)
-            echo "SteamOS detected, git is already pre-installed"
+            echo -e "\n SteamOS detected, git is already pre-installed \n"
             ;;
         *)
-            sudo pacman-key --init
-            sudo pacman-key --populate
-            sudo pacman -Sy archlinux-keyring
-            sudo pacman -Syu
-            sudo pacman --needed -S git --noconfirm
+            sudo dnf install git -y
             ;;
     esac
 }
@@ -48,6 +47,9 @@ remaining_apps() {
     case "$HOST" in
         fedora*)
             just installs-fedora
+            ;;
+        ubuntu*)
+            just installs-ubuntu
             ;;
         archlinux*)
             just installs-arch

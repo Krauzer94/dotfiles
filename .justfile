@@ -65,7 +65,7 @@ edit-videos:
 installs-arch:
     #!/usr/bin/env bash
 
-    echo -e '\n Installing all Arch Linux apps\n'
+    echo -e '\n Installing all Arch Linux apps \n'
     flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     packages=(
         git flatpak timeshift steam ffmpeg mangohud
@@ -80,7 +80,7 @@ installs-arch:
         org.kde.okular \
         org.kde.gwenview \
         com.dec05eba.gpu_screen_recorder
-    echo -e '\n Finished installing all Arch Linux apps\n'
+    echo -e '\n Finished installing all Arch Linux apps \n'
 
 # Install common applications
 installs-common:
@@ -115,7 +115,7 @@ installs-common:
 installs-fedora:
     #!/usr/bin/env bash
 
-    echo -e '\n Installing all Fedora apps\n'
+    echo -e '\n Installing all Fedora apps \n'
     flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     packages=(
         git flatpak btrfs-assistant steam ffmpeg mangohud
@@ -129,38 +129,37 @@ installs-fedora:
         org.kde.gwenview \
         org.videolan.VLC \
         com.dec05eba.gpu_screen_recorder
-    echo -e '\n Finished installing all Fedora apps\n'
+    echo -e '\n Finished installing all Fedora apps \n'
 
 # Install SteamOS specific apps
 installs-steamos:
     #!/usr/bin/env bash
 
-    echo -e '\n Installing all SteamOS apps\n'
+    echo -e '\n Installing all SteamOS apps \n'
     flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     just installs-common
     flatpak install -y flathub \
         org.mozilla.firefox \
         org.videolan.VLC \
         com.obsproject.Studio
-    echo -e '\n Finished installing all SteamOS apps\n'
+    echo -e '\n Finished installing all SteamOS apps \n'
 
 # Install all WSL specific apps
 installs-wsl:
     #!/usr/bin/env bash
 
-    echo -e '\n Installing all WSL apps\n'
-    sudo echo -e "[user]\ndefault=deck\n\n[boot]\nsystemd=true\nnetworkingMode=mirrored" > /etc/wsl.conf
+    echo -e '\n Installing all WSL apps \n'
     sudo dnf update -y
-    sudo dnf install sudo util-linux openssh wget distrobox podman -y
-    sudo chmod u+s /usr/bin/newuidmap
-    sudo chmod u+s /usr/bin/newgidmap
     packages=(
         sudo util-linux systemd openssh wget distrobox podman
     )
     for package in "${packages[@]}"; do
         sudo dnf install "$package" -y
     done
-    echo -e '\n Finished installing all WSL apps\n'
+    sudo chmod u+s /usr/bin/newuidmap
+    sudo chmod u+s /usr/bin/newgidmap
+    echo -e '\n Finished installing all WSL apps \n'
+    echo -e "\n Add this to > /etc/wsl.conf\n[user]\ndefault=deck\n\n[boot]\nsystemd=true\nnetworkingMode=mirrored \n"
 
 # Set up flatpak permissions
 setup-filesys:
@@ -175,11 +174,11 @@ setup-filesys:
 setup-github:
     #!/usr/bin/env bash
 
-    echo -e '\n Generating a new SSH key\n'
+    echo -e '\n Generating a new SSH key \n'
     ssh-keygen -t ed25519 -C 13894059+Krauzer94@users.noreply.github.com
-    echo -e '\n Copy the newly created key\n'
+    echo -e '\n Copy the newly created key \n'
     cat ~/.ssh/id_ed25519.pub
-    echo -e '\n Paste it into a new SSH key: https://github.com/settings/keys\n'
+    echo -e '\n Paste it into a new SSH key: https://github.com/settings/keys \n'
 
 # Upload savegame folder files
 [no-cd]

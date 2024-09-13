@@ -149,11 +149,16 @@ installs-wsl:
     #!/usr/bin/env bash
 
     echo -e '\n Installing all WSL apps\n'
+    sudo echo -e "[user]\ndefault=deck\n\n[boot]\nsystemd=true\nnetworkingMode=mirrored" > /etc/wsl.conf
+    sudo dnf update -y
+    sudo dnf install sudo util-linux openssh wget distrobox podman -y
+    sudo chmod u+s /usr/bin/newuidmap
+    sudo chmod u+s /usr/bin/newgidmap
     packages=(
-        git wget openssh distrobox podman
+        sudo util-linux systemd openssh wget distrobox podman
     )
     for package in "${packages[@]}"; do
-        sudo pacman -S --needed "$package" --noconfirm
+        sudo dnf install "$package" -y
     done
     echo -e '\n Finished installing all WSL apps\n'
 

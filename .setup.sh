@@ -14,6 +14,9 @@ install_git() {
         steamdeck*)
             echo -e "\n SteamOS detected, git is already pre-installed \n"
             ;;
+        archlinux*)
+            sudo pacman -S git --noconfirm
+            ;;
         *)
             sudo apt install git -y
             ;;
@@ -50,6 +53,9 @@ remaining_apps() {
             ;;
         steamdeck*)
             just installs-steamos
+            ;;
+        archlinux*)
+            just installs-arch
             ;;
         *)
             just installs-wsl

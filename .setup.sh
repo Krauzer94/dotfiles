@@ -18,7 +18,7 @@ install_git() {
             sudo pacman -S git --noconfirm
             ;;
         *)
-            sudo apt install git -y
+            echo -e "\n Nothing to do here \n"
             ;;
     esac
 }
@@ -58,7 +58,7 @@ remaining_apps() {
             just installs-arch
             ;;
         *)
-            just installs-wsl
+            echo -e "\n Nothing to do here \n"
             ;;
     esac
 }

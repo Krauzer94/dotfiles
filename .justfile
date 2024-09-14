@@ -164,21 +164,6 @@ installs-ubuntu:
         com.obsproject.Studio
     echo -e '\n Finished installing all Ubuntu apps \n'
 
-# Install all WSL specific apps
-installs-wsl:
-    #!/usr/bin/env bash
-
-    echo -e '\n Installing all WSL apps \n'
-    echo -e "[boot]\nsystemd=true\nnetworkingMode=mirrored" >> /etc/wsl.conf
-    sudo apt install -y \
-        systemd \
-        systemctl \
-        openssh-client \
-        wget \
-        distrobox \
-        podman
-    echo -e '\n Finished installing all WSL apps \n'
-
 # Set up flatpak permissions
 setup-filesys:
     #!/usr/bin/env bash

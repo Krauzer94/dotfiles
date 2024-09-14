@@ -68,7 +68,6 @@ installs-arch:
     echo -e '\n Installing all Arch Linux apps \n'
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo pacman -S --needed --noconfirm \
-        timeshift \
         steam \
         ffmpeg \
         mangohud \
@@ -77,7 +76,6 @@ installs-arch:
         packagekit-qt6 \
         noto-fonts-cjk
     sudo systemctl enable --now \
-        cronie.service \
         bluetooth.service \
         NetworkManager.service
     just installs-common
@@ -123,7 +121,6 @@ installs-fedora:
     echo -e '\n Installing all Fedora apps \n'
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo dnf install -y \
-        btrfs-assistant \
         steam \
         ffmpeg \
         mangohud \

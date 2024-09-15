@@ -58,7 +58,8 @@ remaining_apps() {
             just installs-arch
             ;;
         *)
-            echo -e "\n Nothing to do here \n"
+            sudo apt update
+            sudo apt install -y distrobox podman
             ;;
     esac
 }

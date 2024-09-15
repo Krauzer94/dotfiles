@@ -103,7 +103,7 @@ installs-common:
         org.libretro.RetroArch \
         org.onlyoffice.desktopeditors \
         com.discordapp.Discord \
-        io.github.mimbrero.WhatsAppDesktop \
+        com.rtosta.zapzap \
         com.github.tchx84.Flatseal \
         net.davidotek.pupgui2 \
         net.lutris.Lutris \

@@ -91,28 +91,24 @@ installs-common:
 
     curl -L https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch -o ~/.neofetch.sh
     just setup-filesys
-    apps=(
-        com.google.Chrome
-        org.gimp.GIMP
-        org.qbittorrent.qBittorrent
-        org.flameshot.Flameshot
-        org.gnome.EasyTAG
-        com.stremio.Stremio
-        org.bleachbit.BleachBit
-        com.spotify.Client
-        org.libretro.RetroArch
-        org.onlyoffice.desktopeditors
-        com.discordapp.Discord
-        io.github.mimbrero.WhatsAppDesktop
-        com.github.tchx84.Flatseal
-        net.davidotek.pupgui2
-        net.lutris.Lutris
-        com.visualstudio.code
+    flatpak install -y flathub \
+        com.google.Chrome \
+        org.gimp.GIMP \
+        org.qbittorrent.qBittorrent \
+        org.flameshot.Flameshot \
+        org.gnome.EasyTAG \
+        com.stremio.Stremio \
+        org.bleachbit.BleachBit \
+        com.spotify.Client \
+        org.libretro.RetroArch \
+        org.onlyoffice.desktopeditors \
+        com.discordapp.Discord \
+        io.github.mimbrero.WhatsAppDesktop \
+        com.github.tchx84.Flatseal \
+        net.davidotek.pupgui2 \
+        net.lutris.Lutris \
+        com.visualstudio.code \
         org.kde.kcalc
-    )
-    for app in "${apps[@]}"; do
-        flatpak install -y flathub "$app" -y
-    done
 
 # Install Fedora specific apps
 installs-fedora:

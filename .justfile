@@ -153,6 +153,7 @@ installs-ubuntu:
         steam-installer \
         ffmpeg \
         mangohud
+    sudo ubuntu-drivers install
     just installs-common
     flatpak install -y flathub \
         org.mozilla.firefox \

@@ -65,7 +65,7 @@ edit-videos:
 installs-arch:
     #!/usr/bin/env bash
 
-    echo -e '\n Installing all Arch Linux apps \n'
+    echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo pacman -S --needed --noconfirm \
         steam \
@@ -83,7 +83,7 @@ installs-arch:
         org.kde.okular \
         org.kde.gwenview \
         com.dec05eba.gpu_screen_recorder
-    echo -e '\n Finished installing all Arch Linux apps \n'
+    echo -e ''
 
 # Install common applications
 installs-common:
@@ -114,7 +114,7 @@ installs-common:
 installs-fedora:
     #!/usr/bin/env bash
 
-    echo -e '\n Installing all Fedora apps \n'
+    echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo dnf install -y \
         steam \
@@ -128,26 +128,26 @@ installs-fedora:
         org.kde.gwenview \
         org.videolan.VLC \
         com.dec05eba.gpu_screen_recorder
-    echo -e '\n Finished installing all Fedora apps \n'
+    echo -e ''
 
 # Install SteamOS specific apps
 installs-steamos:
     #!/usr/bin/env bash
 
-    echo -e '\n Installing all SteamOS apps \n'
+    echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     just installs-common
     flatpak install -y flathub \
         org.mozilla.firefox \
         org.videolan.VLC \
         com.obsproject.Studio
-    echo -e '\n Finished installing all SteamOS apps \n'
+    echo -e ''
 
 # Install Ubuntu specific apps
 installs-ubuntu:
     #!/usr/bin/env bash
 
-    echo -e '\n Installing all Ubuntu apps \n'
+    echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo apt install -y \
         steam-installer \
@@ -159,7 +159,7 @@ installs-ubuntu:
         org.mozilla.firefox \
         org.videolan.VLC \
         com.obsproject.Studio
-    echo -e '\n Finished installing all Ubuntu apps \n'
+    echo -e ''
 
 # Set up flatpak permissions
 setup-filesys:
@@ -174,11 +174,11 @@ setup-filesys:
 setup-github:
     #!/usr/bin/env bash
 
-    echo -e '\n Generating a new SSH key \n'
+    echo -e ''
     ssh-keygen -t ed25519 -C 13894059+Krauzer94@users.noreply.github.com
-    echo -e '\n Copy the newly created key \n'
+    echo -e ''
     cat ~/.ssh/id_ed25519.pub
-    echo -e '\n Paste it into a new SSH key: https://github.com/settings/keys \n'
+    echo -e ''
 
 # Upload savegame folder files
 [no-cd]

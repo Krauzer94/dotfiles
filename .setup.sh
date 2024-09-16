@@ -11,6 +11,9 @@ install_git() {
         ubuntu*)
             sudo apt install git -y
             ;;
+        ubuntu*)
+            sudo apt install git -y
+            ;;
         steamdeck*)
             echo -e "\n SteamOS detected, git is already pre-installed \n"
             ;;
@@ -50,6 +53,9 @@ remaining_apps() {
             ;;
         ubuntu*)
             just installs-ubuntu
+            ;;
+        mint*)
+            just installs-mint
             ;;
         steamdeck*)
             just installs-steamos

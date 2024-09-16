@@ -130,6 +130,23 @@ installs-fedora:
         com.dec05eba.gpu_screen_recorder
     echo -e ''
 
+# Install Linux Mint specific apps
+installs-mint:
+    #!/usr/bin/env bash
+
+    echo -e ''
+    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+    sudo apt install -y \
+        steam-installer \
+        ffmpeg \
+        mangohud
+    just installs-common
+    #flatpak install -y flathub \
+    #    org.mozilla.firefox \
+    #    org.videolan.VLC \
+    #    com.obsproject.Studio
+    echo -e ''
+
 # Install SteamOS specific apps
 installs-steamos:
     #!/usr/bin/env bash

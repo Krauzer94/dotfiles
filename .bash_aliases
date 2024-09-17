@@ -1,12 +1,16 @@
 # Flatpak specific
-alias fupdate='flatpak update -y'
-alias fclean='flatpak uninstall --unused'
+alias update='flatpak update -y'
+alias clean='flatpak uninstall --unused'
 alias flapp='flatpak list --app'
 alias flrun='flatpak list --runtime'
 
-# Arch specific
-alias aupdate='sudo pacman -Syu --noconfirm'
-alias aclean='sudo pacman -Rns $(pacman -Qtdq) --noconfirm'
+# Fedora specific
+alias fupdate='sudo dnf update -y'
+alias fclean='sudo dnf autoremove -y && sudo dnf clean all -y'
+
+# NixOS specific
+alias nupdate='sudo nixos-rebuild switch --flake ~/.flake'
+alias nclean='sudo nix-collect-garbage --delete-older-than 5d'
 alias wclean='find ~/ -type f -name "*.Identifier" -delete'
 
 # Git routines

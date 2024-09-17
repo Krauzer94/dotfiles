@@ -114,7 +114,12 @@ installs-nixos:
     mkdir -p ~/.config/nix
     echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
     sudo cp -f /etc/nixos/hardware-configuration.nix ~/.flake/hardware-configuration.nix
-    sudo nixos-rebuild switch --flake ~/.flake              
+    sudo nixos-rebuild switch --flake ~/.flake
+    just installs-nixos
+    flatpak install -y flathub \
+        org.mozilla.firefox \
+        org.videolan.VLC \
+        com.dec05eba.gpu_screen_recorder
     echo -e ''
 
 # Install SteamOS specific apps

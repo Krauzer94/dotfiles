@@ -106,6 +106,16 @@ installs-fedora:
         com.dec05eba.gpu_screen_recorder
     echo -e ''
 
+# Install NixOS specific apps
+installs-nixos:
+    #!/usr/bin/env bash
+
+    echo -e ''
+    mkdir -p ~/.config/nix
+    echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
+    sudo nixos-rebuild switch --flake ~/.flake              
+    echo -e ''
+
 # Install SteamOS specific apps
 installs-steamos:
     #!/usr/bin/env bash
@@ -117,35 +127,6 @@ installs-steamos:
         org.mozilla.firefox \
         org.videolan.VLC \
         com.obsproject.Studio
-    echo -e ''
-
-# Install Tumbleweed specific apps
-installs-tumbleweed:
-    #!/usr/bin/env bash
-
-    echo -e ''
-    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    sudo zypper install -y \
-        steam \
-        ffmpeg \
-        mangohud \
-        openSUSE-repos-Tumbleweed-NVIDIA
-    zypper install-new-recommends --repo repo-non-free
-    just installs-common
-    flatpak install -y flathub \
-    #    org.kde.gwenview \
-    #    org.videolan.VLC \
-        com.obsproject.Studio
-    echo -e ''
-
-# Install WSL specific apps
-installs-wsl:
-    #!/usr/bin/env bash
-
-    echo -e ''
-    sudo zypper install -y \
-        distrobox \
-        podman
     echo -e ''
 
 # Set up flatpak permissions

@@ -8,14 +8,14 @@ install_git() {
         fedora*)
             sudo dnf install git -y
             ;;
+        nixos*)
+            sudo nixos-rebuild switch
+            ;;
         steamdeck*)
             echo -e "\n SteamOS detected, nothing to do here \n"
             ;;
-        tumbleweed*)
-            sudo zypper install git -y
-            ;;
         *)
-            sudo zypper install git -y
+            echo -e "\n NixOS WSL detected, work in progress \n"
             ;;
     esac
 }
@@ -45,11 +45,11 @@ remaining_apps() {
         fedora*)
             just installs-fedora
             ;;
+        nixos*)
+            just installs-nixos
+            ;;
         steamdeck*)
             just installs-steamos
-            ;;
-        tumbleweed*)
-            just installs-tumbleweed
             ;;
         *)
             just installs-wsl

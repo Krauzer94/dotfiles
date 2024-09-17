@@ -119,6 +119,25 @@ installs-steamos:
         com.obsproject.Studio
     echo -e ''
 
+# Install Tumbleweed specific apps
+installs-tumbleweed:
+    #!/usr/bin/env bash
+
+    echo -e ''
+    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+    sudo zypper install -y \
+        steam \
+        ffmpeg \
+        mangohud \
+        openSUSE-repos-Tumbleweed-NVIDIA
+    zypper install-new-recommends --repo repo-non-free
+    just installs-common
+    flatpak install -y flathub \
+    #    org.kde.gwenview \
+    #    org.videolan.VLC \
+        com.obsproject.Studio
+    echo -e ''
+
 # Set up flatpak permissions
 setup-filesys:
     #!/usr/bin/env bash

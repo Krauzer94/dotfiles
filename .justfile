@@ -113,6 +113,7 @@ installs-nixos:
     echo -e ''
     mkdir -p ~/.config/nix
     echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
+    sudo cp -f /etc/nixos/hardware-configuration.nix ~/.flake/hardware-configuration.nix
     sudo nixos-rebuild switch --flake ~/.flake              
     echo -e ''
 

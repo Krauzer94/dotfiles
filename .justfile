@@ -116,7 +116,7 @@ installs-nixos:
     sudo cp -f /etc/nixos/hardware-configuration.nix ~/.flake/hardware-configuration.nix
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo nixos-rebuild switch --flake ~/.flake
-    just installs-nixos
+    just installs-common
     flatpak install -y flathub \
         org.mozilla.firefox \
         org.videolan.VLC \

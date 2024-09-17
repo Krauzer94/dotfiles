@@ -61,30 +61,6 @@ edit-videos:
         rm "$f"
     done
 
-# Install Arch Linux specific apps
-installs-arch:
-    #!/usr/bin/env bash
-
-    echo -e ''
-    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    sudo pacman -S --needed --noconfirm \
-        steam \
-        ffmpeg \
-        mangohud \
-        firefox \
-        spectacle \
-        packagekit-qt6 \
-        noto-fonts-cjk
-    sudo systemctl enable --now \
-        bluetooth.service \
-        NetworkManager.service
-    just installs-common
-    flatpak install -y flathub \
-        org.kde.okular \
-        org.kde.gwenview \
-        com.dec05eba.gpu_screen_recorder
-    echo -e ''
-
 # Install common applications
 installs-common:
     #!/usr/bin/env bash
@@ -130,47 +106,12 @@ installs-fedora:
         com.dec05eba.gpu_screen_recorder
     echo -e ''
 
-# Install Linux Mint specific apps
-installs-mint:
-    #!/usr/bin/env bash
-
-    echo -e ''
-    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    sudo apt install -y \
-        steam-installer \
-        ffmpeg \
-        mangohud
-    just installs-common
-    #flatpak install -y flathub \
-    #    org.mozilla.firefox \
-    #    org.videolan.VLC \
-    #    com.obsproject.Studio
-    echo -e ''
-
 # Install SteamOS specific apps
 installs-steamos:
     #!/usr/bin/env bash
 
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    just installs-common
-    flatpak install -y flathub \
-        org.mozilla.firefox \
-        org.videolan.VLC \
-        com.obsproject.Studio
-    echo -e ''
-
-# Install Ubuntu specific apps
-installs-ubuntu:
-    #!/usr/bin/env bash
-
-    echo -e ''
-    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    sudo apt install -y \
-        steam-installer \
-        ffmpeg \
-        mangohud
-    sudo ubuntu-drivers install
     just installs-common
     flatpak install -y flathub \
         org.mozilla.firefox \

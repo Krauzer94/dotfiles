@@ -53,7 +53,8 @@ remaining_apps() {
             just installs-steamos
             ;;
         *)
-            just installs-wsl
+            #just installs-wsl
+            echo -e "\n Nothing to do here \n"
             ;;
     esac
 }

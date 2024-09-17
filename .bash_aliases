@@ -17,7 +17,6 @@
 # Other aliases
   alias ll='ls -l --color=auto'
   alias aliases='cat ~/.bash_aliases'
-  alias shutdown='shutdown now'
   alias neofetch='bash ~/.neofetch.sh'
   alias vs='flatpak run com.visualstudio.code'
   alias save='just upload-savegame'

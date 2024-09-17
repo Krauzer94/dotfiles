@@ -8,20 +8,11 @@ install_git() {
         fedora*)
             sudo dnf install git -y
             ;;
-        ubuntu*)
-            sudo apt install git -y
-            ;;
-        ubuntu*)
-            sudo apt install git -y
-            ;;
         steamdeck*)
             echo -e "\n SteamOS detected, git is already pre-installed \n"
             ;;
-        archlinux*)
-            sudo pacman -S git --noconfirm
-            ;;
         *)
-            echo -e "\n Nothing to do here \n"
+            echo -e "\n Tumbleweed detected, work in progress \n"
             ;;
     esac
 }
@@ -51,21 +42,11 @@ remaining_apps() {
         fedora*)
             just installs-fedora
             ;;
-        ubuntu*)
-            just installs-ubuntu
-            ;;
-        mint*)
-            just installs-mint
-            ;;
         steamdeck*)
             just installs-steamos
             ;;
-        archlinux*)
-            just installs-arch
-            ;;
         *)
-            sudo apt update
-            sudo apt install -y distrobox podman
+            echo -e "\n Tumbleweed detected, work in progress \n"
             ;;
     esac
 }

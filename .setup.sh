@@ -8,14 +8,14 @@ install_git() {
         fedora*)
             sudo dnf install git -y
             ;;
-        tumbleweed*)
-            sudo zypper install git -y
-            ;;
         steamdeck*)
             echo -e "\n SteamOS detected, nothing to do here \n"
             ;;
+        tumbleweed*)
+            sudo zypper install git -y
+            ;;
         *)
-            echo -e "\n Tumbleweed WSL detected, work in progress \n"
+            sudo zypper install git -y
             ;;
     esac
 }
@@ -45,14 +45,14 @@ remaining_apps() {
         fedora*)
             just installs-fedora
             ;;
-        tumbleweed*)
-            just installs-tumbleweed
-            ;;
         steamdeck*)
             just installs-steamos
             ;;
+        tumbleweed*)
+            just installs-tumbleweed
+            ;;
         *)
-            echo -e "\n Tumbleweed WSL detected, work in progress \n"
+            just installs-wsl
             ;;
     esac
 }

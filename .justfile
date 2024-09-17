@@ -138,6 +138,16 @@ installs-tumbleweed:
         com.obsproject.Studio
     echo -e ''
 
+# Install WSL specific apps
+installs-wsl:
+    #!/usr/bin/env bash
+
+    echo -e ''
+    sudo zypper install -y \
+        distrobox \
+        podman
+    echo -e ''
+
 # Set up flatpak permissions
 setup-filesys:
     #!/usr/bin/env bash

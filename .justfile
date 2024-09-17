@@ -114,6 +114,7 @@ installs-nixos:
     mkdir -p ~/.config/nix
     echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
     sudo cp -f /etc/nixos/hardware-configuration.nix ~/.flake/hardware-configuration.nix
+    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo nixos-rebuild switch --flake ~/.flake
     just installs-nixos
     flatpak install -y flathub \

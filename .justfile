@@ -136,6 +136,20 @@ installs-steamos:
         com.obsproject.Studio
     echo -e ''
 
+# Install all WSL specific apps
+installs-wsl:
+    #!/usr/bin/env bash
+
+    echo -e ''
+    sudo apk add \
+        wget \
+        openssh \
+        distrobox \
+        podman -y
+    distrobox create --name wolfi-base --image chainguard/wolfi-base
+    just setup-github
+    echo -e ''
+
 # Set up flatpak permissions
 setup-filesys:
     #!/usr/bin/env bash

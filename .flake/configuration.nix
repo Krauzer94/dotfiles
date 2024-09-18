@@ -16,8 +16,8 @@
   # Enable Flatpak
   services.flatpak.enable = true;
 
-  # Latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # # Latest kernel
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

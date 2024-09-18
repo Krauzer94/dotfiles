@@ -9,14 +9,13 @@ install_git() {
             sudo dnf install git -y
             ;;
         nixos*)
-            #sudo nixos-rebuild switch
-            echo -e "\n Nothing to do here \n"
+            echo -e "\n NixOS detected, nothing to do here \n"
             ;;
         steamdeck*)
             echo -e "\n SteamOS detected, nothing to do here \n"
             ;;
         *)
-            echo -e "\n NixOS WSL detected, work in progress \n"
+            sudo apk add git -y
             ;;
     esac
 }

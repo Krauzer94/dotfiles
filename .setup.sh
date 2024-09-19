@@ -15,7 +15,11 @@ install_git() {
             echo -e "\n SteamOS detected, nothing to do here \n"
             ;;
         *)
-            sudo apk add git -y
+            sudo pacman-key --init
+            sudo pacman-key --populate
+            sudo pacman -Sy archlinux-keyring --noconfirm
+            sudo pacman -Syu --noconfirm
+            sudo pacman -S git --noconfirm
             ;;
     esac
 }
@@ -52,8 +56,7 @@ remaining_apps() {
             just installs-steamos
             ;;
         *)
-            #just installs-wsl
-            echo -e "\n Nothing to do here \n"
+            just installs-wsl
             ;;
     esac
 }

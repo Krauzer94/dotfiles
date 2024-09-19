@@ -83,7 +83,8 @@ installs-common:
         com.github.tchx84.Flatseal \
         net.davidotek.pupgui2 \
         net.lutris.Lutris \
-        com.visualstudio.code
+        com.visualstudio.code \
+        org.videolan.VLC
 
 # Install Fedora specific apps
 installs-fedora:
@@ -102,7 +103,6 @@ installs-fedora:
     flatpak install -y flathub \
         org.kde.gwenview \
         org.kde.kcalc \
-        org.videolan.VLC \
         com.dec05eba.gpu_screen_recorder
     echo -e ''
 
@@ -118,10 +118,9 @@ installs-mint:
         ffmpeg \
         mangohud
     just installs-common
-    #flatpak install -y flathub \
+    flatpak install -y flathub \
     #    org.kde.kcalc \
     #    org.mozilla.firefox \
-    #    org.videolan.VLC \
     #    com.dec05eba.gpu_screen_recorder
     echo -e ''
 
@@ -135,7 +134,6 @@ installs-steamos:
     flatpak install -y flathub \
         org.kde.kcalc \
         org.mozilla.firefox \
-        org.videolan.VLC \
         com.obsproject.Studio
     echo -e ''
 

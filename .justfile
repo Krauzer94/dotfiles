@@ -21,6 +21,7 @@ edit-clips:
 
         # Find video duration
         duration=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$f")
+        duration=$(printf "%.2f" "$duration")
 
         # Find the last second
         start=$(awk -v dur="$duration" 'BEGIN { print dur - 1 }')

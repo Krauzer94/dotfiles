@@ -118,10 +118,7 @@ installs-mint:
         ffmpeg \
         mangohud
     just installs-common
-    flatpak install -y flathub \
-    #    org.kde.kcalc \
-    #    org.mozilla.firefox \
-    #    com.dec05eba.gpu_screen_recorder
+    flatpak install -y flathub com.obsproject.Studio
     echo -e ''
 
 # Install SteamOS specific apps

@@ -141,12 +141,10 @@ installs-wsl:
     #!/usr/bin/env bash
 
     echo -e ''
-    sudo apk add \
-        wget \
+    sudo pacman -Syu --needed --noconfirm \
         openssh \
-        distrobox \
-        podman -y
-    distrobox create --name wolfi-base --image chainguard/wolfi-base
+        wget \
+        which
     just setup-github
     echo -e ''
 

@@ -120,7 +120,7 @@ installs-nixos:
     flatpak install -y flathub \
         org.mozilla.firefox \
         org.videolan.VLC \
-        com.obsproject.Studio
+        com.dec05eba.gpu_screen_recorder
     echo -e ''
 
 # Install SteamOS specific apps

@@ -106,21 +106,22 @@ installs-fedora:
         com.dec05eba.gpu_screen_recorder
     echo -e ''
 
-# Install NixOS specific apps
-installs-nixos:
+# Install Mint specific apps
+installs-mint:
     #!/usr/bin/env bash
 
     echo -e ''
-    mkdir -p ~/.config/nix
-    echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
-    sudo cp -f /etc/nixos/hardware-configuration.nix ~/.flake/hardware-configuration.nix
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    sudo nixos-rebuild switch --flake ~/.flake
+    sudo apt update
+    sudo apt install -y \
+        steam-installer \
+        ffmpeg \
+        mangohud
     just installs-common
-    flatpak install -y flathub \
-        org.mozilla.firefox \
-        org.videolan.VLC \
-        com.dec05eba.gpu_screen_recorder
+    #flatpak install -y flathub \
+    #    org.mozilla.firefox \
+    #    org.videolan.VLC \
+    #    com.dec05eba.gpu_screen_recorder
     echo -e ''
 
 # Install SteamOS specific apps
@@ -141,10 +142,10 @@ installs-wsl:
     #!/usr/bin/env bash
 
     echo -e ''
-    sudo pacman -Syu --needed --noconfirm \
-        openssh \
-        wget \
-        which
+    sudo apt update
+    sudo apt install -y \
+        openssh-client \
+        wget
     just setup-github
     echo -e ''
 

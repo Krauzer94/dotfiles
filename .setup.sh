@@ -8,18 +8,14 @@ install_git() {
         fedora*)
             sudo dnf install git -y
             ;;
-        nixos*)
-            echo -e "\n NixOS detected, nothing to do here \n"
+        mint*)
+            sudo apt install git -y
             ;;
         steamdeck*)
-            echo -e "\n SteamOS detected, nothing to do here \n"
+            echo -e "\n Nothing to do here \n"
             ;;
         *)
-            sudo pacman-key --init
-            sudo pacman-key --populate
-            sudo pacman -Sy archlinux-keyring --noconfirm
-            sudo pacman -Syu --noconfirm
-            sudo pacman -S git --noconfirm
+            sudo apt install git -y
             ;;
     esac
 }
@@ -49,8 +45,8 @@ remaining_apps() {
         fedora*)
             just installs-fedora
             ;;
-        nixos*)
-            just installs-nixos
+        mint*)
+            just installs-mint
             ;;
         steamdeck*)
             just installs-steamos

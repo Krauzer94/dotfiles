@@ -18,7 +18,7 @@
 
   # # Latest kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_6_10;
+  # boot.kernelPackages = pkgs.linuxPackages_6_10; # Pin kernel 6.10
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

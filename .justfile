@@ -135,18 +135,6 @@ installs-steamos:
         com.obsproject.Studio
     echo -e ''
 
-# Install all WSL specific apps
-installs-wsl:
-    #!/usr/bin/env bash
-
-    echo -e ''
-    sudo apt update
-    sudo apt install -y \
-        openssh-client \
-        wget
-    just setup-github
-    echo -e ''
-
 # Set up flatpak permissions
 setup-filesys:
     #!/usr/bin/env bash

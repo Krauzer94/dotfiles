@@ -15,7 +15,7 @@ install_git() {
             echo -e "\n Nothing to do here \n"
             ;;
         *)
-            sudo apt install git -y
+            sudo dnf update -y
             ;;
     esac
 }
@@ -52,7 +52,7 @@ remaining_apps() {
             just installs-steamos
             ;;
         *)
-            just installs-wsl
+            just setup-githup
             ;;
     esac
 }

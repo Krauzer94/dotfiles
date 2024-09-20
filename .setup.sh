@@ -8,8 +8,8 @@ install_git() {
         fedora*)
             sudo dnf install git -y
             ;;
-        mint*)
-            sudo apt install git -y
+        nixos*)
+            echo -e "\n Nothing to do here \n"
             ;;
         steamdeck*)
             echo -e "\n Nothing to do here \n"
@@ -45,8 +45,8 @@ remaining_apps() {
         fedora*)
             just installs-fedora
             ;;
-        mint*)
-            just installs-mint
+        nixos*)
+            just installs-nixos
             ;;
         steamdeck*)
             just installs-steamos

@@ -52,7 +52,7 @@ remaining_apps() {
             just installs-steamos
             ;;
         *)
-            ln -s ~/.wsl.conf /etc/wsl.conf
+            sudo ln -s ~/.wsl.conf /etc/wsl.conf
             just setup-githup
             ;;
     esac

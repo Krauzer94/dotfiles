@@ -15,7 +15,6 @@ install_git() {
             echo -e "\n Nothing to do here \n"
             ;;
         *)
-	    su - deck
             sudo dnf update -y
             ;;
     esac

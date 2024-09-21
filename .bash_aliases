@@ -9,6 +9,11 @@
   alias aclean='sudo pacman -Rns $(pacman -Qtdq) --noconfirm'
   alias wclean='find ~/ -type f -name "*.Identifier" -delete'
 
+# NixOS specific
+  alias flakeup='nix flake update ~/.flake'
+  alias nupdate='flakeup && sudo nixos-rebuild switch --flake ~/.flake'
+  alias nclean='sudo nix-collect-garbage --delete-older-than 5d'
+
 # Git routines
   alias status='git status'
   alias commit='git add . && git commit'

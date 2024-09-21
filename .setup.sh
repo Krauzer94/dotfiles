@@ -6,7 +6,7 @@ install_git() {
 
     case "$HOST" in
         archlinux*)
-            sudo pacman --needed -S git --noconfirm
+            sudo pacman --needed -Syu git --noconfirm
             ;;
         nixos*)
             echo -e "\n Nothing to do here \n"

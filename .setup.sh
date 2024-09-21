@@ -5,8 +5,8 @@ install_git() {
     HOST=$HOSTNAME
 
     case "$HOST" in
-        fedora*)
-            sudo dnf install git -y
+        archlinux*)
+            sudo pacman --needed -S git --noconfirm
             ;;
         nixos*)
             echo -e "\n Nothing to do here \n"
@@ -42,8 +42,8 @@ remaining_apps() {
     HOST=$HOSTNAME
 
     case "$HOST" in
-        fedora*)
-            just installs-fedora
+        archlinux*)
+            just installs-arch
             ;;
         nixos*)
             just installs-nixos

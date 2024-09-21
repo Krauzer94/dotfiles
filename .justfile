@@ -63,6 +63,31 @@ edit-videos:
         rm "$f"
     done
 
+# Install Arch Linux specific apps
+installs-arch:
+    #!/usr/bin/env bash
+
+    echo -e ''
+    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+    sudo pacman -Syu --needed --noconfirm \
+        steam \
+        ffmpeg \
+        mangohud \
+        firefox \
+        spectacle \
+        packagekit-qt6 \
+        noto-fonts-cjk
+    sudo systemctl enable --now \
+        cronie.service \
+        bluetooth.service \
+        NetworkManager.service
+    just installs-common
+    flatpak install -y flathub \
+        org.kde.okular \
+        org.kde.gwenview \
+        com.dec05eba.gpu_screen_recorder
+    echo -e ''
+
 # Install common applications
 installs-common:
     #!/usr/bin/env bash
@@ -88,25 +113,6 @@ installs-common:
         com.visualstudio.code \
         org.videolan.VLC \
         org.kde.kcalc
-
-# Install Fedora specific apps
-installs-fedora:
-    #!/usr/bin/env bash
-
-    echo -e ''
-    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    sudo dnf install -y \
-        steam \
-        ffmpeg \
-        mangohud \
-        firefox \
-        akmod-nvidia \
-        xorg-x11-drv-nvidia-cuda
-    just installs-common
-    flatpak install -y flathub \
-        org.kde.gwenview \
-        com.dec05eba.gpu_screen_recorder
-    echo -e ''
 
 # Install NixOS specific apps
 installs-nixos:

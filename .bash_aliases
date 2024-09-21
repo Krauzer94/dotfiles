@@ -10,7 +10,7 @@
   alias wclean='find ~/ -type f -name "*.Identifier" -delete'
 
 # NixOS specific
-  alias flakeup='nix flake update ~/.flake'
+  alias flakeup='nix flake update ~/.flake && git add -f ~/.flake/*'
   alias nupdate='flakeup && sudo nixos-rebuild switch --flake ~/.flake'
   alias nclean='sudo nix-collect-garbage --delete-older-than 5d'
 

@@ -110,7 +110,6 @@ installs-common:
         net.davidotek.pupgui2 \
         net.lutris.Lutris \
         com.visualstudio.code \
-        org.videolan.VLC \
         org.kde.kcalc
 
 # Install NixOS specific apps
@@ -126,6 +125,7 @@ installs-nixos:
     just installs-common
     flatpak install -y flathub \
         org.mozilla.firefox \
+        org.videolan.VLC \
         com.dec05eba.gpu_screen_recorder
     echo -e ''
 
@@ -138,6 +138,7 @@ installs-steamos:
     just installs-common
     flatpak install -y flathub \
         org.mozilla.firefox \
+        org.kde.kcalc \
         com.obsproject.Studio
     echo -e ''
 

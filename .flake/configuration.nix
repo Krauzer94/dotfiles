@@ -20,10 +20,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # # Linux kernel
-  # boot.kernelPackages = pkgs.linuxPackages_latest; # Latest
-  # boot.kernelPackages = pkgs.linuxPackages_6_10; # Pin 6.10
-
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 

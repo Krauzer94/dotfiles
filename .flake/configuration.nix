@@ -17,9 +17,8 @@
   services.flatpak.enable = true;
 
   # Linux kernel
-  # boot.kernelPackages = pkgs.linuxPackages_latest; # Latest mainline
-  boot.kernelPackages = pkgs.linuxPackages; # Latest stable
-  # boot.kernelPackages = pkgs.linuxPackages_6_10; # Pin version 6.10
+  # boot.kernelPackages = pkgs.linuxPackages_latest; # Latest
+  boot.kernelPackages = pkgs.linuxPackages_6_10; # Pin 6.10
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

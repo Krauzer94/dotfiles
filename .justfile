@@ -133,6 +133,7 @@ installs-fedora:
         org.kde.gwenview \
         org.videolan.VLC \
         com.dec05eba.gpu_screen_recorder
+    just setup-btrfs
     echo -e ''
 
 # Install SteamOS specific apps

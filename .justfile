@@ -120,6 +120,7 @@ installs-fedora:
 
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+    sudo dnf update -y
     sudo dnf install -y \
         steam \
         ffmpeg \

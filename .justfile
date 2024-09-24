@@ -172,7 +172,7 @@ setup-btrfs:
     sudo grub2-mkconfig -o /boot/grub2/grub.cfg
     sudo systemctl enable --now grub-btrfsd.service
     cd ..
-    rm -rvf grub-btrfs
+    rm -rdf grub-btrfs
     echo -e ''
 
 # Set up flatpak permissions

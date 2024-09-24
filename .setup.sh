@@ -15,11 +15,10 @@ install_git() {
             echo -e "\n Nothing to do here \n"
             ;;
         *)
-            sudo \
-                pacman-key --init \
-                pacman-key --populate \
-                pacman -Sy --noconfim archlinux-keyring \
-                pacman -Syu --noconfim git
+            sudo pacman-key --init
+            sudo pacman-key --populate
+            sudo pacman -Sy archlinux-keyring --noconfirm
+            sudo pacman -Syu git --noconfirm
             ;;
     esac
 }

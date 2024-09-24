@@ -8,8 +8,8 @@ install_git() {
         archlinux*)
             sudo pacman -Syu --needed --noconfirm git
             ;;
-        nixos*)
-            echo -e "\n Nothing to do here \n"
+        fedora*)
+            sudo dnf install -y git make
             ;;
         steamdeck*)
             echo -e "\n Nothing to do here \n"
@@ -49,8 +49,8 @@ remaining_apps() {
         archlinux*)
             just installs-arch
             ;;
-        nixos*)
-            just installs-nixos
+        fedora*)
+            just installs-fedora
             ;;
         steamdeck*)
             just installs-steamos

@@ -114,19 +114,22 @@ installs-common:
         com.visualstudio.code \
         org.kde.kcalc
 
-# Install NixOS specific apps
-installs-nixos:
+# Install Fedora specific apps
+installs-fedora:
     #!/usr/bin/env bash
 
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    mkdir -p ~/.config/nix
-    echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
-    sudo cp -f /etc/nixos/hardware-configuration.nix ~/.flake/hardware-configuration.nix
-    sudo nixos-rebuild switch --flake ~/.flake
+    sudo dnf install -y \
+        steam \
+        ffmpeg \
+        mangohud \
+        firefox \
+        akmod-nvidia \
+        xorg-x11-drv-nvidia-cuda
     just installs-common
     flatpak install -y flathub \
-        org.mozilla.firefox \
+        org.kde.gwenview \
         org.videolan.VLC \
         com.dec05eba.gpu_screen_recorder
     echo -e ''

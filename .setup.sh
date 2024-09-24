@@ -15,7 +15,11 @@ install_git() {
             echo -e "\n Nothing to do here \n"
             ;;
         *)
-            sudo dnf update -y
+            sudo \
+                pacman-key --init \
+                pacman-key --populate \
+                pacman -Sy --noconfim archlinux-keyring \
+                pacman -Syu --noconfim
             ;;
     esac
 }

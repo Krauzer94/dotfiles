@@ -18,7 +18,8 @@ install_git() {
             sudo pacman-key --init
             sudo pacman-key --populate
             sudo pacman -Sy archlinux-keyring --noconfirm
-            sudo pacman -Syu git --noconfirm
+            sudo pacman -Su
+            sudo pacman -S --noconfirm git
             ;;
     esac
 }

@@ -18,12 +18,5 @@
         ./configuration.nix
       ];
     };
-    # nixos@nixos
-    #nixosConfigurations."nixos@nixos" = nixpkgs.lib.nixosSystem {
-    #  system = "x86_64-linux";
-    #  modules = [
-    #    # Raw configuration
-    #  ];
-    #};
   };
 }

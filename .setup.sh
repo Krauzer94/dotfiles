@@ -19,7 +19,7 @@ install_git() {
                 pacman-key --init \
                 pacman-key --populate \
                 pacman -Sy --noconfim archlinux-keyring \
-                pacman -Syu --noconfim
+                pacman -Syu --noconfim git
             ;;
     esac
 }

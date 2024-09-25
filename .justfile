@@ -75,14 +75,10 @@ installs-arch:
         mangohud \
         firefox \
         spectacle \
-        grub-btrfs \
-        inotify-tools \
         packagekit-qt6 \
         noto-fonts-cjk
-    sudo systemctl edit --full grub-btrfsd
     sudo systemctl enable --now \
         cronie.service \
-        grub-btrfsd.service \
         bluetooth.service \
         NetworkManager.service
     just installs-common
@@ -129,7 +125,6 @@ installs-fedora:
         ffmpeg \
         mangohud \
         firefox \
-        btrfs-assistant \
         akmod-nvidia \
         xorg-x11-drv-nvidia-cuda
     just installs-common
@@ -151,30 +146,6 @@ installs-steamos:
         org.mozilla.firefox \
         org.kde.kcalc \
         com.obsproject.Studio
-    echo -e ''
-
-# Set up grub-btrfs application
-setup-btrfs:
-    #!/usr/bin/env bash
-
-    echo -e ''
-    git clone https://github.com/Antynea/grub-btrfs
-    cd grub-btrfs
-    sed -i \
-    -e '/#GRUB_BTRFS_SNAPSHOT_KERNEL_PARAMETERS/a \
-    GRUB_BTRFS_SNAPSHOT_KERNEL_PARAMETERS="systemd.volatile=state"' \
-    -e '/#GRUB_BTRFS_GRUB_DIRNAME/a \
-    GRUB_BTRFS_GRUB_DIRNAME="/boot/grub2"' \
-    -e '/#GRUB_BTRFS_MKCONFIG=/a \
-    GRUB_BTRFS_MKCONFIG=/usr/sbin/grub2-mkconfig' \
-    -e '/#GRUB_BTRFS_SCRIPT_CHECK=/a \
-    GRUB_BTRFS_SCRIPT_CHECK=grub2-script-check' \
-    config
-    sudo make install
-    sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-    sudo systemctl enable --now grub-btrfsd.service
-    cd ..
-    rm -rdf grub-btrfs
     echo -e ''
 
 # Set up flatpak permissions

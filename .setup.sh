@@ -9,7 +9,7 @@ install_git() {
             sudo pacman -Syu --needed --noconfirm git
             ;;
         fedora*)
-            sudo dnf install -y git make
+            sudo dnf install -y git
             ;;
         steamdeck*)
             echo -e "\n Nothing to do here \n"

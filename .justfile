@@ -79,6 +79,7 @@ installs-arch:
         inotify-tools \
         packagekit-qt6 \
         noto-fonts-cjk
+    sudo systemctl edit --full grub-btrfsd
     sudo systemctl enable --now \
         cronie.service \
         grub-btrfsd.service \

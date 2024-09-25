@@ -113,25 +113,26 @@ installs-common:
         com.visualstudio.code \
         org.kde.kcalc
 
-# Install Fedora specific apps
-installs-fedora:
+# Install Debian specific apps
+installs-debian:
     #!/usr/bin/env bash
 
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-    sudo dnf install -y --allowerasing \
-        steam \
+    sudo dpkg --add-architecture i386
+    sudo apt install -y \
+        steam-installer \
+	    mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386 \
         ffmpeg \
         mangohud \
-        firefox \
-        akmod-nvidia \
-        xorg-x11-drv-nvidia-cuda
+        kde-spectacle \
+	    firefox-esr \
+        nvidia-driver firmware-misc-nonfree libnvidia-encode1
     just installs-common
     flatpak install -y flathub \
+        org.kde.okular -y \
         org.kde.gwenview \
-        org.videolan.VLC \
-        com.dec05eba.gpu_screen_recorder
+        org.kde.kcalc
     echo -e ''
 
 # Install SteamOS specific apps

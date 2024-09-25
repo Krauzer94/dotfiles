@@ -78,7 +78,6 @@ installs-arch:
         packagekit-qt6 \
         noto-fonts-cjk
     sudo systemctl enable --now \
-        cronie.service \
         bluetooth.service \
         NetworkManager.service
     just installs-common

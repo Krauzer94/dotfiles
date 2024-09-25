@@ -76,10 +76,12 @@ installs-arch:
         firefox \
         spectacle \
         grub-btrfs \
+        inotify-tools \
         packagekit-qt6 \
         noto-fonts-cjk
     sudo systemctl enable --now \
         cronie.service \
+        grub-btrfsd.service \
         bluetooth.service \
         NetworkManager.service
     just installs-common

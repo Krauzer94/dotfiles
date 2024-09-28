@@ -112,25 +112,22 @@ installs-common:
         com.visualstudio.code \
         org.kde.kcalc
 
-# Install Fedora specific apps
-installs-fedora:
+# Install Kubuntu specific apps
+installs-kubuntu:
     #!/usr/bin/env bash
 
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-    sudo dnf install -y --allowerasing \
-        steam \
+    sudo apt install -y \
+        steam-installer \
         ffmpeg \
-        mangohud \
-        firefox \
-        akmod-nvidia \
-        xorg-x11-drv-nvidia-cuda
+        mangohud
+    sudo ubuntu-drivers install
     just installs-common
     flatpak install -y flathub \
-        org.kde.gwenview \
         org.videolan.VLC \
-        com.dec05eba.gpu_screen_recorder
+        org.kde.okular \
+        org.mozilla.firefox
     echo -e ''
 
 # Install SteamOS specific apps

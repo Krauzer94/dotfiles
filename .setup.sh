@@ -8,8 +8,8 @@ install_git() {
         archlinux*)
             sudo pacman -Syu --needed --noconfirm git
             ;;
-        fedora*)
-            sudo dnf install -y git
+        kubuntu*)
+            sudo apt install -y git
             ;;
         steamdeck*)
             echo -e "\n Nothing to do here \n"
@@ -49,8 +49,8 @@ remaining_apps() {
         archlinux*)
             just installs-arch
             ;;
-        fedora*)
-            just installs-fedora
+        kubuntu*)
+            just installs-kubuntu
             ;;
         steamdeck*)
             just installs-steamos

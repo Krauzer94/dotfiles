@@ -2,3 +2,8 @@ dolphin.desktop
 flatpak-2.desktop
 flatpak.desktop
 kwrite.desktop
+
+net.local.dolphin.desktop
+net.local.flatpak.desktop
+net.local.net.local.flatpak.desktop.desktop
+net.local.kwrite.desktop

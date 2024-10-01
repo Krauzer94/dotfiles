@@ -132,8 +132,8 @@ installs-debian:
         nvidia-driver firmware-misc-nonfree libnvidia-encode1
     just installs-common
     flatpak install -y flathub \
-        org.kde.okular -y \
         org.kde.gwenview \
+        org.videolan.VLC \
         com.obsproject.Studio
     echo -e ''
 

@@ -119,11 +119,14 @@ installs-debian:
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo dpkg --add-architecture i386
+    sudo apt update
     sudo apt install -y \
         steam-installer \
         mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386 \
         ffmpeg \
         mangohud \
+        ark \
+        kdeplasma-addons-data plasma-widgets-addons \
         kde-spectacle \
         firefox-esr \
         nvidia-driver firmware-misc-nonfree libnvidia-encode1
@@ -172,12 +175,10 @@ installs-steamos:
 setup-filesys:
     #!/usr/bin/env bash
 
-    echo -e ''
     mkdir $HOME/.themes
     mkdir $HOME/.icons
     cp -r /usr/share/themes/* $HOME/.themes/
     cp -r /usr/share/icons/* $HOME/.icons/
-    echo -e ''
 
 # Set up git and GitHub account
 setup-github:

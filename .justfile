@@ -98,7 +98,6 @@ installs-common:
         org.gimp.GIMP \
         org.qbittorrent.qBittorrent \
         org.flameshot.Flameshot \
-        me.kozec.syncthingtk \
         com.stremio.Stremio \
         org.bleachbit.BleachBit \
         com.spotify.Client \
@@ -110,7 +109,9 @@ installs-common:
         net.davidotek.pupgui2 \
         net.lutris.Lutris \
         com.visualstudio.code \
-        org.kde.kcalc
+        org.kde.kcalc \
+        com.obsproject.Studio \
+        com.dec05eba.gpu_screen_recorder
 
 # Install Debian specific apps
 installs-debian:
@@ -133,8 +134,7 @@ installs-debian:
     just installs-common
     flatpak install -y flathub \
         org.kde.gwenview \
-        org.videolan.VLC \
-        com.obsproject.Studio
+        org.videolan.VLC
     echo -e ''
 
 # Install Fedora specific apps
@@ -154,8 +154,7 @@ installs-fedora:
     just installs-common
     flatpak install -y flathub \
         org.kde.gwenview \
-        org.videolan.VLC \
-        com.dec05eba.gpu_screen_recorder
+        org.videolan.VLC
     echo -e ''
 
 # Install SteamOS specific apps
@@ -167,8 +166,7 @@ installs-steamos:
     just installs-common
     flatpak install -y flathub \
         org.mozilla.firefox \
-        org.kde.kcalc \
-        com.obsproject.Studio
+        org.kde.kcalc
     echo -e ''
 
 # Set up flatpak permissions

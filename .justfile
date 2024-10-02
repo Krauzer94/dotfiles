@@ -83,8 +83,7 @@ installs-arch:
     just installs-common
     flatpak install -y flathub \
         org.kde.okular \
-        org.kde.gwenview \
-        com.dec05eba.gpu_screen_recorder
+        org.kde.gwenview
     echo -e ''
 
 # Install common applications

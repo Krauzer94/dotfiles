@@ -98,7 +98,7 @@ installs-common:
         org.gimp.GIMP \
         org.qbittorrent.qBittorrent \
         org.flameshot.Flameshot \
-        org.gnome.EasyTAG \
+        me.kozec.syncthingtk \
         com.stremio.Stremio \
         org.bleachbit.BleachBit \
         com.spotify.Client \

@@ -136,6 +136,26 @@ installs-debian:
         org.videolan.VLC
     echo -e ''
 
+# Install Fedora specific apps
+installs-fedora:
+    #!/usr/bin/env bash
+
+    echo -e ''
+    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+    sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+    sudo dnf install -y --allowerasing \
+        steam \
+        ffmpeg \
+        mangohud \
+        firefox \
+        akmod-nvidia \
+        xorg-x11-drv-nvidia-cuda
+    just installs-common
+    flatpak install -y flathub \
+        org.kde.gwenview \
+        org.videolan.VLC
+    echo -e ''
+
 # Install SteamOS specific apps
 installs-steamos:
     #!/usr/bin/env bash

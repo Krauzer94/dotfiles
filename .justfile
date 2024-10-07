@@ -70,12 +70,11 @@ installs-arch:
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo pacman -Syu --needed --noconfirm \
-        steam \
+        spectacle packagekit-qt6 \
         ffmpeg \
         mangohud \
         firefox \
-        spectacle \
-        packagekit-qt6 \
+        steam \
         noto-fonts-cjk
     sudo systemctl enable --now \
         bluetooth.service \
@@ -121,14 +120,12 @@ installs-debian:
     sudo dpkg --add-architecture i386
     sudo apt update
     sudo apt install -y \
-        steam-installer \
-        mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386 \
+        ark okular kde-spectacle kdeplasma-addons-data plasma-widgets-addons \
         ffmpeg \
         mangohud \
-        ark okular \
-        kdeplasma-addons-data plasma-widgets-addons \
-        kde-spectacle \
         firefox-esr \
+        steam-installer \
+        mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386 \
         nvidia-driver firmware-misc-nonfree libnvidia-encode1
     just installs-common
     flatpak install -y flathub \
@@ -144,8 +141,8 @@ installs-steamos:
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     just installs-common
     flatpak install -y flathub \
-        org.mozilla.firefox \
-        org.kde.kcalc
+        org.kde.kcalc \
+        org.mozilla.firefox
     echo -e ''
 
 # Set up flatpak permissions

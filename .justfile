@@ -76,10 +76,13 @@ installs-arch:
         firefox \
         steam \
         noto-fonts-cjk
+    # sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
     sudo systemctl enable --now \
         bluetooth.service \
         NetworkManager.service
     just installs-common
+    # com.mattjakeman.ExtensionManager \
+    # com.rafaelmardojai.Blanket
     flatpak install -y flathub \
         org.kde.okular \
         org.kde.gwenview
@@ -91,6 +94,7 @@ installs-common:
 
     curl -L https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch -o ~/.neofetch.sh
     just setup-filesys
+    # net.codelogistics.webapps
     flatpak install -y flathub \
         com.google.Chrome \
         org.gimp.GIMP \
@@ -107,9 +111,9 @@ installs-common:
         net.davidotek.pupgui2 \
         net.lutris.Lutris \
         com.visualstudio.code \
-        org.kde.kcalc \
         com.obsproject.Studio \
-        com.dec05eba.gpu_screen_recorder
+        com.dec05eba.gpu_screen_recorder \
+        org.kde.kcalc
 
 # Install Debian specific apps
 installs-debian:
@@ -119,6 +123,7 @@ installs-debian:
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo dpkg --add-architecture i386
     sudo apt update
+    # gnome-tweaks \
     sudo apt install -y \
         ark okular kde-spectacle kdeplasma-addons-data plasma-widgets-addons \
         ffmpeg \
@@ -128,6 +133,8 @@ installs-debian:
         mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386 \
         nvidia-driver firmware-misc-nonfree libnvidia-encode1
     just installs-common
+    # com.mattjakeman.ExtensionManager \
+    # com.rafaelmardojai.Blanket
     flatpak install -y flathub \
         org.kde.gwenview \
         org.videolan.VLC

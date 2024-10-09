@@ -134,6 +134,24 @@ installs-debian:
         org.videolan.VLC
     echo -e ''
 
+# Install Kubuntu specific apps
+installs-kubuntu:
+    #!/usr/bin/env bash
+
+    echo -e ''
+    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+    sudo apt install -y \
+        ffmpeg \
+        mangohud \
+        steam-installer
+    sudo ubuntu-drivers install
+    just installs-common
+    flatpak install -y flathub \
+        org.kde.okular \
+        org.videolan.VLC \
+        org.mozilla.firefox
+    echo -e ''
+
 # Install SteamOS specific apps
 installs-steamos:
     #!/usr/bin/env bash
@@ -143,6 +161,7 @@ installs-steamos:
     just installs-common
     flatpak install -y flathub \
         org.kde.kcalc \
+        org.videolan.VLC \
         org.mozilla.firefox
     echo -e ''
 

@@ -141,6 +141,7 @@ installs-kubuntu:
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo apt install -y \
+        kwrite \
         ffmpeg \
         mangohud \
         steam-installer

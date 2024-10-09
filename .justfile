@@ -81,6 +81,7 @@ installs-arch:
         NetworkManager.service
     just installs-common
     flatpak install -y flathub \
+        org.kde.kcalc \
         org.kde.okular \
         org.kde.gwenview
     echo -e ''
@@ -108,8 +109,7 @@ installs-common:
         net.lutris.Lutris \
         com.visualstudio.code \
         com.obsproject.Studio \
-        com.dec05eba.gpu_screen_recorder \
-        org.kde.kcalc
+        com.dec05eba.gpu_screen_recorder
 
 # Install Debian specific apps
 installs-debian:
@@ -129,6 +129,7 @@ installs-debian:
         nvidia-driver firmware-misc-nonfree libnvidia-encode1
     just installs-common
     flatpak install -y flathub \
+        org.kde.kcalc \
         org.kde.gwenview \
         org.videolan.VLC
     echo -e ''

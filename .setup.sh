@@ -8,9 +8,6 @@ install_git() {
         archlinux*)
             sudo pacman -Syu --needed --noconfirm git
             ;;
-        debian*)
-            sudo apt install -y git
-            ;;
         kubuntu*)
             sudo apt install -y git
             ;;
@@ -51,9 +48,6 @@ remaining_apps() {
     case "$HOST" in
         archlinux*)
             just installs-arch
-            ;;
-        debian*)
-            just installs-debian
             ;;
         kubuntu*)
             just installs-kubuntu

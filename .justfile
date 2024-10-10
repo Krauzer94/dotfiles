@@ -111,23 +111,23 @@ installs-common:
         com.obsproject.Studio \
         com.dec05eba.gpu_screen_recorder
 
-# Install Kubuntu specific apps
-installs-kubuntu:
+# Install Mint specific apps
+installs-mint:
     #!/usr/bin/env bash
 
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+    # kwrite \
     sudo apt install -y \
-        kwrite \
         ffmpeg \
         mangohud \
         steam-installer
-    sudo ubuntu-drivers install
+    # sudo ubuntu-drivers install
     just installs-common
-    flatpak install -y flathub \
-        org.kde.okular \
-        org.videolan.VLC \
-        org.mozilla.firefox
+    # flatpak install -y flathub \
+    #     org.kde.okular \
+    #     org.videolan.VLC \
+    #     org.mozilla.firefox
     echo -e ''
 
 # Install SteamOS specific apps

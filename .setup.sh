@@ -8,7 +8,7 @@ install_git() {
         archlinux*)
             sudo pacman -Syu --needed --noconfirm git
             ;;
-        kubuntu*)
+        linuxmint*)
             sudo apt install -y git
             ;;
         steamdeck*)
@@ -49,8 +49,8 @@ remaining_apps() {
         archlinux*)
             just installs-arch
             ;;
-        kubuntu*)
-            just installs-kubuntu
+        linuxmint*)
+            just installs-mint
             ;;
         steamdeck*)
             just installs-steamos

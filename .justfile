@@ -81,7 +81,6 @@ installs-arch:
         NetworkManager.service
     just installs-common
     flatpak install -y flathub \
-        org.kde.kcalc \
         org.kde.okular \
         org.kde.gwenview
     echo -e ''
@@ -109,25 +108,27 @@ installs-common:
         net.lutris.Lutris \
         com.visualstudio.code \
         com.obsproject.Studio \
-        com.dec05eba.gpu_screen_recorder
+        com.dec05eba.gpu_screen_recorder \
+        org.kde.kcalc
 
-# Install Mint specific apps
-installs-mint:
+# Install Fedora specific apps
+installs-fedora:
     #!/usr/bin/env bash
 
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    # kwrite \
-    sudo apt install -y \
+    sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+    sudo dnf install -y --allowerasing \
+        steam \
         ffmpeg \
         mangohud \
-        steam-installer
-    # sudo ubuntu-drivers install
+        firefox \
+        akmod-nvidia \
+        xorg-x11-drv-nvidia-cuda
     just installs-common
-    # flatpak install -y flathub \
-    #     org.kde.okular \
-    #     org.videolan.VLC \
-    #     org.mozilla.firefox
+    flatpak install -y flathub \
+        org.kde.gwenview \
+        org.videolan.VLC
     echo -e ''
 
 # Install SteamOS specific apps
@@ -138,7 +139,6 @@ installs-steamos:
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     just installs-common
     flatpak install -y flathub \
-        org.kde.kcalc \
         org.videolan.VLC \
         org.mozilla.firefox
     echo -e ''

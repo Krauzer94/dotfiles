@@ -106,7 +106,6 @@ installs-common:
         net.davidotek.pupgui2 \
         net.lutris.Lutris \
         com.visualstudio.code \
-        com.obsproject.Studio \
         org.mozilla.firefox \
         org.kde.kcalc
 

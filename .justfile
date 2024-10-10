@@ -126,6 +126,7 @@ installs-fedora:
     just installs-common
     flatpak install -y flathub \
         org.kde.gwenview \
+        org.kde.okular \
         org.videolan.VLC
     echo -e ''
 

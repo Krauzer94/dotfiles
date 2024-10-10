@@ -73,7 +73,6 @@ installs-arch:
         spectacle packagekit-qt6 \
         ffmpeg \
         mangohud \
-        firefox \
         steam \
         noto-fonts-cjk
     sudo systemctl enable --now \
@@ -81,8 +80,8 @@ installs-arch:
         NetworkManager.service
     just installs-common
     flatpak install -y flathub \
-        org.kde.okular \
-        org.kde.gwenview
+        org.kde.gwenview \
+        org.kde.okular
     echo -e ''
 
 # Install common applications
@@ -108,7 +107,7 @@ installs-common:
         net.lutris.Lutris \
         com.visualstudio.code \
         com.obsproject.Studio \
-        com.dec05eba.gpu_screen_recorder \
+        org.mozilla.firefox \
         org.kde.kcalc
 
 # Install Fedora specific apps
@@ -139,8 +138,7 @@ installs-steamos:
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     just installs-common
     flatpak install -y flathub \
-        org.videolan.VLC \
-        org.mozilla.firefox
+        org.videolan.VLC
     echo -e ''
 
 # Set up flatpak permissions

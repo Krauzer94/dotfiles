@@ -70,7 +70,7 @@ installs-arch:
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo pacman -Syu --needed --noconfirm \
-        spectacle packagekit-qt6 \
+        spectacle \
         ffmpeg \
         mangohud \
         steam \

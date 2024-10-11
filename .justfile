@@ -137,7 +137,8 @@ installs-steamos:
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     just installs-common
     flatpak install -y flathub \
-        org.videolan.VLC
+        org.videolan.VLC \
+        com.obsproject.Studio
     echo -e ''
 
 # Set up flatpak permissions

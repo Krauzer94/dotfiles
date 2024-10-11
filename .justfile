@@ -120,7 +120,6 @@ installs-fedora:
         steam \
         ffmpeg \
         mangohud \
-        firefox \
         akmod-nvidia \
         xorg-x11-drv-nvidia-cuda
     just installs-common

@@ -118,7 +118,7 @@ installs-debian:
     sudo dpkg --add-architecture i386
     sudo apt update
     sudo apt install -y \
-        ark okular kde-spectacle kdeplasma-addons-data plasma-widgets-addons \
+        ark kde-spectacle kdeplasma-addons-data plasma-widgets-addons \
         ffmpeg \
         mangohud \
         steam-installer \

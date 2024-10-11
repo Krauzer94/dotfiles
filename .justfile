@@ -107,7 +107,8 @@ installs-common:
         net.lutris.Lutris \
         com.visualstudio.code \
         org.mozilla.firefox \
-        org.kde.kcalc
+        org.kde.kcalc \
+        org.fedoraproject.MediaWriter
 
 # Install Fedora specific apps
 installs-fedora:
@@ -125,7 +126,6 @@ installs-fedora:
     just installs-common
     flatpak install -y flathub \
         org.kde.gwenview \
-        org.kde.okular \
         org.videolan.VLC
     echo -e ''
 

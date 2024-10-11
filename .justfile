@@ -108,7 +108,7 @@ installs-common:
         com.visualstudio.code \
         org.mozilla.firefox \
         org.kde.kcalc \
-        org.fedoraproject.MediaWriter
+        com.dec05eba.gpu_screen_recorder
 
 # Install Fedora specific apps
 installs-fedora:

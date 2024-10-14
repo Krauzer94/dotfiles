@@ -70,11 +70,11 @@ installs-arch:
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo pacman -Syu --needed --noconfirm \
+        spectacle xdg-desktop-portal-gtk \
         ffmpeg \
         mangohud \
         steam \
         noto-fonts-cjk
-        #spectacle xdg-desktop-portal-gtk \
     sudo systemctl enable --now \
         bluetooth.service \
         NetworkManager.service
@@ -118,13 +118,13 @@ installs-debian:
     sudo dpkg --add-architecture i386
     sudo apt update
     sudo apt install -y \
-        gnome-tweaks \
+        ark okular kde-spectacle kdeplasma-addons-data plasma-widgets-addons \
         ffmpeg \
         mangohud \
         steam-installer \
         mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386 \
         nvidia-driver firmware-misc-nonfree libnvidia-encode1
-        #ark okular kde-spectacle kdeplasma-addons-data plasma-widgets-addons \
+        #gnome-tweaks \
     just installs-common
     flatpak install -y flathub \
         org.kde.gwenview \

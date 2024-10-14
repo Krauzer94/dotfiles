@@ -80,10 +80,8 @@ installs-arch:
         NetworkManager.service
     just installs-common
     flatpak install -y flathub \
-        com.mattjakeman.ExtensionManager \
-        org.fedoraproject.MediaWriter
-        #org.kde.gwenview \
-        #org.kde.okular
+        org.kde.gwenview \
+        org.kde.okular
     echo -e ''
 
 # Install common applications
@@ -129,9 +127,8 @@ installs-debian:
         #ark okular kde-spectacle kdeplasma-addons-data plasma-widgets-addons \
     just installs-common
     flatpak install -y flathub \
-        com.mattjakeman.ExtensionManager \
+        org.kde.gwenview \
         org.videolan.VLC
-        #org.kde.gwenview \
     echo -e ''
 
 # Install SteamOS specific apps

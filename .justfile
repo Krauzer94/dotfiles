@@ -114,6 +114,7 @@ installs-common:
 # Install Debian specific apps
 installs-debian:
     #!/usr/bin/env bash
+
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo dpkg --add-architecture i386

@@ -83,6 +83,7 @@ installs-arch:
         com.mattjakeman.ExtensionManager \
         org.kde.okular
         #org.kde.gwenview \
+    sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
     echo -e ''
 
 # Install common applications
@@ -132,6 +133,7 @@ installs-debian:
         com.mattjakeman.ExtensionManager \
         org.videolan.VLC
         #org.kde.gwenview \
+    sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
     echo -e ''
 
 # Install SteamOS specific apps

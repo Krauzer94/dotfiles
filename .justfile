@@ -70,20 +70,20 @@ installs-arch:
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     sudo pacman -Syu --needed --noconfirm \
+        spectacle xdg-desktop-portal-gtk \
         ffmpeg \
         mangohud \
         steam \
         noto-fonts-cjk
-        #spectacle xdg-desktop-portal-gtk \
     sudo systemctl enable --now \
         bluetooth.service \
         NetworkManager.service
     just installs-common
     flatpak install -y flathub \
-        com.mattjakeman.ExtensionManager \
+        org.kde.gwenview \
         org.kde.okular
-        #org.kde.gwenview \
-    sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
+        #com.mattjakeman.ExtensionManager \
+    #sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
     echo -e ''
 
 # Install common applications

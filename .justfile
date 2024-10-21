@@ -82,6 +82,7 @@ installs-arch:
     flatpak install -y flathub \
         org.kde.gwenview \
         org.kde.okular
+        # org.videolan.VLC
         # com.mattjakeman.ExtensionManager \
     #sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
     echo -e ''

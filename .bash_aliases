@@ -4,11 +4,6 @@
   alias flapp='flatpak list --app'
   alias flrun='flatpak list --runtime'
 
-# Arch specific
-  alias aupdate='sudo pacman -Syu --noconfirm'
-  alias aclean='sudo pacman -Rns $(pacman -Qtdq) --noconfirm'
-  alias wclean='find ~/ -type f -name "*.Identifier" -delete'
-
 # Git routines
   alias status='git status'
   alias commit='git add . && git commit'

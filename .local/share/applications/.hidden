@@ -2,13 +2,13 @@ dolphin.desktop
 flatpak.desktop
 kate.desktop
 kwrite.desktop
+kwrite-2.desktop
 
 net.local.dolphin.desktop
 net.local.flatpak.desktop
-net.local.kate.desktop
 net.local.kwrite.desktop
+net.local.kwrite-2.desktop
 
 Proton Experimental.desktop
 Steam Linux Runtime 1.0 (scout).desktop
 Steam Linux Runtime 2.0 (soldier).desktop
-steam.desktop

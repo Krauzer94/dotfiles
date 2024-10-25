@@ -116,6 +116,20 @@ installs-steamos:
         com.obsproject.Studio
     echo -e ''
 
+# Install Ubuntu specific apps
+installs-ubuntu:
+    #!/usr/bin/env bash
+
+    echo -e ''
+    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+    sudo apt install -y \
+        ffmpeg
+    sudo ubuntu-drivers install
+    just installs-common
+    flatpak install -y flathub \
+        com.valvesoftware.Steam
+    echo -e ''
+
 # Set up flatpak permissions
 setup-filesys:
     #!/usr/bin/env bash

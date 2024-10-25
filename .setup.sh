@@ -11,6 +11,9 @@ install_git() {
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
+        ubuntu*)
+            sudo apt install -y git
+            ;;
         *)
             sudo apt install -y git
             ;;
@@ -44,6 +47,9 @@ remaining_apps() {
             ;;
         steamdeck*)
             just installs-steamos
+            ;;
+        ubuntu*)
+            sudo apt install -y git
             ;;
         *)
             just setup-github

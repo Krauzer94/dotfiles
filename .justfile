@@ -86,9 +86,9 @@ installs-common:
         net.lutris.Lutris \
         com.vscodium.codium \
         org.mozilla.firefox \
-        org.kde.kcalc \
         com.dec05eba.gpu_screen_recorder \
-        org.videolan.VLC
+        org.videolan.VLC \
+        org.kde.kcalc
 
 # Install Fedora specific apps
 installs-fedora:
@@ -96,14 +96,10 @@ installs-fedora:
 
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    # sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-    # sudo dnf install -y --allowerasing \
     sudo dnf install -y \
+        ffmpeg-free \
         akmod-nvidia \
         xorg-x11-drv-nvidia-cuda
-        # steam \
-        # ffmpeg \
-        # mangohud \
     just installs-common
     flatpak install -y flathub \
         com.valvesoftware.Steam

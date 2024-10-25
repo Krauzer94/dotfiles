@@ -12,7 +12,7 @@ install_git() {
             echo -e "\n Nothing to do here \n"
             ;;
         *)
-            echo -e "\n Work in progress \n"
+            sudo apt install -y git
             ;;
     esac
 }

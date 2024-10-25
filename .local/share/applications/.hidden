@@ -10,7 +10,8 @@ net.local.flatpak.desktop
 net.local.kwrite.desktop
 net.local.kwrite-2.desktop
 
-# SteamOS
+# Others
+nvidia-settings.desktop
 Proton Experimental.desktop
 Steam Linux Runtime 1.0 (scout).desktop
 Steam Linux Runtime 2.0 (soldier).desktop

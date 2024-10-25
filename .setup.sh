@@ -5,21 +5,14 @@ install_git() {
     HOST=$HOSTNAME
 
     case "$HOST" in
-        archlinux*)
-            sudo pacman -Syu --needed --noconfirm git
-            ;;
-        debian*)
-            sudo apt install -y git
+        plasma*|gnome*)
+            sudo dnf install -y git
             ;;
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
         *)
-            sudo pacman-key --init
-            sudo pacman-key --populate
-            sudo pacman -Sy archlinux-keyring
-            sudo pacman -Su
-            sudo pacman -S --noconfirm git openssh wget
+            echo -e "\n Work in progress \n"
             ;;
     esac
 }
@@ -46,11 +39,11 @@ remaining_apps() {
     HOST=$HOSTNAME
 
     case "$HOST" in
-        archlinux*)
-            just installs-arch
+        plasma*)
+            just installs-plasma
             ;;
-        debian*)
-            just installs-debian
+        gnome*)
+            just installs-gnome
             ;;
         steamdeck*)
             just installs-steamos

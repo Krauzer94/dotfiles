@@ -1,5 +1,5 @@
 [Context]
-filesystems=/home/deck/.icons;/home/deck/Games;xdg-config/MangoHud:ro;/home/deck/.themes;xdg-config/gtk-3.0:ro
+filesystems=~/.icons;~/Games;xdg-config/MangoHud:ro;~/.themes;xdg-config/gtk-3.0:ro
 
 [Environment]
 PULSE_LATENCY_MSEC=30

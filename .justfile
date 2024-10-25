@@ -98,11 +98,11 @@ installs-fedora:
     # sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
     # sudo dnf install -y --allowerasing \
     sudo dnf install -y \
-        mangohud \
         akmod-nvidia \
         xorg-x11-drv-nvidia-cuda
         # steam \
         # ffmpeg \
+        # mangohud \
     just installs-common
     flatpak install -y flathub \
         org.kde.gwenview \

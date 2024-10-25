@@ -2,7 +2,7 @@
   dolphin ~/.local/share/applications
   launch = Meta + Shift + D
 
-  kate ~/.bash_aliases
+  kwrite ~/.bash_aliases
   launch = Meta + Shift + A
 
   flatpak run org.flameshot.Flameshot gui

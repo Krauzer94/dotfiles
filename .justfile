@@ -87,7 +87,8 @@ installs-common:
         com.vscodium.codium \
         org.mozilla.firefox \
         org.kde.kcalc \
-        com.dec05eba.gpu_screen_recorder
+        com.dec05eba.gpu_screen_recorder \
+        org.videolan.VLC
 
 # Install Fedora specific apps
 installs-fedora:
@@ -105,8 +106,7 @@ installs-fedora:
         # mangohud \
     just installs-common
     flatpak install -y flathub \
-        org.kde.gwenview \
-        org.videolan.VLC
+        org.kde.gwenview
     echo -e ''
 
 # Install SteamOS specific apps
@@ -117,7 +117,6 @@ installs-steamos:
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
     just installs-common
     flatpak install -y flathub \
-        org.videolan.VLC \
         com.obsproject.Studio
     echo -e ''
 

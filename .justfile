@@ -63,30 +63,6 @@ edit-videos:
         rm "$f"
     done
 
-# Install Arch Linux specific apps
-installs-arch:
-    #!/usr/bin/env bash
-
-    echo -e ''
-    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    sudo pacman -Syu --needed --noconfirm \
-        spectacle xdg-desktop-portal-gtk \
-        ffmpeg \
-        mangohud \
-        steam \
-        noto-fonts-cjk
-    sudo systemctl enable --now \
-        bluetooth.service \
-        NetworkManager.service
-    just installs-common
-    flatpak install -y flathub \
-        org.kde.gwenview \
-        org.kde.okular
-        # com.mattjakeman.ExtensionManager \
-        # org.videolan.VLC
-    #sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
-    echo -e ''
-
 # Install common applications
 installs-common:
     #!/usr/bin/env bash
@@ -113,28 +89,24 @@ installs-common:
         org.kde.kcalc \
         com.dec05eba.gpu_screen_recorder
 
-# Install Debian specific apps
-installs-debian:
+# Install Fedora specific apps
+installs-fedora:
     #!/usr/bin/env bash
 
     echo -e ''
     flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    sudo dpkg --add-architecture i386
-    sudo apt update
-    sudo apt install -y \
-        gnome-tweaks \
-        ffmpeg \
+    # sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+    # sudo dnf install -y --allowerasing \
+    sudo dnf install -y \
         mangohud \
-        steam-installer \
-        mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386 \
-        nvidia-driver firmware-misc-nonfree libnvidia-encode1
-        # ark okular kde-spectacle kdeplasma-addons-data plasma-widgets-addons \
+        akmod-nvidia \
+        xorg-x11-drv-nvidia-cuda
+        # steam \
+        # ffmpeg \
     just installs-common
     flatpak install -y flathub \
-        com.mattjakeman.ExtensionManager \
+        org.kde.gwenview \
         org.videolan.VLC
-        # org.kde.gwenview \
-    sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
     echo -e ''
 
 # Install SteamOS specific apps

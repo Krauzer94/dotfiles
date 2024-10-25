@@ -5,7 +5,7 @@ install_git() {
     HOST=$HOSTNAME
 
     case "$HOST" in
-        plasma*|gnome*)
+        fedora*)
             sudo dnf install -y git
             ;;
         steamdeck*)
@@ -39,11 +39,8 @@ remaining_apps() {
     HOST=$HOSTNAME
 
     case "$HOST" in
-        plasma*)
-            just installs-plasma
-            ;;
-        gnome*)
-            just installs-gnome
+        fedora*)
+            just installs-fedora
             ;;
         steamdeck*)
             just installs-steamos

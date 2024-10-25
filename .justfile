@@ -106,7 +106,7 @@ installs-fedora:
         # mangohud \
     just installs-common
     flatpak install -y flathub \
-        org.kde.gwenview
+        com.valvesoftware.Steam
     echo -e ''
 
 # Install SteamOS specific apps

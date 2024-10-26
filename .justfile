@@ -5,7 +5,6 @@ _default:
 install-apps:
     #!/usr/bin/env bash
 
-    curl -L https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch -o ~/.neofetch.sh
     just setup-filesys
     flatpak install -y flathub \
         org.freedesktop.Platform.VulkanLayer.MangoHud \
@@ -25,7 +24,6 @@ install-apps:
         net.lutris.Lutris \
         com.vscodium.codium \
         org.mozilla.firefox \
-        com.dec05eba.gpu_screen_recorder \
         org.videolan.VLC \
         org.kde.kcalc
 

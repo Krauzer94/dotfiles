@@ -25,7 +25,8 @@ install-apps:
         com.vscodium.codium \
         org.mozilla.firefox \
         org.videolan.VLC \
-        org.kde.kcalc
+        org.kde.kcalc \
+        com.mattjakeman.ExtensionManager
 
 # Set up flatpak permissions
 setup-filesys:

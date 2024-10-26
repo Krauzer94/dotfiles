@@ -15,7 +15,6 @@
 # Other aliases
   alias ll='ls -l --color=auto'
   alias aliases='cat ~/.bash_aliases'
-  alias neofetch='bash ~/.neofetch.sh'
   alias vs='flatpak run com.vscodium.codium'
   alias save='just upload-savegame'
   alias wclean='find ~/ -type f -name "*.Identifier" -delete'

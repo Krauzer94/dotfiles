@@ -1,13 +1,14 @@
 _default:
     just --list
 
-# Install common applications
-installs-common:
+# Install all my applications
+install-apps:
     #!/usr/bin/env bash
 
     curl -L https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch -o ~/.neofetch.sh
     just setup-filesys
     flatpak install -y flathub \
+        org.freedesktop.Platform.VulkanLayer.MangoHud \
         com.google.Chrome \
         org.gimp.GIMP \
         org.qbittorrent.qBittorrent \
@@ -27,46 +28,6 @@ installs-common:
         com.dec05eba.gpu_screen_recorder \
         org.videolan.VLC \
         org.kde.kcalc
-
-# Install Fedora specific apps
-installs-fedora:
-    #!/usr/bin/env bash
-
-    echo -e ''
-    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    sudo dnf install -y \
-        ffmpeg-free \
-        akmod-nvidia \
-        xorg-x11-drv-nvidia-cuda
-    just installs-common
-    flatpak install -y flathub \
-        com.valvesoftware.Steam
-    echo -e ''
-
-# Install SteamOS specific apps
-installs-steamos:
-    #!/usr/bin/env bash
-
-    echo -e ''
-    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    just installs-common
-    flatpak install -y flathub \
-        com.obsproject.Studio
-    echo -e ''
-
-# Install Ubuntu specific apps
-installs-ubuntu:
-    #!/usr/bin/env bash
-
-    echo -e ''
-    flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.MangoHud
-    sudo apt install -y \
-        ffmpeg
-    sudo ubuntu-drivers install
-    just installs-common
-    flatpak install -y flathub \
-        com.valvesoftware.Steam
-    echo -e ''
 
 # Set up flatpak permissions
 setup-filesys:

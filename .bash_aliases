@@ -19,7 +19,3 @@
   alias vs='flatpak run com.vscodium.codium'
   alias save='just upload-savegame'
   alias wclean='find ~/ -type f -name "*.Identifier" -delete'
-
-# Video editing
-  alias video='just edit-videos'
-  alias clip='just edit-clips'

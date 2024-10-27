@@ -25,8 +25,10 @@ install-apps:
         com.vscodium.codium \
         org.mozilla.firefox \
         org.videolan.VLC \
+        org.gnome.gThumb \
         org.kde.kcalc \
-        com.mattjakeman.ExtensionManager
+        com.mattjakeman.ExtensionManager \
+        com.valvesoftware.Steam
 
 # Set up flatpak permissions
 setup-filesys:

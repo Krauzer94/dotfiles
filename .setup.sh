@@ -14,6 +14,9 @@ install_git() {
         ubuntu*)
             sudo apt install -y git
             ;;
+        tumbleweed*)
+            sudo zypper install -y git
+            ;;
         *)
             sudo apt install -y git
             ;;
@@ -44,15 +47,15 @@ remaining_apps() {
     case "$HOST" in
         fedora*)
             sudo dnf install -y akmod-nvidia xorg-x11-drv-nvidia-cuda
-            just install-apps
             ;;
         steamdeck*)
-            just install-apps
             ;;
         ubuntu*)
             sudo ubuntu-drivers install
-            just install-apps
             ;;
+        tumbleweed*)
+            # WIP: automate NVIDIA
+            just install-apps
         *)
             just setup-github
             ;;
@@ -64,3 +67,6 @@ install_git
 setup_dotfiles
 install_just
 remaining_apps
+
+# # Install Flatpaks
+# just install-apps

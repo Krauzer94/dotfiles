@@ -23,9 +23,9 @@ install-apps:
         net.davidotek.pupgui2 \
         net.lutris.Lutris \
         com.vscodium.codium \
-        org.mozilla.firefox \
         org.videolan.VLC \
         org.gnome.gThumb \
+        dev.lizardbyte.app.Sunshine \
         org.kde.kcalc \
         com.mattjakeman.ExtensionManager \
         com.valvesoftware.Steam

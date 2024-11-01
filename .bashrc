@@ -24,9 +24,6 @@ fi
 # Ignore Podman warning
 export PODMAN_IGNORE_CGROUPSV1_WARNING=1
 
-# # Fix audio crackling
-# export PULSE_LATENCY_MSEC=30
-
 # paste.rs
 function paste() {
     echo ""

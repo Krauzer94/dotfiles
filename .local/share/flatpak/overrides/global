@@ -1,5 +1,2 @@
 [Context]
-filesystems=xdg-config/gtk-3.0:ro;~/.themes;~/Games;~/.icons
-
-[Environment]
-PULSE_LATENCY_MSEC=30
+filesystems=~/.icons;~/Games;~/.themes;xdg-config/gtk-3.0:ro

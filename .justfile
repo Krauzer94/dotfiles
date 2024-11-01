@@ -51,8 +51,8 @@ installs-fedora:
         xorg-x11-drv-nvidia-cuda
     just installs-common
 
-# Installs Ubuntu specific apps
-installs-ubuntu:
+# Installs Kubuntu specific apps
+installs-kubuntu:
     #!/usr/bin/env bash
 
     # sudo snap remove --purge firefox snapstore

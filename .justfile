@@ -1,8 +1,8 @@
 _default:
     just --list
 
-# Install all my applications
-install-apps:
+# Install common applications
+installs-common:
     #!/usr/bin/env bash
 
     just setup-filesys
@@ -29,6 +29,35 @@ install-apps:
         org.kde.kcalc \
         com.mattjakeman.ExtensionManager \
         com.valvesoftware.Steam
+
+# Installs Fedora specific apps
+installs-fedora:
+    #!/usr/bin/env bash
+
+    sudo dnf remove -y \
+        'libreoffice*' \
+        gnome-boxes \
+        mediawriter
+    sudo dnf autoremove -y && sudo dnf clean all
+    sudo dnf install -y \
+        gnome-tweaks \
+        akmod-nvidia \
+        xorg-x11-drv-nvidia-cuda
+    just installs-common
+
+# Installs Ubuntu specific apps
+installs-ubuntu:
+    #!/usr/bin/env bash
+
+    sudo snap remove --purge firefox snapstore
+    sudo apt update && sudo apt install -y \
+        flatpak \
+        gnome-software-plugin-flatpak \
+        gnome-tweaks
+    flatpak remote-add --if-not-exists \
+        flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    sudo ubuntu-drivers install
+    just installs-common
 
 # Set up flatpak permissions
 setup-filesys:

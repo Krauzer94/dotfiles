@@ -43,15 +43,13 @@ remaining_apps() {
 
     case "$HOST" in
         fedora*)
-            sudo dnf install -y akmod-nvidia xorg-x11-drv-nvidia-cuda
-            just install-apps
+            just installs-fedora
             ;;
         steamdeck*)
-            just install-apps
+            just installs-common
             ;;
         ubuntu*)
-            sudo ubuntu-drivers install
-            just install-apps
+            just installs-ubuntu
             ;;
         *)
             just setup-github

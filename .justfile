@@ -110,12 +110,12 @@ setup-symlinks:
     ln -s ~/.local/share/applications ~/.applications
     ln -s ~/.var/app ~/.flatpaks
     ln -s ~/.config/MangoHud/MangoHud.conf ~/.mangohud
-    ln -s ~/.apps/com.stremio.Stremio/.stremio-server/stremio-cache ~/.stremio-cache
+    ln -s ~/.var/app/com.stremio.Stremio/.stremio-server/stremio-cache ~/.stremio-cache
 
     HOST=$HOSTNAME
     if [[ "$HOST" == fedora* || "$HOST" == kubuntu* ]]; then
-        ln -s ~/.apps/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
-        ln -s ~/.apps/com.valvesoftware.Steam/.steam ~/.steam
+        ln -s ~/.var/app/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
+        ln -s ~/.var/app/com.valvesoftware.Steam/.steam ~/.steam
     else
         echo -e "\n Nothing to do here \n"
     fi

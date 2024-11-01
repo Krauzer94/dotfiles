@@ -28,16 +28,13 @@ installs-common:
         dev.lizardbyte.app.Sunshine
 
     HOST=$HOSTNAME
-    case "$HOST" in
-        fedora*|ubuntu*)
-            flatpak install -y flathub \
-                com.mattjakeman.ExtensionManager \
-                com.valvesoftware.Steam
-            ;;
-        *)
-            echo -e "\n Nothing to do here \n"
-            ;;
-    esac
+    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* ]]; then
+        flatpak install -y flathub \
+            com.mattjakeman.ExtensionManager \
+            com.valvesoftware.Steam
+    else
+        echo -e "\n Nothing to do here \n"
+    fi
 
 # Installs Fedora specific apps
 installs-fedora:
@@ -94,15 +91,12 @@ setup-symlinks:
     ln -s ~/.apps/com.stremio.Stremio/.stremio-server/stremio-cache ~/.stremio-cache
 
     HOST=$HOSTNAME
-    case "$HOST" in
-        fedora*|ubuntu*)
-            ln -s ~/.apps/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
-            ln -s ~/.apps/com.valvesoftware.Steam/.steam ~/.steam
-            ;;
-        *)
-            echo -e "\n Nothing to do here \n"
-            ;;
-    esac
+    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* ]]; then
+        ln -s ~/.apps/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
+        ln -s ~/.apps/com.valvesoftware.Steam/.steam ~/.steam
+    else
+        echo -e "\n Nothing to do here \n"
+    fi
 
 # Upload savegame folder files
 [no-cd]

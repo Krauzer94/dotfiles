@@ -1,9 +1,0 @@
-
-  dolphin ~/.local/share/applications
-  launch = Meta + Shift + D
-
-  flatpak run com.vscodium.codium ~/.config/MangoHud/MangoHud.conf
-  launch = Meta + Shift + H
-
-  killall -SIGUSR1 gpu-screen-recorder
-  launch = Num *

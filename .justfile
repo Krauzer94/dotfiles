@@ -108,7 +108,7 @@ setup-symlinks:
     #!/usr/bin/env bash
 
     ln -s ~/.local/share/applications ~/.applications
-    ln -s ~/.var/app ~/.apps
+    ln -s ~/.var/app ~/.flatpaks
     ln -s ~/.config/MangoHud/MangoHud.conf ~/.mangohud
     ln -s ~/.apps/com.stremio.Stremio/.stremio-server/stremio-cache ~/.stremio-cache
 

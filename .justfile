@@ -25,10 +25,19 @@ installs-common:
         com.vscodium.codium \
         org.videolan.VLC \
         org.gnome.gThumb \
-        dev.lizardbyte.app.Sunshine \
-        org.kde.kcalc \
-        com.mattjakeman.ExtensionManager \
-        com.valvesoftware.Steam
+        dev.lizardbyte.app.Sunshine
+
+    HOST=$HOSTNAME
+    case "$HOST" in
+        fedora*|ubuntu*)
+            flatpak install -y flathub \
+                com.mattjakeman.ExtensionManager \
+                com.valvesoftware.Steam
+            ;;
+        *)
+            echo -e "\n Nothing to do here \n"
+            ;;
+    esac
 
 # Installs Fedora specific apps
 installs-fedora:

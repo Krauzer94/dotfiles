@@ -55,13 +55,13 @@ installs-fedora:
 installs-ubuntu:
     #!/usr/bin/env bash
 
-    sudo snap remove --purge firefox snapstore
-    sudo apt update && sudo apt install -y \
-        flatpak \
-        gnome-software-plugin-flatpak \
-        gnome-tweaks
-    flatpak remote-add --if-not-exists \
-        flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    # sudo snap remove --purge firefox snapstore
+    # sudo apt update && sudo apt install -y \
+    #     flatpak \
+    #     gnome-software-plugin-flatpak \
+    #     gnome-tweaks
+    # flatpak remote-add --if-not-exists \
+    #     flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     sudo ubuntu-drivers install
     just installs-common
 

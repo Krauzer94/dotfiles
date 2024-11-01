@@ -34,10 +34,7 @@ installs-common:
 installs-fedora:
     #!/usr/bin/env bash
 
-    sudo dnf remove -y \
-        'libreoffice*' \
-        gnome-boxes \
-        mediawriter
+    sudo dnf remove -y 'libreoffice*' gnome-boxes
     sudo dnf autoremove -y && sudo dnf clean all
     sudo dnf install -y \
         gnome-tweaks \

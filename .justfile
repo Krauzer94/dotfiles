@@ -27,14 +27,29 @@ installs-common:
         org.gnome.gThumb \
         dev.lizardbyte.app.Sunshine
 
-    HOST=$HOSTNAME
-    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* ]]; then
-        flatpak install -y flathub \
-            com.mattjakeman.ExtensionManager \
-            com.valvesoftware.Steam
-    else
-        echo -e "\n Nothing to do here \n"
-    fi
+        HOST=$HOSTNAME
+
+    case "$HOST" in
+        fedora*)
+            flatpak install -y flathub \
+                com.mattjakeman.ExtensionManager \
+                com.valvesoftware.Steam
+            ;;
+        steamdeck*)
+            flatpak install -y flathub \
+                org.kde.kcalc \
+                org.mozilla.firefox
+            ;;
+        kubuntu*)
+            flatpak install -y flathub \
+                org.kde.kcalc \
+                com.valvesoftware.Steam
+            ;;
+        *)
+            echo -e "\n Nothing to do here \n"
+            ;;
+
+    esac
 
 # Installs Fedora specific apps
 installs-fedora:
@@ -94,7 +109,7 @@ setup-symlinks:
     ln -s ~/.apps/com.stremio.Stremio/.stremio-server/stremio-cache ~/.stremio-cache
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* ]]; then
+    if [[ "$HOST" == fedora* || "$HOST" == kubuntu* ]]; then
         ln -s ~/.apps/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
         ln -s ~/.apps/com.valvesoftware.Steam/.steam ~/.steam
     else

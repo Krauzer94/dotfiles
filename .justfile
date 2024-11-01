@@ -1,7 +1,7 @@
 _default:
     just --list
 
-# Install common applications
+# Installs common applications
 installs-common:
     #!/usr/bin/env bash
 
@@ -83,6 +83,26 @@ setup-github:
     echo -e ''
     cat ~/.ssh/id_ed25519.pub
     echo -e ''
+
+# Set up convenient symlinks
+setup-symlinks:
+    #!/usr/bin/env bash
+
+    ln -s ~/.local/share/applications ~/.applications
+    ln -s ~/.var/app ~/.apps
+    ln -s ~/.config/MangoHud/MangoHud.conf ~/.mangohud
+    ln -s ~/.apps/com.stremio.Stremio/.stremio-server/stremio-cache ~/.stremio-cache
+
+    HOST=$HOSTNAME
+    case "$HOST" in
+        fedora*|ubuntu*)
+            ln -s ~/.apps/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
+            ln -s ~/.apps/com.valvesoftware.Steam/.steam ~/.steam
+            ;;
+        *)
+            echo -e "\n Nothing to do here \n"
+            ;;
+    esac
 
 # Upload savegame folder files
 [no-cd]

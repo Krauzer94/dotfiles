@@ -27,8 +27,13 @@ installs-common:
         org.gnome.gThumb \
         dev.lizardbyte.app.Sunshine
 
-        HOST=$HOSTNAME
+    just installs-specific
 
+# Installs distro specific apps
+installs-specific:
+    #!/usr/bin/env bash
+
+    HOST=$HOSTNAME
     case "$HOST" in
         fedora*)
             flatpak install -y flathub \
@@ -48,7 +53,6 @@ installs-common:
         *)
             echo -e "\n Nothing to do here \n"
             ;;
-
     esac
 
 # Installs Fedora specific apps

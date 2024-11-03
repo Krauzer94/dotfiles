@@ -69,9 +69,9 @@ installs-fedora:
 installs-kubuntu:
     #!/usr/bin/env bash
 
-    for snap in $(snap list | awk 'NR>1 {print $1}'); do
-        sudo snap remove --purge "$snap"
-    done
+    # for snap in $(snap list | awk 'NR>1 {print $1}'); do
+    #     sudo snap remove --purge "$snap"
+    # done
     # sudo snap remove --purge firefox snapstore
     sudo apt update && sudo apt install -y \
         flatpak \

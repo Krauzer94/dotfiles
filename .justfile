@@ -74,13 +74,16 @@ installs-fedora:
 installs-kubuntu:
     #!/usr/bin/env bash
 
+    for snap in $(snap list | awk 'NR>1 {print $1}'); do
+        sudo snap remove --purge "$snap"
+    done
     # sudo snap remove --purge firefox snapstore
-    # sudo apt update && sudo apt install -y \
-    #     flatpak \
-    #     gnome-software-plugin-flatpak \
-    #     gnome-tweaks
-    # flatpak remote-add --if-not-exists \
-    #     flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    sudo apt update && sudo apt install -y \
+        flatpak \
+        gnome-software-plugin-flatpak \
+        gnome-tweaks
+    flatpak remote-add --if-not-exists \
+        flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     sudo ubuntu-drivers install
     just installs-common
 

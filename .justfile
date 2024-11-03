@@ -35,7 +35,7 @@ installs-specific:
 
     HOST=$HOSTNAME
     case "$HOST" in
-        fedora*)
+        fedora*|ubuntu*)
             flatpak install -y flathub \
                 com.mattjakeman.ExtensionManager \
                 com.valvesoftware.Steam
@@ -44,11 +44,6 @@ installs-specific:
             flatpak install -y flathub \
                 org.kde.kcalc \
                 org.mozilla.firefox
-            ;;
-        kubuntu*)
-            flatpak install -y flathub \
-                org.kde.kcalc \
-                com.valvesoftware.Steam
             ;;
         *)
             echo -e "\n Nothing to do here \n"

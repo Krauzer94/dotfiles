@@ -35,9 +35,14 @@ installs-specific:
 
     HOST=$HOSTNAME
     case "$HOST" in
-        fedora*|ubuntu*)
+        fedora*)
             flatpak install -y flathub \
                 com.mattjakeman.ExtensionManager \
+                com.valvesoftware.Steam
+            ;;
+        kubuntu*)
+            flatpak install -y flathub \
+                org.kde.kcalc \
                 com.valvesoftware.Steam
             ;;
         steamdeck*)
@@ -65,19 +70,10 @@ installs-fedora:
         xorg-x11-drv-nvidia-cuda
     just installs-common
 
-# Installs Ubuntu specific apps
-installs-ubuntu:
+# Installs Kubuntu specific apps
+installs-kubuntu:
     #!/usr/bin/env bash
 
-    for snap in $(snap list | awk 'NR>1 {print $1}'); do
-        sudo snap remove --purge "$snap"
-    done
-    sudo apt update && sudo apt install -y \
-        flatpak \
-        gnome-software-plugin-flatpak \
-        gnome-tweaks
-    flatpak remote-add --if-not-exists \
-        flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     sudo ubuntu-drivers install
     just installs-common
 

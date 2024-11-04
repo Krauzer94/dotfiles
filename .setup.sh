@@ -11,7 +11,7 @@ install_git() {
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
-        ubuntu*)
+        kubuntu*)
             sudo apt install -y git
             ;;
         *)
@@ -48,8 +48,8 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        ubuntu*)
-            just installs-ubuntu
+        kubuntu*)
+            just installs-kubuntu
             ;;
         *)
             just setup-github

@@ -69,10 +69,9 @@ installs-fedora:
 installs-ubuntu:
     #!/usr/bin/env bash
 
-    # for snap in $(snap list | awk 'NR>1 {print $1}'); do
-    #     sudo snap remove --purge "$snap"
-    # done
-    # sudo snap remove --purge firefox snapstore
+    for snap in $(snap list | awk 'NR>1 {print $1}'); do
+        sudo snap remove --purge "$snap"
+    done
     sudo apt update && sudo apt install -y \
         flatpak \
         gnome-software-plugin-flatpak \

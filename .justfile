@@ -42,7 +42,7 @@ installs-specific:
             ;;
         kubuntu*)
             flatpak install -y flathub \
-                org.kde.kcalc \
+                org.mozilla.firefox \
                 com.valvesoftware.Steam
             ;;
         steamdeck*)

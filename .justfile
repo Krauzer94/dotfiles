@@ -65,8 +65,8 @@ installs-fedora:
         xorg-x11-drv-nvidia-cuda
     just installs-common
 
-# Installs Kubuntu specific apps
-installs-kubuntu:
+# Installs Ubuntu specific apps
+installs-ubuntu:
     #!/usr/bin/env bash
 
     # for snap in $(snap list | awk 'NR>1 {print $1}'); do

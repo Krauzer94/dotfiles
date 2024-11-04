@@ -79,7 +79,7 @@ installs-ubuntu:
         gnome-tweaks
     flatpak remote-add --if-not-exists \
         flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-    sudo ubuntu-drivers install
+    # sudo ubuntu-drivers install
     just installs-common
 
 # Set up flatpak permissions

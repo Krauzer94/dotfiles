@@ -34,48 +34,41 @@ installs-specific:
     #!/usr/bin/env bash
 
     HOST=$HOSTNAME
-    case "$HOST" in
-        fedora*)
-            flatpak install -y flathub \
-                org.kde.kcalc \
-                com.valvesoftware.Steam
-                # com.mattjakeman.ExtensionManager \
-            ;;
-        kubuntu*)
-            flatpak install -y flathub \
-                org.kde.kwrite \
-                com.valvesoftware.Steam
-            ;;
-        steamdeck*)
-            flatpak install -y flathub \
-                org.kde.kcalc \
-                org.mozilla.firefox
-            ;;
-        *)
-            echo -e "\n Nothing to do here \n"
-            ;;
-    esac
+    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* ]]; then
+        flatpak install -y flathub \
+            com.mattjakeman.ExtensionManager \
+            com.valvesoftware.Steam
+    else
+        flatpak install -y flathub \
+            org.kde.kcalc \
+            org.mozilla.firefox
+    fi
 
 # Installs Fedora specific apps
 installs-fedora:
     #!/usr/bin/env bash
 
-    # sudo dnf remove -y \
-    #     firefox \
-    #     'libreoffice*' \
-    #     gnome-boxes
-    # sudo dnf autoremove -y && sudo dnf clean all
+    sudo dnf remove -y \
+        firefox \
+        'libreoffice*' \
+        gnome-boxes
+    sudo dnf autoremove -y && sudo dnf clean all
     sudo dnf install -y \
+        gnome-tweaks \
         akmod-nvidia \
         xorg-x11-drv-nvidia-cuda
-        # gnome-tweaks \
     just installs-common
 
-# Installs Kubuntu specific apps
-installs-kubuntu:
+# Installs Ubuntu specific apps
+installs-ubuntu:
     #!/usr/bin/env bash
 
-    sudo ubuntu-drivers install
+    sudo apt install -y \
+        flatpak \
+        gnome-software-plugin-flatpak \
+        gnome-tweaks
+    flatpak remote-add --if-not-exists \
+        flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     just installs-common
 
 # Set up flatpak permissions
@@ -107,7 +100,7 @@ setup-symlinks:
     ln -s ~/.var/app/com.stremio.Stremio/.stremio-server/stremio-cache ~/.stremio-cache
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == fedora* || "$HOST" == kubuntu* ]]; then
+    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* ]]; then
         ln -s ~/.var/app/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
         ln -s ~/.var/app/com.valvesoftware.Steam/.steam ~/.steam
     else

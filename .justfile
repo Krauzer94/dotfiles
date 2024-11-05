@@ -35,7 +35,7 @@ installs-specific:
 
     HOST=$HOSTNAME
     case "$HOST" in
-        fedora*)
+        fedora*|debian*)
             flatpak install -y flathub \
                 com.mattjakeman.ExtensionManager \
                 com.valvesoftware.Steam
@@ -68,6 +68,21 @@ installs-fedora:
         gnome-tweaks \
         akmod-nvidia \
         xorg-x11-drv-nvidia-cuda
+    just installs-common
+
+# Instals Debian specific apps
+installs-debian:
+    #!/usr/bin/env bash
+
+    sudo apt install -y \
+        flatpak \
+        gnome-software-plugin-flatpak \
+        gnome-tweaks \
+        nvidia-driver \
+        firmware-misc-nonfree \
+        libnvidia-encode1
+    flatpak remote-add --if-not-exists \
+        flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     just installs-common
 
 # Installs Kubuntu specific apps

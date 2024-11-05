@@ -121,7 +121,7 @@ setup-symlinks:
     ln -s ~/.var/app/com.stremio.Stremio/.stremio-server/stremio-cache ~/.stremio-cache
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == fedora* || "$HOST" == kubuntu* ]]; then
+    if [[ "$HOST" == fedora* || "$HOST" == kubuntu* || "$HOST" == debian* ]]; then
         ln -s ~/.var/app/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
         ln -s ~/.var/app/com.valvesoftware.Steam/.steam ~/.steam
     else

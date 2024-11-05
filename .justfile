@@ -37,8 +37,9 @@ installs-specific:
     case "$HOST" in
         fedora*)
             flatpak install -y flathub \
-                com.mattjakeman.ExtensionManager \
+                org.kde.kcalc \
                 com.valvesoftware.Steam
+                # com.mattjakeman.ExtensionManager \
             ;;
         kubuntu*)
             flatpak install -y flathub \
@@ -59,15 +60,15 @@ installs-specific:
 installs-fedora:
     #!/usr/bin/env bash
 
-    sudo dnf remove -y \
-        firefox \
-        'libreoffice*' \
-        gnome-boxes
-    sudo dnf autoremove -y && sudo dnf clean all
+    # sudo dnf remove -y \
+    #     firefox \
+    #     'libreoffice*' \
+    #     gnome-boxes
+    # sudo dnf autoremove -y && sudo dnf clean all
     sudo dnf install -y \
-        gnome-tweaks \
         akmod-nvidia \
         xorg-x11-drv-nvidia-cuda
+        # gnome-tweaks \
     just installs-common
 
 # Installs Kubuntu specific apps

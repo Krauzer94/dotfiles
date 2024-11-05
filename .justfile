@@ -35,7 +35,7 @@ installs-specific:
 
     HOST=$HOSTNAME
     case "$HOST" in
-        fedora*|debian*)
+        fedora*)
             flatpak install -y flathub \
                 com.mattjakeman.ExtensionManager \
                 com.valvesoftware.Steam
@@ -68,21 +68,6 @@ installs-fedora:
         gnome-tweaks \
         akmod-nvidia \
         xorg-x11-drv-nvidia-cuda
-    just installs-common
-
-# Instals Debian specific apps
-installs-debian:
-    #!/usr/bin/env bash
-
-    sudo apt install -y \
-        flatpak \
-        gnome-software-plugin-flatpak \
-        gnome-tweaks \
-        nvidia-driver \
-        firmware-misc-nonfree \
-        libnvidia-encode1
-    flatpak remote-add --if-not-exists \
-        flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     just installs-common
 
 # Installs Kubuntu specific apps
@@ -121,7 +106,7 @@ setup-symlinks:
     ln -s ~/.var/app/com.stremio.Stremio/.stremio-server/stremio-cache ~/.stremio-cache
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == fedora* || "$HOST" == kubuntu* || "$HOST" == debian* ]]; then
+    if [[ "$HOST" == fedora* || "$HOST" == kubuntu* ]]; then
         ln -s ~/.var/app/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
         ln -s ~/.var/app/com.valvesoftware.Steam/.steam ~/.steam
     else

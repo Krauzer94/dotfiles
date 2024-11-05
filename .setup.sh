@@ -11,6 +11,9 @@ install_git() {
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
+        kubuntu*)
+            sudo apt install -y git
+            ;;
         *)
             sudo apt install -y git
             ;;
@@ -47,9 +50,6 @@ remaining_apps() {
             ;;
         kubuntu*)
             just installs-kubuntu
-            ;;
-        debian*)
-            just installs-debian
             ;;
         *)
             just setup-github

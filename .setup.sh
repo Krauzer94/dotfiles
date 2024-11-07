@@ -11,7 +11,7 @@ install_git() {
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
-        ubuntu*)
+        ubuntu*|debian*)
             sudo apt install -y git
             ;;
         *)
@@ -50,6 +50,9 @@ remaining_apps() {
             ;;
         ubuntu*)
             just installs-ubuntu
+            ;;
+        debian*)
+            just installs-debian
             ;;
         *)
             just setup-github

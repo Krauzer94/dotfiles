@@ -34,7 +34,7 @@ installs-specific:
     #!/usr/bin/env bash
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* ]]; then
+    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* || "$HOST" == debian* ]]; then
         flatpak install -y flathub \
             com.mattjakeman.ExtensionManager \
             com.valvesoftware.Steam
@@ -57,6 +57,21 @@ installs-fedora:
         gnome-tweaks \
         akmod-nvidia \
         xorg-x11-drv-nvidia-cuda
+    just installs-common
+
+# Instals Debian specific apps
+installs-debian:
+    #!/usr/bin/env bash
+
+    sudo apt install -y \
+        flatpak \
+        gnome-software-plugin-flatpak \
+        gnome-tweaks \
+        nvidia-driver \
+        firmware-misc-nonfree \
+        libnvidia-encode1
+    flatpak remote-add --if-not-exists \
+        flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     just installs-common
 
 # Installs Ubuntu specific apps
@@ -101,7 +116,7 @@ setup-symlinks:
     ln -s ~/.config/MangoHud/MangoHud.conf ~/.var/app/net.lutris.Lutris/config/MangoHud
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* ]]; then
+    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* || "$HOST" == debian* ]]; then
         ln -s ~/.var/app/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
         ln -s ~/.var/app/com.valvesoftware.Steam/.steam ~/.steam
         ln -s ~/.config/MangoHud/MangoHud.conf ~/.var/app/com.valvesoftware.Steam/config/MangoHud

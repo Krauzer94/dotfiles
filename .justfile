@@ -34,7 +34,7 @@ installs-specific:
     #!/usr/bin/env bash
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* || "$HOST" == debian* ]]; then
+    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* || "$HOST" == debian* || "$HOST" == archlinux* ]]; then
         flatpak install -y flathub \
             com.mattjakeman.ExtensionManager \
             com.valvesoftware.Steam
@@ -44,19 +44,15 @@ installs-specific:
             org.mozilla.firefox
     fi
 
-# Installs Fedora specific apps
-installs-fedora:
+# Install Arch Linux specific apps
+installs-arch:
     #!/usr/bin/env bash
 
-    sudo dnf remove -y \
-        firefox \
-        'libreoffice*' \
-        gnome-boxes
-    sudo dnf autoremove -y && sudo dnf clean all
-    sudo dnf install -y \
-        gnome-tweaks \
-        akmod-nvidia \
-        xorg-x11-drv-nvidia-cuda
+    sudo pacman -S --needed --noconfirm \
+        noto-fonts-cjk
+    sudo systemctl enable --now \
+        bluetooth.service \
+        NetworkManager.service
     just installs-common
 
 # Instals Debian specific apps
@@ -72,6 +68,21 @@ installs-debian:
         libnvidia-encode1
     flatpak remote-add --if-not-exists \
         flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    just installs-common
+
+# Installs Fedora specific apps
+installs-fedora:
+    #!/usr/bin/env bash
+
+    sudo dnf remove -y \
+        firefox \
+        'libreoffice*' \
+        gnome-boxes
+    sudo dnf autoremove -y && sudo dnf clean all
+    sudo dnf install -y \
+        gnome-tweaks \
+        akmod-nvidia \
+        xorg-x11-drv-nvidia-cuda
     just installs-common
 
 # Installs Ubuntu specific apps
@@ -116,7 +127,7 @@ setup-symlinks:
     ln -s ~/.config/MangoHud/MangoHud.conf ~/.var/app/net.lutris.Lutris/config/MangoHud
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* || "$HOST" == debian* ]]; then
+    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* || "$HOST" == debian* || "$HOST" == archlinux* ]]; then
         ln -s ~/.var/app/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
         ln -s ~/.var/app/com.valvesoftware.Steam/.steam ~/.steam
         ln -s ~/.config/MangoHud/MangoHud.conf ~/.var/app/com.valvesoftware.Steam/config/MangoHud

@@ -14,6 +14,9 @@ install_git() {
         ubuntu*|debian*)
             sudo apt install -y git
             ;;
+        archlinux*)
+            sudo pacman -S --needed --noconfirm git
+            ;;
         *)
             sudo apt install -y git
             ;;
@@ -53,6 +56,9 @@ remaining_apps() {
             ;;
         debian*)
             just installs-debian
+            ;;
+        archlinux*)
+            just installs-arch
             ;;
         *)
             just setup-github

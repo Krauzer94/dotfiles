@@ -11,11 +11,8 @@ install_git() {
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
-        ubuntu*|debian*)
+        ubuntu*)
             sudo apt install -y git
-            ;;
-        archlinux*)
-            sudo pacman -S --needed --noconfirm git
             ;;
         *)
             sudo apt install -y git
@@ -53,12 +50,6 @@ remaining_apps() {
             ;;
         ubuntu*)
             just installs-ubuntu
-            ;;
-        debian*)
-            just installs-debian
-            ;;
-        archlinux*)
-            just installs-arch
             ;;
         *)
             just setup-github

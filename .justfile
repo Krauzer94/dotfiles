@@ -34,7 +34,7 @@ installs-specific:
     #!/usr/bin/env bash
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* ]]; then
+    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* || "$HOST" == mint* ]]; then
         flatpak install -y flathub \
             com.mattjakeman.ExtensionManager \
             com.valvesoftware.Steam
@@ -101,7 +101,7 @@ setup-symlinks:
     ln -s ~/.config/MangoHud/MangoHud.conf ~/.var/app/net.lutris.Lutris/config/MangoHud
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* ]]; then
+    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* || "$HOST" == mint* ]]; then
         ln -s ~/.var/app/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
         ln -s ~/.var/app/com.valvesoftware.Steam/.steam ~/.steam
         ln -s ~/.config/MangoHud/MangoHud.conf ~/.var/app/com.valvesoftware.Steam/config/MangoHud

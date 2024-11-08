@@ -11,7 +11,7 @@ install_git() {
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
-        ubuntu*)
+        ubuntu*|mint*)
             sudo apt install -y git
             ;;
         *)
@@ -50,6 +50,9 @@ remaining_apps() {
             ;;
         ubuntu*)
             just installs-ubuntu
+            ;;
+        mint*)
+            just installs-common
             ;;
         *)
             just setup-github

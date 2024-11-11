@@ -34,15 +34,27 @@ installs-specific:
     #!/usr/bin/env bash
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* || "$HOST" == mint* ]]; then
-        flatpak install -y flathub \
-            com.mattjakeman.ExtensionManager \
-            com.valvesoftware.Steam
-    else
-        flatpak install -y flathub \
-            org.kde.kcalc \
-            org.mozilla.firefox
-    fi
+
+    case "$HOST" in
+        steamdeck*)
+            flatpak install -y flathub \
+                org.kde.kcalc \
+                org.mozilla.firefox
+            ;;
+        ubuntu*|fedora*)
+            flatpak install -y flathub \
+                com.mattjakeman.ExtensionManager \
+                com.valvesoftware.Steam
+            ;;
+        kubuntu*)
+            flatpak install -y flathub \
+                org.kde.kwrite \
+                com.valvesoftware.Steam
+            ;;
+        *)
+            echo -e "\n Nothing to do here \n"
+            ;;
+    esac
 
 # Installs Fedora specific apps
 installs-fedora:

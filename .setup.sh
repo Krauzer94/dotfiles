@@ -11,7 +11,7 @@ install_git() {
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
-        ubuntu*|mint*)
+        ubuntu*|kubuntu*)
             sudo apt install -y git
             ;;
         *)
@@ -45,14 +45,11 @@ remaining_apps() {
         fedora*)
             just installs-fedora
             ;;
-        steamdeck*)
+        steamdeck*|kubuntu*)
             just installs-common
             ;;
         ubuntu*)
             just installs-ubuntu
-            ;;
-        mint*)
-            just installs-common
             ;;
         *)
             just setup-github

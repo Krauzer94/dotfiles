@@ -41,7 +41,7 @@ installs-specific:
                 org.kde.kcalc \
                 org.mozilla.firefox
             ;;
-        ubuntu*|fedora*)
+        ubuntu*)
             flatpak install -y flathub \
                 com.mattjakeman.ExtensionManager \
                 com.valvesoftware.Steam
@@ -55,21 +55,6 @@ installs-specific:
             echo -e "\n Nothing to do here \n"
             ;;
     esac
-
-# Installs Fedora specific apps
-installs-fedora:
-    #!/usr/bin/env bash
-
-    sudo dnf remove -y \
-        firefox \
-        'libreoffice*' \
-        gnome-boxes
-    sudo dnf autoremove -y && sudo dnf clean all
-    sudo dnf install -y \
-        gnome-tweaks \
-        akmod-nvidia \
-        xorg-x11-drv-nvidia-cuda
-    just installs-common
 
 # Installs Ubuntu specific apps
 installs-ubuntu:
@@ -113,7 +98,7 @@ setup-symlinks:
     ln -s ~/.config/MangoHud/MangoHud.conf ~/.var/app/net.lutris.Lutris/config/MangoHud
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == fedora* || "$HOST" == ubuntu* || "$HOST" == mint* ]]; then
+    if [[ "$HOST" == ubuntu* || "$HOST" == kubuntu* ]]; then
         ln -s ~/.var/app/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
         ln -s ~/.var/app/com.valvesoftware.Steam/.steam ~/.steam
         ln -s ~/.config/MangoHud/MangoHud.conf ~/.var/app/com.valvesoftware.Steam/config/MangoHud

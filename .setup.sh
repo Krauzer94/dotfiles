@@ -5,9 +5,6 @@ install_git() {
     HOST=$HOSTNAME
 
     case "$HOST" in
-        fedora*)
-            sudo dnf install -y git
-            ;;
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
@@ -42,9 +39,6 @@ remaining_apps() {
     HOST=$HOSTNAME
 
     case "$HOST" in
-        fedora*)
-            just installs-fedora
-            ;;
         steamdeck*|kubuntu*)
             just installs-common
             ;;

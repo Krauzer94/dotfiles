@@ -34,7 +34,6 @@ installs-specific:
     #!/usr/bin/env bash
 
     HOST=$HOSTNAME
-
     case "$HOST" in
         steamdeck*)
             flatpak install -y flathub \
@@ -46,11 +45,10 @@ installs-specific:
                 com.mattjakeman.ExtensionManager \
                 com.valvesoftware.Steam
             ;;
-        kubuntu*)
+        mint*)
             flatpak install -y flathub \
-                org.kde.kwrite \
+                org.mozilla.firefox \
                 com.valvesoftware.Steam
-            ;;
         *)
             echo -e "\n Nothing to do here \n"
             ;;
@@ -98,12 +96,12 @@ setup-symlinks:
     ln -s ~/.config/MangoHud/MangoHud.conf ~/.var/app/net.lutris.Lutris/config/MangoHud
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == ubuntu* || "$HOST" == kubuntu* ]]; then
+    if [[ "$HOST" == steamdeck* ]]; then
+        echo -e "\n Nothing to do here \n"
+    else
         ln -s ~/.var/app/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
         ln -s ~/.var/app/com.valvesoftware.Steam/.steam ~/.steam
         ln -s ~/.config/MangoHud/MangoHud.conf ~/.var/app/com.valvesoftware.Steam/config/MangoHud
-    else
-        echo -e "\n Nothing to do here \n"
     fi
 
 # Upload savegame folder files

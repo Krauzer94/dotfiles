@@ -49,6 +49,7 @@ installs-specific:
             flatpak install -y flathub \
                 org.mozilla.firefox \
                 com.valvesoftware.Steam
+            ;;
         *)
             echo -e "\n Nothing to do here \n"
             ;;

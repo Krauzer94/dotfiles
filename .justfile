@@ -34,26 +34,15 @@ installs-specific:
     #!/usr/bin/env bash
 
     HOST=$HOSTNAME
-    case "$HOST" in
-        steamdeck*)
-            flatpak install -y flathub \
-                org.kde.kcalc \
-                org.mozilla.firefox
-            ;;
-        ubuntu*)
-            flatpak install -y flathub \
-                com.mattjakeman.ExtensionManager \
-                com.valvesoftware.Steam
-            ;;
-        mint*)
-            flatpak install -y flathub \
-                org.mozilla.firefox \
-                com.valvesoftware.Steam
-            ;;
-        *)
-            echo -e "\n Nothing to do here \n"
-            ;;
-    esac
+    if [[ "$HOST" == steamdeck* ]]; then
+        flatpak install -y flathub \
+            org.mozilla.firefox \
+            org.kde.kcalc
+    else
+        flatpak install -y flathub \
+            org.mozilla.firefox \
+            com.valvesoftware.Steam
+    fi
 
 # Installs Ubuntu specific apps
 installs-ubuntu:

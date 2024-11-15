@@ -18,3 +18,4 @@
   alias vs='flatpak run com.vscodium.codium'
   alias save='just upload-savegame'
   alias wclean='find ~/ -type f -name "*.Identifier" -delete'
+  alias replay='killall -SIGUSR1 gpu-screen-recorder'

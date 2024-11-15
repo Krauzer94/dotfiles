@@ -32,6 +32,3 @@ function paste() {
     echo ""
     echo ""
 }
-
-# GSR Save Replay
-# killall -SIGUSR1 gpu-screen-recorder

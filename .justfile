@@ -25,7 +25,7 @@ installs-common:
         com.vscodium.codium \
         org.videolan.VLC \
         org.gnome.gThumb \
-        dev.lizardbyte.app.Sunshine
+        org.gnome.Papers
 
     just installs-specific
 

@@ -25,7 +25,7 @@ installs-common:
         com.vscodium.codium \
         org.videolan.VLC \
         org.gnome.gThumb \
-        com.dec05eba.gpu_screen_recorder
+        org.gnome.Papers
 
     just installs-specific
 

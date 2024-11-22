@@ -47,19 +47,12 @@ installs-specific:
 installs-ubuntu:
     #!/usr/bin/env bash
 
-    sudo apt install -y flatpak
+    sudo apt install -y \
+        flatpak \
+        gnome-software-plugin-flatpak \
+        gnome-tweaks
     flatpak remote-add --if-not-exists \
         flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-    HOST=$HOSTNAME
-    if [[ "$HOST" == ubuntu* ]]; then
-        sudo apt install -y \
-            gnome-software-plugin-flatpak \
-            gnome-tweaks
-    else
-        sudo apt install -y \
-            plasma-discover-backend-flatpak
-    fi
 
     just installs-common
 

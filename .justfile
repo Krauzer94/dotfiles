@@ -25,7 +25,8 @@ installs-common:
         com.vscodium.codium \
         org.videolan.VLC \
         org.gnome.gThumb \
-        org.gnome.Papers
+        org.gnome.Papers \
+        org.mozilla.firefox
 
     just installs-specific
 
@@ -36,11 +37,9 @@ installs-specific:
     HOST=$HOSTNAME
     if [[ "$HOST" == steamdeck* ]]; then
         flatpak install -y flathub \
-            org.mozilla.firefox \
             org.kde.kcalc
     else
         flatpak install -y flathub \
-            org.mozilla.firefox \
             com.valvesoftware.Steam
     fi
 

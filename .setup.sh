@@ -35,7 +35,7 @@ remaining_apps() {
         steamdeck*|mint*)
             just installs-common
             ;;
-        ubuntu*)
+        ubuntu*|kubuntu*)
             just installs-ubuntu
             ;;
         *)

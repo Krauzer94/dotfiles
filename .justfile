@@ -25,8 +25,7 @@ installs-common:
         com.vscodium.codium \
         org.videolan.VLC \
         org.gnome.gThumb \
-        org.gnome.Papers \
-        org.mozilla.firefox
+        org.gnome.Papers
 
     just installs-specific
 
@@ -35,13 +34,27 @@ installs-specific:
     #!/usr/bin/env bash
 
     HOST=$HOSTNAME
-    if [[ "$HOST" == steamdeck* ]]; then
-        flatpak install -y flathub \
-            org.kde.kcalc
-    else
-        flatpak install -y flathub \
-            com.valvesoftware.Steam
-    fi
+
+    case "$HOST" in
+        steamdeck*)
+            flatpak install -y flathub \
+                org.mozilla.firefox \
+                org.kde.kcalc
+            ;;
+        ubuntu*)
+            flatpak install -y flathub \
+                com.mattjakeman.ExtensionManager \
+                com.valvesoftware.Steam
+            ;;
+        mint*)
+            flatpak install -y flathub \
+                org.mozilla.firefox \
+                com.valvesoftware.Steam
+            ;;
+        *)
+            echo -e "\n Nothing to do here \n"
+            ;;
+    esac
 
 # Installs Ubuntu specific apps
 installs-ubuntu:

@@ -41,7 +41,7 @@ installs-specific:
                 org.mozilla.firefox \
                 org.kde.kcalc
             ;;
-        ubuntu*)
+        fedora*)
             flatpak install -y flathub \
                 com.mattjakeman.ExtensionManager \
                 com.valvesoftware.Steam
@@ -55,19 +55,6 @@ installs-specific:
             echo -e "\n Nothing to do here \n"
             ;;
     esac
-
-# Installs Ubuntu specific apps
-installs-ubuntu:
-    #!/usr/bin/env bash
-
-    sudo apt install -y \
-        flatpak \
-        gnome-software-plugin-flatpak \
-        gnome-tweaks
-    flatpak remote-add --if-not-exists \
-        flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-    just installs-common
 
 # Set up flatpak permissions
 setup-filesys:

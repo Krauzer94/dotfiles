@@ -36,7 +36,7 @@ remaining_apps() {
     HOST=$HOSTNAME
 
     case "$HOST" in
-        steamdeck*|fedora*|mint*)
+        steamdeck*|fedora*|kubuntu*)
             just installs-common
             ;;
         *)

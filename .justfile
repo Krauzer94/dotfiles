@@ -24,7 +24,7 @@ installs-common:
         net.lutris.Lutris \
         com.vscodium.codium \
         org.videolan.VLC \
-        org.gnome.gThumb \
+        org.gnome.Loupe \
         org.gnome.Papers
 
     just installs-specific
@@ -43,10 +43,10 @@ installs-specific:
             ;;
         fedora*)
             flatpak install -y flathub \
-                com.mattjakeman.ExtensionManager \
+                org.kde.kcalc \
                 com.valvesoftware.Steam
             ;;
-        mint*)
+        kubuntu*)
             flatpak install -y flathub \
                 org.mozilla.firefox \
                 com.valvesoftware.Steam

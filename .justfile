@@ -34,17 +34,11 @@ installs-specific:
     #!/usr/bin/env bash
 
     HOST=$HOSTNAME
-
     case "$HOST" in
         steamdeck*)
             flatpak install -y flathub \
                 org.mozilla.firefox \
                 org.kde.kcalc
-            ;;
-        fedora*)
-            flatpak install -y flathub \
-                org.kde.kcalc \
-                com.valvesoftware.Steam
             ;;
         kubuntu*)
             flatpak install -y flathub \

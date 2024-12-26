@@ -3,15 +3,11 @@
 # Install Git
 install_git() {
     HOST=$HOSTNAME
-
-    case "$HOST" in
-        steamdeck*|fedora*)
-            echo -e "\n Nothing to do here \n"
-            ;;
-        *)
-            sudo apt install -y git
-            ;;
-    esac
+    if [[ "$HOST" == steamdeck* ]]; then
+        echo -e "\n Nothing to do here \n"
+    else
+        sudo apt install -y git
+    fi
 }
 
 # Set up dotfiles
@@ -34,9 +30,8 @@ install_just () {
 # Install remaining apps
 remaining_apps() {
     HOST=$HOSTNAME
-
     case "$HOST" in
-        steamdeck*|fedora*|kubuntu*)
+        steamdeck*|kubuntu*)
             just installs-common
             ;;
         *)

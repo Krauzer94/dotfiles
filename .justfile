@@ -24,6 +24,7 @@ installs-common:
         net.lutris.Lutris \
         com.vscodium.codium \
         org.videolan.VLC \
+        org.mozilla.firefox \
         org.gnome.Loupe \
         org.gnome.Papers
 
@@ -37,12 +38,10 @@ installs-specific:
     case "$HOST" in
         steamdeck*)
             flatpak install -y flathub \
-                org.mozilla.firefox \
                 org.kde.kcalc
             ;;
         kubuntu*)
             flatpak install -y flathub \
-                org.mozilla.firefox \
                 com.valvesoftware.Steam
             ;;
         *)

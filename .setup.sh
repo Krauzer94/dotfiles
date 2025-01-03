@@ -31,7 +31,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*|kubuntu*)
+        steamdeck*|kubuntu*|mint*)
             just installs-common
             ;;
         *)

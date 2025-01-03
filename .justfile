@@ -24,9 +24,8 @@ installs-common:
         net.lutris.Lutris \
         com.vscodium.codium \
         org.videolan.VLC \
-        org.mozilla.firefox \
         org.gnome.Loupe \
-        org.gnome.Papers
+        com.dec05eba.gpu_screen_recorder
 
     just installs-specific
 
@@ -38,10 +37,17 @@ installs-specific:
     case "$HOST" in
         steamdeck*)
             flatpak install -y flathub \
+                org.mozilla.firefox \
                 org.kde.kcalc
             ;;
         kubuntu*)
             flatpak install -y flathub \
+                org.mozilla.firefox \
+                com.valvesoftware.Steam
+            ;;
+        mint*)
+            flatpak install -y flathub \
+                org.gnome.Papers \
                 com.valvesoftware.Steam
             ;;
         *)

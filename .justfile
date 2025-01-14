@@ -40,14 +40,14 @@ installs-specific:
                 org.mozilla.firefox \
                 org.kde.kcalc
             ;;
-        kubuntu*|fedora*)
+        kubuntu*)
             flatpak install -y flathub \
                 org.mozilla.firefox \
                 com.valvesoftware.Steam
             ;;
-        mint*)
+        fedora*)
             flatpak install -y flathub \
-                org.gnome.Papers \
+                org.kde.kcalc \
                 com.valvesoftware.Steam
             ;;
         *)

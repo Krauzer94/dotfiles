@@ -7,7 +7,7 @@ install_git() {
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
-        kubuntu*|mint*)
+        kubuntu*)
             sudo apt install -y git
             ;;
         fedora*)
@@ -37,7 +37,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*|kubuntu*|mint*|fedora*)
+        steamdeck*|kubuntu*|fedora*)
             just installs-common
             ;;
         *)

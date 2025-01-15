@@ -13,6 +13,9 @@ install_git() {
         fedora*)
             sudo dnf install -y git
             ;;
+        *)
+            echo -e "\n Nothing to do here \n"
+            ;;
     esac
 }
 

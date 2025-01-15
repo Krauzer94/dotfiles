@@ -45,6 +45,11 @@ installs-specific:
                 org.kde.kcalc \
                 com.valvesoftware.Steam
             ;;
+        mint*)
+            flatpak install -y flathub \
+                org.gnome.Papers \
+                com.valvesoftware.Steam
+            ;;
         *)
             echo -e "\n Nothing to do here \n"
             ;;

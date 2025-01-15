@@ -11,7 +11,7 @@ install_git() {
             sudo dnf install -y git
             ;;
         *)
-            echo -e "\n Nothing to do here \n"
+            sudo apt install -y git
             ;;
     esac
 }
@@ -37,7 +37,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*|fedora*)
+        steamdeck*|fedora*|mint*)
             just installs-common
             ;;
         *)

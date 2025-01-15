@@ -23,7 +23,6 @@ installs-common:
         net.davidotek.pupgui2 \
         net.lutris.Lutris \
         com.vscodium.codium \
-        org.videolan.VLC \
         org.gnome.Loupe \
         com.dec05eba.gpu_screen_recorder
 
@@ -37,16 +36,19 @@ installs-specific:
     case "$HOST" in
         steamdeck*)
             flatpak install -y flathub \
-                org.mozilla.firefox \
-                org.kde.kcalc
+                org.videolan.VLC \
+                org.kde.kcalc \
+                org.mozilla.firefox
             ;;
-        kubuntu*)
+        archlinux*)
             flatpak install -y flathub \
+                org.gnome.Papers \
                 org.mozilla.firefox \
                 com.valvesoftware.Steam
             ;;
         fedora*)
             flatpak install -y flathub \
+                org.videolan.VLC \
                 org.kde.kcalc \
                 com.valvesoftware.Steam
             ;;

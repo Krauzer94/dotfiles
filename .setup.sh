@@ -7,9 +7,6 @@ install_git() {
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
-        archlinux*)
-            sudo pacman -Syu --needed --noconfirm git
-            ;;
         fedora*)
             sudo dnf install -y git
             ;;
@@ -40,7 +37,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*|archlinux*|fedora*)
+        steamdeck*|fedora*)
             just installs-common
             ;;
         *)

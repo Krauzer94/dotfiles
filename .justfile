@@ -48,8 +48,8 @@ installs-specific:
             ;;
         archlinux*)
             flatpak install -y flathub \
-                org.gnome.Papers \
                 org.mozilla.firefox \
+                org.kde.kcalc \
                 com.valvesoftware.Steam
             ;;
         *)

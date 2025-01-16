@@ -10,11 +10,8 @@ install_git() {
         fedora*)
             sudo dnf install -y git
             ;;
-        archlinux*)
+        archlinux*|*)
             sudo pacman -Syu --needed --noconfirm git
-            ;;
-        *)
-            sudo apt install -y git
             ;;
     esac
 }

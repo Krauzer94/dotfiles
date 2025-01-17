@@ -1,0 +1,31 @@
+
+cfdisk
+
+mkfs.btrfs /dev/sda3
+mkfs.fat -F 32 /dev/sda1
+mkswap /dev/sda2
+
+mount /dev/sda3 /mnt
+mkdir -p /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
+swapon /dev/sda2
+
+pacstrap /mnt linux linux-firmware base base-devel efibootmgr grub networkmanager pipewire bluez plasma-meta plasma-workspace sddm konsole dolphin ark nano flatpak noto-fonts-cjk nvidia
+
+genfstab -U /mnt > /mnt/etc/fstab
+
+arch-chroot /mnt
+nano /etc/hostname
+
+passwd
+useradd -m -G wheel -s /bin/bash krauzer
+passwd krauzer
+EDITOR=nano visudo
+
+systemctl enable sddm
+
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+
+exit
+reboot

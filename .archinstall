@@ -2,7 +2,7 @@
 cfdisk
 
 # Formating
-mkfs.btrfs /dev/sda3
+mkfs.ext4 /dev/sda3
 mkfs.fat -F 32 /dev/sda1
 mkswap /dev/sda2
 
@@ -38,6 +38,3 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Done
 exit
 reboot
-
-# Compression
-sudo nano /etc/fstab

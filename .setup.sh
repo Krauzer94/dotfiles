@@ -14,7 +14,7 @@ install_git() {
             sudo pacman -Syu --needed --noconfirm git
             ;;
         *)
-            sudo pacman -Sy --needed --noconfirm git
+            sudo apt install -y git openssh-client wget
             ;;
     esac
 }

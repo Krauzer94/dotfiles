@@ -37,4 +37,5 @@
 
 # Done
   exit
+  umount -a
   reboot

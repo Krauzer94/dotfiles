@@ -4,13 +4,20 @@
 # Formatting
   mkfs.ext4 /dev/sda2 # mkfs.btrfs -f /dev/sda2
   mkfs.fat -F 32 /dev/sda1
-  mkswap -U clear --size 4G --file /swapfile
 
 # Mounting
   mount /dev/sda2 /mnt # mount -o compress=zstd /dev/sda2 /mnt
   mkdir -p /mnt/boot/efi
   mount /dev/sda1 /mnt/boot/efi
-  swapon /swapfile
+
+# Swap EXT4
+  mkswap -U clear --size 4G --file /mnt/swapfile
+  swapon /mnt/swapfile
+
+# Swap BTFS
+  btrfs subvolume create /mnt/swap
+  btrfs filesystem mkswapfile --size 4G --uuid clear /mnt/swap/swapfile
+  swapon /mnt/swap/swapfile
 
 # Packages
   pacstrap /mnt linux linux-firmware base base-devel efibootmgr grub networkmanager pipewire bluez plasma-meta plasma-workspace sddm konsole dolphin ark nano flatpak noto-fonts-cjk nvidia

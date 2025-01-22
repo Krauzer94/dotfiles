@@ -27,7 +27,7 @@
 
 # Chroot
   arch-chroot /mnt
-  nano /etc/hostname
+  echo "archlinux" > /etc/hostname
 
 # Users
   passwd

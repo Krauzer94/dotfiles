@@ -1,22 +1,27 @@
 # Partition
   cfdisk
 
-# Formating
-  mkfs.ext4 /dev/sda3 # mkfs.btrfs -f /dev/sda3
+# Formatting
+  mkfs.ext4 /dev/sda2 # mkfs.btrfs -f /dev/sda2
   mkfs.fat -F 32 /dev/sda1
-  mkswap /dev/sda2
 
 # Mounting
-  mount /dev/sda3 /mnt # mount -o compress=zstd /dev/sda3 /mnt
+  mount /dev/sda2 /mnt # mount -o compress=zstd /dev/sda2 /mnt
   mkdir -p /mnt/boot/efi
   mount /dev/sda1 /mnt/boot/efi
-  swapon /dev/sda2
+
+# Swap File
+  fallocate -l 2G /mnt/swapfile
+  chmod 600 /mnt/swapfile
+  mkswap /mnt/swapfile
+  swapon /mnt/swapfile
 
 # Packages
   pacstrap /mnt linux linux-firmware base base-devel efibootmgr grub networkmanager pipewire bluez plasma-meta plasma-workspace sddm konsole dolphin ark nano flatpak noto-fonts-cjk nvidia
 
 # Fstab
   genfstab -U /mnt > /mnt/etc/fstab
+  echo '/swapfile none swap sw 0 0' >> /mnt/etc/fstab
 
 # Chroot
   arch-chroot /mnt

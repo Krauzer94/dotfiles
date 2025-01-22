@@ -24,7 +24,6 @@
 
 # Fstab
   genfstab -U /mnt > /mnt/etc/fstab
-  echo '/swapfile none swap defaults 0 0' >> /mnt/etc/fstab
 
 # Chroot
   arch-chroot /mnt

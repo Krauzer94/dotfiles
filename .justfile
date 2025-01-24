@@ -23,7 +23,7 @@ installs-common:
         net.davidotek.pupgui2 \
         net.lutris.Lutris \
         com.vscodium.codium \
-        org.gnome.Loupe \
+        org.kde.pix \
         com.dec05eba.gpu_screen_recorder
 
     just installs-specific

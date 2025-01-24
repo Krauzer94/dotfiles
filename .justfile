@@ -49,7 +49,7 @@ installs-specific:
         archlinux*)
             flatpak install -y flathub \
                 org.mozilla.firefox \
-                org.kde.kcalc \
+                com.mattjakeman.ExtensionManager \
                 com.valvesoftware.Steam
             ;;
         *)

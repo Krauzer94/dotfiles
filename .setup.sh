@@ -15,7 +15,7 @@ install_git() {
             ;;
         *)
             sudo pacman -Syu --needed --noconfirm \
-                git openssh wget podman
+                git openssh wget podman which
             ;;
     esac
 }

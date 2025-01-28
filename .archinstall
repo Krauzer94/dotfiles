@@ -22,7 +22,7 @@
   swapon /mnt/swap/swapfile
 
 # Packages
-  pacstrap /mnt linux linux-firmware base base-devel efibootmgr grub networkmanager pipewire bluez plasma-meta plasma-workspace sddm konsole dolphin ark nano openssh flatpak noto-fonts-cjk nvidia
+  pacstrap /mnt linux linux-firmware base base-devel efibootmgr grub networkmanager pipewire bluez plasma-meta plasma-workspace sddm konsole dolphin ark spectacle nano flatpak openssh noto-fonts-cjk nvidia
 
 # Fstab
   genfstab -U /mnt > /mnt/etc/fstab

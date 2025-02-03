@@ -45,6 +45,7 @@ remaining_apps() {
             just installs-common
             ;;
         mswindows*)
+            cp ~/.local/bin/just.exe /c/Windows
             scoop import ~/.scoop.json
             ;;
         *)

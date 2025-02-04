@@ -15,7 +15,7 @@ install_git() {
             ;;
         *)
             sudo apt update && sudo apt install -y \
-                openssh-client wget podman
+                openssh-client wget docker docker-compose
             ;;
     esac
 }

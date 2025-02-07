@@ -8,5 +8,5 @@
 [pull]
 	rebase = false
 [core]
-	editor = flatpak run com.vscodium.codium --wait
+	editor = nano
 	pager = cat

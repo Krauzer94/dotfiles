@@ -15,7 +15,9 @@ install_git() {
             ;;
         *)
             sudo apt update && sudo apt install -y \
-                openssh-client wget docker.io docker-compose
+                git openssh-client wget
+            curl -fsSL https://get.docker.com -o get-docker.sh
+            sudo sh get-docker.sh
             ;;
     esac
 }

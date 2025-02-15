@@ -24,8 +24,7 @@ installs-common:
         net.lutris.Lutris \
         com.vscodium.codium \
         org.kde.pix \
-        org.kde.kcalc \
-        com.dec05eba.gpu_screen_recorder
+        org.kde.kcalc
 
     just installs-specific
 
@@ -38,16 +37,19 @@ installs-specific:
         steamdeck*)
             flatpak install -y flathub \
                 org.videolan.VLC \
+                com.obsproject.Studio \
                 org.mozilla.firefox
             ;;
         fedora*)
             flatpak install -y flathub \
                 org.videolan.VLC \
+                com.dec05eba.gpu_screen_recorder \
                 com.valvesoftware.Steam
             ;;
         archlinux*)
             flatpak install -y flathub \
                 org.mozilla.firefox \
+                com.dec05eba.gpu_screen_recorder \
                 com.valvesoftware.Steam
             ;;
         *)

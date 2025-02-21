@@ -4,29 +4,29 @@
             "Name": "main",
             "Source": "https://github.com/ScoopInstaller/Main",
             "Updated": {
-                "value": "\/Date(1739305727000)\/",
+                "value": "\/Date(1740141125000)\/",
                 "DisplayHint": 2,
-                "DateTime": "ter‡a-feira, 11 de fevereiro de 2025 17:28:47"
+                "DateTime": "sexta-feira, 21 de fevereiro de 2025 09:32:05"
             },
-            "Manifests": 1357
+            "Manifests": 1382
         },
         {
             "Name": "extras",
             "Source": "https://github.com/ScoopInstaller/Extras",
             "Updated": {
-                "value": "\/Date(1739309020000)\/",
+                "value": "\/Date(1740141361000)\/",
                 "DisplayHint": 2,
-                "DateTime": "ter‡a-feira, 11 de fevereiro de 2025 18:23:40"
+                "DateTime": "sexta-feira, 21 de fevereiro de 2025 09:36:01"
             },
-            "Manifests": 2127
+            "Manifests": 2130
         },
         {
             "Name": "games",
             "Source": "https://github.com/Calinou/scoop-games",
             "Updated": {
-                "value": "\/Date(1739305758000)\/",
+                "value": "\/Date(1740141060000)\/",
                 "DisplayHint": 2,
-                "DateTime": "ter‡a-feira, 11 de fevereiro de 2025 17:29:18"
+                "DateTime": "sexta-feira, 21 de fevereiro de 2025 09:31:00"
             },
             "Manifests": 338
         }
@@ -64,8 +64,8 @@
             "Info": "",
             "Source": "extras",
             "Name": "firefox",
-            "Version": "135.0",
-            "Updated": "\/Date(1738699562862)\/"
+            "Version": "135.0.1",
+            "Updated": "\/Date(1740000609417)\/"
         },
         {
             "Info": "",
@@ -85,15 +85,15 @@
             "Info": "",
             "Source": "main",
             "Name": "git",
-            "Version": "2.47.1.2",
-            "Updated": "\/Date(1738554467958)\/"
+            "Version": "2.48.1",
+            "Updated": "\/Date(1739515321148)\/"
         },
         {
             "Info": "",
             "Source": "extras",
             "Name": "googlechrome",
-            "Version": "133.0.6943.60",
-            "Updated": "\/Date(1738968101430)\/"
+            "Version": "133.0.6943.127",
+            "Updated": "\/Date(1740000628221)\/"
         },
         {
             "Info": "",
@@ -113,8 +113,8 @@
             "Info": "",
             "Source": "extras",
             "Name": "qbittorrent",
-            "Version": "5.0.3",
-            "Updated": "\/Date(1738554972873)\/"
+            "Version": "5.0.4",
+            "Updated": "\/Date(1740000743279)\/"
         },
         {
             "Info": "",
@@ -183,8 +183,8 @@
             "Info": "",
             "Source": "extras",
             "Name": "vscodium",
-            "Version": "1.97.0.25037",
-            "Updated": "\/Date(1738968127710)\/"
+            "Version": "1.97.2.25045",
+            "Updated": "\/Date(1739822840613)\/"
         },
         {
             "Info": "",

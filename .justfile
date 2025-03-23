@@ -8,7 +8,7 @@ installs-common:
     just setup-filesys
     flatpak install -y flathub \
         org.freedesktop.Platform.VulkanLayer.MangoHud \
-        com.google.Chrome \
+        org.mozilla.firefox \
         org.gimp.GIMP \
         org.qbittorrent.qBittorrent \
         org.flameshot.Flameshot \
@@ -38,7 +38,7 @@ installs-specific:
             flatpak install -y flathub \
                 org.videolan.VLC \
                 com.obsproject.Studio \
-                org.mozilla.firefox
+                com.google.Chrome
             ;;
         fedora*)
             flatpak install -y flathub \
@@ -48,7 +48,7 @@ installs-specific:
             ;;
         archlinux*)
             flatpak install -y flathub \
-                org.mozilla.firefox \
+                com.google.Chrome \
                 com.dec05eba.gpu_screen_recorder \
                 com.valvesoftware.Steam
             ;;

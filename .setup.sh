@@ -7,8 +7,8 @@ install_git() {
         steamdeck*|mswindows*)
             echo -e "\n Nothing to do here \n"
             ;;
-        mint*)
-            sudo apt install -y git
+        fedora*)
+            sudo dnf install -y git
             ;;
         archlinux*)
             sudo pacman -Syu --needed --noconfirm git

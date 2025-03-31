@@ -4,31 +4,31 @@
             "Name": "main",
             "Source": "https://github.com/ScoopInstaller/Main",
             "Updated": {
-                "value": "\/Date(1740141125000)\/",
+                "value": "\/Date(1743438591000)\/",
                 "DisplayHint": 2,
-                "DateTime": "sexta-feira, 21 de fevereiro de 2025 09:32:05"
+                "DateTime": "segunda-feira, 31 de mar‡o de 2025 13:29:51"
             },
-            "Manifests": 1382
+            "Manifests": 1387
         },
         {
             "Name": "extras",
             "Source": "https://github.com/ScoopInstaller/Extras",
             "Updated": {
-                "value": "\/Date(1740141361000)\/",
+                "value": "\/Date(1743438836000)\/",
                 "DisplayHint": 2,
-                "DateTime": "sexta-feira, 21 de fevereiro de 2025 09:36:01"
+                "DateTime": "segunda-feira, 31 de mar‡o de 2025 13:33:56"
             },
-            "Manifests": 2130
+            "Manifests": 2148
         },
         {
             "Name": "games",
             "Source": "https://github.com/Calinou/scoop-games",
             "Updated": {
-                "value": "\/Date(1740141060000)\/",
+                "value": "\/Date(1743438571000)\/",
                 "DisplayHint": 2,
-                "DateTime": "sexta-feira, 21 de fevereiro de 2025 09:31:00"
+                "DateTime": "segunda-feira, 31 de mar‡o de 2025 13:29:31"
             },
-            "Manifests": 338
+            "Manifests": 340
         }
     ],
     "apps": [
@@ -43,8 +43,8 @@
             "Info": "",
             "Source": "extras",
             "Name": "altus",
-            "Version": "5.5.2",
-            "Updated": "\/Date(1739311520961)\/"
+            "Version": "5.6.0",
+            "Updated": "\/Date(1741452463175)\/"
         },
         {
             "Info": "",
@@ -62,10 +62,10 @@
         },
         {
             "Info": "",
-            "Source": "extras",
+            "Source": null,
             "Name": "firefox",
-            "Version": "135.0.1",
-            "Updated": "\/Date(1740000609417)\/"
+            "Version": "136.0.3",
+            "Updated": "\/Date(1743451566668)\/"
         },
         {
             "Info": "",
@@ -85,29 +85,29 @@
             "Info": "",
             "Source": "main",
             "Name": "git",
-            "Version": "2.48.1",
-            "Updated": "\/Date(1739515321148)\/"
+            "Version": "2.49.0",
+            "Updated": "\/Date(1742443109010)\/"
         },
         {
             "Info": "",
             "Source": "extras",
             "Name": "googlechrome",
-            "Version": "133.0.6943.127",
-            "Updated": "\/Date(1740000628221)\/"
+            "Version": "134.0.6998.178",
+            "Updated": "\/Date(1743024166693)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "innounp",
-            "Version": "2.64.1",
-            "Updated": "\/Date(1738554850316)\/"
+            "Version": "2.64.3",
+            "Updated": "\/Date(1742071953555)\/"
         },
         {
             "Info": "",
             "Source": "extras",
             "Name": "obs-studio",
-            "Version": "31.0.1",
-            "Updated": "\/Date(1738554964396)\/"
+            "Version": "31.0.2",
+            "Updated": "\/Date(1741452486184)\/"
         },
         {
             "Info": "",
@@ -141,8 +141,8 @@
             "Info": "",
             "Source": "extras",
             "Name": "spotify",
-            "Version": "1.2.56.502.ga68d2d4f",
-            "Updated": "\/Date(1738555045193)\/"
+            "Version": "1.2.60.564.gcc6305cb",
+            "Updated": "\/Date(1743024197574)\/"
         },
         {
             "Info": "",
@@ -162,8 +162,8 @@
             "Info": "",
             "Source": "extras",
             "Name": "unigetui",
-            "Version": "3.1.6",
-            "Updated": "\/Date(1738874118783)\/"
+            "Version": "3.1.8",
+            "Updated": "\/Date(1741939950031)\/"
         },
         {
             "Info": "",
@@ -183,8 +183,8 @@
             "Info": "",
             "Source": "extras",
             "Name": "vscodium",
-            "Version": "1.97.2.25045",
-            "Updated": "\/Date(1739822840613)\/"
+            "Version": "1.98.2.25078",
+            "Updated": "\/Date(1742407490422)\/"
         },
         {
             "Info": "",

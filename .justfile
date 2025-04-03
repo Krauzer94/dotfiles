@@ -40,7 +40,7 @@ installs-specific:
                 com.obsproject.Studio \
                 com.google.Chrome
             ;;
-        mint*)
+        fedora*)
             flatpak install -y flathub \
                 org.videolan.VLC \
                 com.obsproject.Studio \

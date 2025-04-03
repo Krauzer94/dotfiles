@@ -15,7 +15,7 @@ installs-common:
         com.stremio.Stremio \
         org.bleachbit.BleachBit \
         com.spotify.Client \
-        org.libretro.RetroArch \
+        com.google.Chrome \
         org.onlyoffice.desktopeditors \
         com.discordapp.Discord \
         com.rtosta.zapzap \
@@ -38,17 +38,17 @@ installs-specific:
             flatpak install -y flathub \
                 org.videolan.VLC \
                 com.obsproject.Studio \
-                com.google.Chrome
+                org.libretro.RetroArch
             ;;
         fedora*)
             flatpak install -y flathub \
                 org.videolan.VLC \
-                com.obsproject.Studio \
+                com.dec05eba.gpu_screen_recorder \
                 com.valvesoftware.Steam
             ;;
         archlinux*)
             flatpak install -y flathub \
-                com.google.Chrome \
+                org.libretro.RetroArch \
                 com.dec05eba.gpu_screen_recorder \
                 com.valvesoftware.Steam
             ;;

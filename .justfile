@@ -40,7 +40,7 @@ installs-specific:
                 com.obsproject.Studio \
                 com.google.Chrome
             ;;
-        fedora*)
+        mint*)
             flatpak install -y flathub \
                 org.videolan.VLC \
                 com.dec05eba.gpu_screen_recorder \

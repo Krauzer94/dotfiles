@@ -43,7 +43,7 @@ installs-specific:
         mint*)
             flatpak install -y flathub \
                 org.videolan.VLC \
-                com.dec05eba.gpu_screen_recorder \
+                com.obsproject.Studio \
                 com.valvesoftware.Steam
             ;;
         archlinux*)

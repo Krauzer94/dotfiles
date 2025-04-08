@@ -40,7 +40,7 @@ installs-specific:
                 com.obsproject.Studio \
                 org.libretro.RetroArch
             ;;
-        fedora*|mint*)
+        fedora*)
             flatpak install -y flathub \
                 org.videolan.VLC \
                 com.dec05eba.gpu_screen_recorder \

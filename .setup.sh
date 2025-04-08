@@ -10,9 +10,6 @@ install_git() {
         fedora*)
             sudo dnf install -y git
             ;;
-        mint*)
-            sudo apt install -y git
-            ;;
         archlinux*)
             sudo pacman -Syu --needed --noconfirm git
             ;;
@@ -44,7 +41,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*|fedora*|mint*|archlinux*)
+        steamdeck*|fedora*|archlinux*)
             just installs-common
             ;;
         mswindows*)

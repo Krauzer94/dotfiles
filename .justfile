@@ -25,7 +25,6 @@ installs-common:
         com.vscodium.codium \
         org.videolan.VLC \
         com.obsproject.Studio \
-        org.libretro.RetroArch \
         org.kde.pix
 
     just installs-specific
@@ -38,10 +37,17 @@ installs-specific:
     case "$HOST" in
         steamdeck*)
             flatpak install -y flathub \
+                org.libretro.RetroArch \
                 org.kde.kcalc
             ;;
-        *buntu*)
+        ubuntu*)
             flatpak install -y flathub \
+                com.mattjakeman.ExtensionManager \
+                com.valvesoftware.Steam
+            ;;
+        kubuntu*)
+            flatpak install -y flathub \
+                org.libretro.RetroArch \
                 com.valvesoftware.Steam
             ;;
         *)

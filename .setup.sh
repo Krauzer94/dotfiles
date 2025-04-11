@@ -10,9 +10,6 @@ install_git() {
         *buntu*)
             sudo apt install -y git
             ;;
-        archlinux*)
-            sudo pacman -Syu --needed --noconfirm git
-            ;;
         *)
             sudo apt update && sudo apt install -y \
                 git openssh-client wget podman

@@ -23,8 +23,10 @@ installs-common:
         net.davidotek.pupgui2 \
         net.lutris.Lutris \
         com.vscodium.codium \
-        org.kde.pix \
-        org.kde.kcalc
+        org.videolan.VLC \
+        com.obsproject.Studio \
+        org.libretro.RetroArch \
+        org.kde.pix
 
     just installs-specific
 
@@ -36,20 +38,10 @@ installs-specific:
     case "$HOST" in
         steamdeck*)
             flatpak install -y flathub \
-                org.videolan.VLC \
-                com.obsproject.Studio \
-                org.libretro.RetroArch
+                org.kde.kcalc
             ;;
-        fedora*)
+        *buntu*)
             flatpak install -y flathub \
-                org.videolan.VLC \
-                com.dec05eba.gpu_screen_recorder \
-                com.valvesoftware.Steam
-            ;;
-        archlinux*)
-            flatpak install -y flathub \
-                org.libretro.RetroArch \
-                com.dec05eba.gpu_screen_recorder \
                 com.valvesoftware.Steam
             ;;
         *)

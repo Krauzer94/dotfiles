@@ -45,7 +45,7 @@ installs-specific:
                 com.mattjakeman.ExtensionManager \
                 com.valvesoftware.Steam
             ;;
-        kubuntu*)
+        mint*)
             flatpak install -y flathub \
                 org.libretro.RetroArch \
                 com.valvesoftware.Steam

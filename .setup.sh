@@ -7,7 +7,7 @@ install_git() {
         steamdeck*|mswindows*)
             echo -e "\n Nothing to do here \n"
             ;;
-        *buntu*)
+        ubuntu*|mint*)
             sudo apt install -y git
             ;;
         *)
@@ -38,7 +38,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*|*buntu*)
+        steamdeck*|ubuntu*|mint*)
             just installs-common
             ;;
         mswindows*)

@@ -1,7 +1,3 @@
-# Arch specific
-  alias aupdate='sudo pacman -Syu --noconfirm'
-  alias aclean='sudo pacman -Rns $(pacman -Qdtq)'
-
 # Flatpak specific
   alias fupdate='flatpak update -y'
   alias fclean='flatpak uninstall --unused'

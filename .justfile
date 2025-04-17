@@ -43,6 +43,7 @@ installs-specific:
         ubuntu*|mint*)
             flatpak install -y flathub \
                 com.valvesoftware.Steam
+            ;;
         *)
             echo -e "\n Nothing to do here \n"
             ;;

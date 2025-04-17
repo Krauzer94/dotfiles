@@ -25,7 +25,7 @@ installs-common:
         com.vscodium.codium \
         org.videolan.VLC \
         com.obsproject.Studio \
-        org.kde.pix
+        io.missioncenter.MissionCenter
 
     just installs-specific
 

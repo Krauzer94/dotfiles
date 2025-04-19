@@ -40,7 +40,7 @@ installs-specific:
             flatpak install -y flathub \
                 org.kde.kcalc
             ;;
-        ubuntu*|mint*)
+        zorin*|mint*)
             flatpak install -y flathub \
                 com.valvesoftware.Steam
             ;;

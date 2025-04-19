@@ -16,7 +16,7 @@
   swapon /mnt/swapfile
 
 # Packages
-  pacstrap /mnt linux linux-firmware base base-devel efibootmgr grub networkmanager pipewire bluez plasma-meta plasma-workspace sddm konsole dolphin ark spectacle nano flatpak openssh noto-fonts-cjk nvidia
+  pacstrap /mnt linux linux-firmware base base-devel efibootmgr grub networkmanager pipewire bluez gdm gnome nano flatpak openssh noto-fonts-cjk nvidia
 
 # Fstab
   genfstab -U /mnt > /mnt/etc/fstab
@@ -32,7 +32,7 @@
   EDITOR=nano visudo
 
 # Services
-  systemctl enable sddm NetworkManager bluetooth
+  systemctl enable gdm NetworkManager bluetooth
 
 # Bootloader
   grub-install /dev/sda

@@ -93,7 +93,6 @@ setup-symlinks:
     ln -s ~/.var/app ~/.flatpaks
     ln -s ~/.config/MangoHud/MangoHud.conf ~/.mangohud
     ln -s ~/.var/app/com.stremio.Stremio/.stremio-server/stremio-cache ~/.stremio-cache
-    ln -s ~/.config/MangoHud/MangoHud.conf ~/.var/app/net.lutris.Lutris/config/MangoHud
 
     HOST=$HOSTNAME
     if [[ "$HOST" == steamdeck* ]]; then
@@ -101,7 +100,6 @@ setup-symlinks:
     else
         ln -s ~/.var/app/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
         ln -s ~/.var/app/com.valvesoftware.Steam/.steam ~/.steam
-        ln -s ~/.config/MangoHud/MangoHud.conf ~/.var/app/com.valvesoftware.Steam/config/MangoHud
     fi
 
 # Upload savegame folder files

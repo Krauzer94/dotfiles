@@ -85,7 +85,6 @@ setup-symlinks:
 
     ln -s ~/.local/share/applications ~/.applications
     ln -s ~/.var/app ~/.flatpaks
-    ln -s ~/.config/MangoHud/MangoHud.conf ~/.mangohud
     ln -s ~/.var/app/com.stremio.Stremio/.stremio-server/stremio-cache ~/.stremio-cache
 
     HOST=$HOSTNAME

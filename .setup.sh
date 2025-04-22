@@ -12,7 +12,7 @@ install_git() {
             ;;
         *)
             sudo dnf install -y \
-                git openssh-client wget podman
+                git openssh wget podman
             ;;
     esac
 }

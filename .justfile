@@ -24,7 +24,6 @@ installs-common:
         net.lutris.Lutris \
         com.vscodium.codium \
         org.videolan.VLC \
-        org.gnome.Extensions \
         org.kde.pix \
         org.kde.kcalc
 
@@ -38,12 +37,14 @@ installs-specific:
     case "$HOST" in
         steamdeck*)
             flatpak install -y flathub \
-                com.obsproject.Studio
+                com.obsproject.Studio \
+                org.gnome.Papers
             ;;
         fedora*)
             flatpak install -y flathub \
                 com.dec05eba.gpu_screen_recorder \
-                com.valvesoftware.Steam
+                com.valvesoftware.Steam \
+                org.gnome.Extensions
             ;;
         *)
             echo -e "\n Nothing to do here \n"

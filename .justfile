@@ -24,7 +24,7 @@ installs-common:
         net.lutris.Lutris \
         com.vscodium.codium \
         org.videolan.VLC \
-        io.missioncenter.MissionCenter \
+        org.gnome.Extensions \
         org.kde.pix \
         org.kde.kcalc
 

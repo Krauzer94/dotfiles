@@ -25,7 +25,7 @@ installs-common:
         com.vscodium.codium \
         org.videolan.VLC \
         io.missioncenter.MissionCenter \
-        io.github.flattool.Warehouse \
+        org.kde.pix \
         org.kde.kcalc
 
     just installs-specific

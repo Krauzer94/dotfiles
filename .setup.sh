@@ -11,8 +11,8 @@ install_git() {
             sudo dnf install -y git
             ;;
         *)
-            sudo dnf install -y \
-                git openssh wget podman
+            sudo apt update && sudo apt install -y \
+                git openssh-client wget podman
             ;;
     esac
 }

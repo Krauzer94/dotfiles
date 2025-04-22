@@ -38,7 +38,7 @@ installs-specific:
         steamdeck*)
             flatpak install -y flathub \
                 com.obsproject.Studio \
-                org.gnome.Papers
+                org.kde.filelight
             ;;
         fedora*)
             flatpak install -y flathub \

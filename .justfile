@@ -43,8 +43,7 @@ installs-specific:
         fedora*)
             flatpak install -y flathub \
                 com.dec05eba.gpu_screen_recorder \
-                com.valvesoftware.Steam \
-                org.gnome.Extensions
+                com.valvesoftware.Steam
             ;;
         *)
             echo -e "\n Nothing to do here \n"

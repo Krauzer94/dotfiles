@@ -25,7 +25,7 @@ installs-common:
         com.vscodium.codium \
         org.videolan.VLC \
         io.missioncenter.MissionCenter \
-        io.github.flattool.Warehouse
+        org.kde.kcalc
 
     just installs-specific
 
@@ -38,14 +38,13 @@ installs-specific:
         steamdeck*)
             flatpak install -y flathub \
                 com.obsproject.Studio \
-                org.kde.kcalc
+                io.github.flattool.Warehouse
             ;;
         fedora*)
             flatpak install -y flathub \
                 com.dec05eba.gpu_screen_recorder \
                 com.valvesoftware.Steam \
-                com.mattjakeman.ExtensionManager \
-                org.kde.kcalc
+                com.mattjakeman.ExtensionManager
             ;;
         *)
             echo -e "\n Nothing to do here \n"

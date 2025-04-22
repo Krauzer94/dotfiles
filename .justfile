@@ -24,7 +24,6 @@ installs-common:
         net.lutris.Lutris \
         com.vscodium.codium \
         org.videolan.VLC \
-        com.obsproject.Studio \
         io.missioncenter.MissionCenter \
         io.github.flattool.Warehouse
 
@@ -38,10 +37,12 @@ installs-specific:
     case "$HOST" in
         steamdeck*)
             flatpak install -y flathub \
+                com.obsproject.Studio \
                 org.kde.kcalc
             ;;
         fedora*)
             flatpak install -y flathub \
+                com.dec05eba.gpu_screen_recorder \
                 com.valvesoftware.Steam
             ;;
         *)

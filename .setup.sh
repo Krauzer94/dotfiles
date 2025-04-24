@@ -10,6 +10,9 @@ install_git() {
         fedora*)
             sudo dnf install -y git
             ;;
+        debian*)
+            sudo apt update && sudo apt install -y git
+            ;;
         *)
             sudo dnf install -y \
                 git openssh wget docker
@@ -38,7 +41,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*|fedora*)
+        steamdeck*|fedora*|debian*)
             just installs-common
             ;;
         mswindows*)

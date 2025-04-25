@@ -40,7 +40,7 @@ installs-specific:
                 com.obsproject.Studio \
                 org.kde.filelight
             ;;
-        fedora*|debian*)
+        fedora*)
             flatpak install -y flathub \
                 com.dec05eba.gpu_screen_recorder \
                 com.valvesoftware.Steam

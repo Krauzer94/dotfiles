@@ -7,9 +7,9 @@ install_git() {
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
-        fedora*)
-            sudo dnf install -y \
-                git mangohud steam
+        kubuntu*)
+            sudo apt update && sudo apt install -y \
+                git mangohud steam-installer
             ;;
         *)
             sudo dnf install -y \
@@ -39,7 +39,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*|fedora*)
+        steamdeck*|kubuntu*)
             just installs-common
             ;;
         *)

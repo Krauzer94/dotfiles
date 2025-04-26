@@ -5,7 +5,7 @@ _default:
 installs-common:
     #!/usr/bin/env bash
 
-    just setup-filesys
+    just setup-themes
     flatpak install -y flathub \
         org.freedesktop.Platform.VulkanLayer.MangoHud \
         org.mozilla.firefox \
@@ -50,8 +50,8 @@ installs-specific:
             ;;
     esac
 
-# Set up flatpak permissions
-setup-filesys:
+# Set up application theming
+setup-themes:
     #!/usr/bin/env bash
 
     mkdir $HOME/.themes

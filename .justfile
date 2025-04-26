@@ -48,22 +48,6 @@ setup-github:
     cat ~/.ssh/id_ed25519.pub
     echo -e ''
 
-# Set up convenient symlinks
-setup-symlinks:
-    #!/usr/bin/env bash
-
-    ln -s ~/.local/share/applications ~/.applications
-    ln -s ~/.var/app ~/.flatpaks
-    ln -s ~/.var/app/com.stremio.Stremio/.stremio-server/stremio-cache ~/.stremio-cache
-
-    HOST=$HOSTNAME
-    if [[ "$HOST" == steamdeck* ]]; then
-        echo -e "\n Nothing to do here \n"
-    else
-        ln -s ~/.var/app/com.valvesoftware.Steam/.local/share/applications ~/.runtimes
-        ln -s ~/.var/app/com.valvesoftware.Steam/.steam ~/.steam
-    fi
-
 # Upload savegame folder files
 [no-cd]
 upload-savegame:

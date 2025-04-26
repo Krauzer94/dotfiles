@@ -12,8 +12,8 @@ install_git() {
                 git mangohud steam-installer
             ;;
         *)
-            sudo dnf install -y \
-                git openssh wget docker
+            sudo apt update && sudo apt install -y \
+                git openssh wget podman
             ;;
     esac
 }

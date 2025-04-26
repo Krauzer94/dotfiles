@@ -4,7 +4,7 @@
 install_git() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*|mswindows*)
+        steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
         fedora*)
@@ -40,10 +40,6 @@ remaining_apps() {
     case "$HOST" in
         steamdeck*|fedora*)
             just installs-common
-            ;;
-        mswindows*)
-            cp ~/.local/bin/just.exe /c/Windows
-            scoop import ~/.scoop.json
             ;;
         *)
             just setup-github

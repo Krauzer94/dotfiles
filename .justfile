@@ -69,17 +69,6 @@ setup-github:
     cat ~/.ssh/id_ed25519.pub
     echo -e ''
 
-# Set up MS Windows symlinks
-setup-mklinks:
-    @echo off
-
-    mklink /D "%USERPROFILE%\.applications" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Scoop Apps"
-    mklink /D "%USERPROFILE%\.scoop-apps" "%USERPROFILE%\scoop\apps"
-    mklink /D "%USERPROFILE%\.stremio-cache" "%APPDATA%\stremio\stremio-server\stremio-cache"
-    mklink /D "%USERPROFILE%\.steam" "%USERPROFILE%\scoop\apps\steam\current\steamapps"
-
-    pause
-
 # Set up convenient symlinks
 setup-symlinks:
     #!/usr/bin/env bash

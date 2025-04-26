@@ -24,31 +24,10 @@ installs-common:
         net.lutris.Lutris \
         com.vscodium.codium \
         org.videolan.VLC \
-        org.kde.pix \
-        org.kde.kcalc
-
-    just installs-specific
-
-# Installs distro specific apps
-installs-specific:
-    #!/usr/bin/env bash
-
-    HOST=$HOSTNAME
-    case "$HOST" in
-        steamdeck*)
-            flatpak install -y flathub \
-                com.obsproject.Studio \
-                org.kde.filelight
-            ;;
-        fedora*)
-            flatpak install -y flathub \
-                com.dec05eba.gpu_screen_recorder \
-                com.valvesoftware.Steam
-            ;;
-        *)
-            echo -e "\n Nothing to do here \n"
-            ;;
-    esac
+        org.kde.kcalc \
+        org.kde.gwenview \
+        org.kde.okular \
+        com.dec05eba.gpu_screen_recorder
 
 # Set up application theming
 setup-themes:

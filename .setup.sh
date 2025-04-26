@@ -8,7 +8,8 @@ install_git() {
             echo -e "\n Nothing to do here \n"
             ;;
         fedora*)
-            sudo dnf install -y git
+            sudo dnf install -y \
+                git mangohud steam
             ;;
         *)
             sudo dnf install -y \

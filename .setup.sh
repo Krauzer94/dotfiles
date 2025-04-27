@@ -13,7 +13,7 @@ install_git() {
             ;;
         *)
             sudo apt update && sudo apt install -y \
-                git openssh wget podman
+                git openssh-client wget podman
             ;;
     esac
 }

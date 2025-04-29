@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Install Git
-install_git() {
+# Install base packages
+install_base() {
     HOST=$HOSTNAME
     case "$HOST" in
         steamdeck*)
@@ -9,7 +9,7 @@ install_git() {
             ;;
         ubuntu*)
             sudo apt update && sudo apt install -y \
-                git mangohud steam-installer
+                git mangohud
             ;;
         *)
             sudo apt update && sudo apt install -y \
@@ -28,7 +28,7 @@ setup_dotfiles() {
     git restore .
 }
 
-# Install Just
+# Install Just CLI
 install_just () {
     mkdir -p ~/.local/bin
     curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/.local/bin
@@ -52,7 +52,7 @@ remaining_apps() {
 }
 
 # Execute all functions
-install_git
+install_base
 setup_dotfiles
 install_just
 remaining_apps

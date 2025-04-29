@@ -33,11 +33,11 @@ installs-common:
 installs-ubuntu:
     #!/usr/bin/env bash
 
+    sudo dpkg --add-architecture i386
     sudo apt update && sudo apt install -y \
-        flatpak gnome-software-plugin-flatpak
-
+        gnome-software-plugin-flatpak \
+        steam-installer
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
     just installs-common
 
 # Set up application theming

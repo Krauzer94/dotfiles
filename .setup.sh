@@ -7,7 +7,7 @@ install_base() {
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
-        mint*)
+        kubuntu*)
             sudo apt update && sudo apt install -y \
                 git mangohud steam-installer
             ;;
@@ -39,7 +39,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*|mint*)
+        steamdeck*|kubuntu*)
             just installs-common
             ;;
         *)

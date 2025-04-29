@@ -42,6 +42,9 @@ remaining_apps() {
         steamdeck*|ubuntu*)
             just installs-common
             ;;
+        ubuntu*)
+            just installs-ubuntu
+            ;;
         *)
             just setup-github
             ;;

@@ -29,6 +29,17 @@ installs-common:
         io.github.flattool.Warehouse \
         com.dec05eba.gpu_screen_recorder
 
+# Installs Ubuntu applications
+installs-ubuntu:
+    #!/usr/bin/env bash
+
+    sudo apt update && sudo apt install -y \
+        flatpak gnome-software-plugin-flatpak
+
+    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+    just installs-common
+
 # Set up application theming
 setup-themes:
     #!/usr/bin/env bash

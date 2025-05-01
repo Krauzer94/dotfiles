@@ -5,7 +5,6 @@ _default:
 installs-common:
     #!/usr/bin/env bash
 
-    just setup-themes
     flatpak install -y flathub \
         org.freedesktop.Platform.VulkanLayer.MangoHud \
         org.mozilla.firefox \

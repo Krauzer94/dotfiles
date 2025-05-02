@@ -5,6 +5,7 @@ _default:
 installs-common:
     #!/usr/bin/env bash
 
+    just setup-themes
     flatpak install -y flathub \
         org.freedesktop.Platform.VulkanLayer.MangoHud \
         org.mozilla.firefox \
@@ -24,8 +25,8 @@ installs-common:
         com.vscodium.codium \
         org.videolan.VLC \
         org.kde.kcalc \
-        io.missioncenter.MissionCenter \
-        io.github.flattool.Warehouse \
+        org.kde.gwenview \
+        org.kde.okular \
         com.dec05eba.gpu_screen_recorder
 
 # Set up application theming

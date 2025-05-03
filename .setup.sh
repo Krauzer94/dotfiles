@@ -8,6 +8,7 @@ install_base() {
             echo -e "\n Nothing to do here \n"
             ;;
         ubuntu*|kubuntu*)
+            sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y \
                 git mangohud steam-installer
             ;;

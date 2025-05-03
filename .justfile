@@ -25,8 +25,8 @@ installs-common:
         com.vscodium.codium \
         org.videolan.VLC \
         org.kde.kcalc \
-        org.kde.gwenview \
-        org.kde.okular \
+        io.missioncenter.MissionCenter \
+        io.github.flattool.Warehouse \
         com.dec05eba.gpu_screen_recorder
 
 # Installs Ubuntu applications

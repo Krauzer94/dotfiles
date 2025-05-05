@@ -7,8 +7,7 @@ install_base() {
         steamdeck*)
             echo -e "\n Nothing to do here \n"
             ;;
-        ubuntu*)
-            sudo dpkg --add-architecture i386
+        kubuntu*)
             sudo apt update && sudo apt install -y \
                 git mangohud steam-installer
             ;;
@@ -40,11 +39,8 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*)
+        steamdeck*|kubuntu*)
             just installs-common
-            ;;
-        ubuntu*)
-            just installs-ubuntu
             ;;
         *)
             just setup-github

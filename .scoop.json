@@ -1,0 +1,197 @@
+{
+    "buckets": [
+        {
+            "Name": "main",
+            "Source": "https://github.com/ScoopInstaller/Main",
+            "Updated": {
+                "value": "\/Date(1743438591000)\/",
+                "DisplayHint": 2,
+                "DateTime": "segunda-feira, 31 de mar‡o de 2025 13:29:51"
+            },
+            "Manifests": 1387
+        },
+        {
+            "Name": "extras",
+            "Source": "https://github.com/ScoopInstaller/Extras",
+            "Updated": {
+                "value": "\/Date(1743438836000)\/",
+                "DisplayHint": 2,
+                "DateTime": "segunda-feira, 31 de mar‡o de 2025 13:33:56"
+            },
+            "Manifests": 2148
+        },
+        {
+            "Name": "games",
+            "Source": "https://github.com/Calinou/scoop-games",
+            "Updated": {
+                "value": "\/Date(1743438571000)\/",
+                "DisplayHint": 2,
+                "DateTime": "segunda-feira, 31 de mar‡o de 2025 13:29:31"
+            },
+            "Manifests": 340
+        }
+    ],
+    "apps": [
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "7zip",
+            "Version": "24.09",
+            "Updated": "\/Date(1738554454973)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "altus",
+            "Version": "5.6.0",
+            "Updated": "\/Date(1741452463175)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "bleachbit",
+            "Version": "4.6.2",
+            "Updated": "\/Date(1738554833799)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "discord",
+            "Version": "1.0.9156-20",
+            "Updated": "\/Date(1738554842313)\/"
+        },
+        {
+            "Info": "",
+            "Source": null,
+            "Name": "firefox",
+            "Version": "136.0.3",
+            "Updated": "\/Date(1743451566668)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "flameshot",
+            "Version": "12.1.0",
+            "Updated": "\/Date(1738554845404)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "gimp",
+            "Version": "2.10.38-1",
+            "Updated": "\/Date(1738554940736)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "git",
+            "Version": "2.49.0",
+            "Updated": "\/Date(1742443109010)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "googlechrome",
+            "Version": "134.0.6998.178",
+            "Updated": "\/Date(1743024166693)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "innounp",
+            "Version": "2.64.3",
+            "Updated": "\/Date(1742071953555)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "obs-studio",
+            "Version": "31.0.2",
+            "Updated": "\/Date(1741452486184)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "qbittorrent",
+            "Version": "5.0.4",
+            "Updated": "\/Date(1740000743279)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "retroarch",
+            "Version": "1.20.0",
+            "Updated": "\/Date(1738555021466)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "rtss",
+            "Version": "7.3.6",
+            "Updated": "\/Date(1738555029259)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "scoop-search",
+            "Version": "2.0.0",
+            "Updated": "\/Date(1738555030544)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "spotify",
+            "Version": "1.2.60.564.gcc6305cb",
+            "Updated": "\/Date(1743024197574)\/"
+        },
+        {
+            "Info": "",
+            "Source": "games",
+            "Name": "steam",
+            "Version": "nightly-20250203",
+            "Updated": "\/Date(1738555045804)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "stremio",
+            "Version": "4.4.168",
+            "Updated": "\/Date(1738555054662)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "unigetui",
+            "Version": "3.1.8",
+            "Updated": "\/Date(1741939950031)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "vcredist2022",
+            "Version": "14.42.34438.0",
+            "Updated": "\/Date(1739310537337)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "vlc",
+            "Version": "3.0.21",
+            "Updated": "\/Date(1738555088579)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "vscodium",
+            "Version": "1.98.2.25078",
+            "Updated": "\/Date(1742407490422)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "wpsoffice",
+            "Version": "12.2.0.18911",
+            "Updated": "\/Date(1738555144601)\/"
+        }
+    ]
+}

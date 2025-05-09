@@ -9,7 +9,7 @@ install_base() {
             ;;
         kubuntu*)
             sudo apt update && sudo apt install -y \
-                git mangohud steam
+                git mangohud steam-installer
             ;;
         *)
             sudo apt update && sudo apt install -y \

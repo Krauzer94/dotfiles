@@ -11,10 +11,6 @@ install_base() {
             sudo dnf install -y \
                 git mangohud steam
             ;;
-        archlinux*)
-            sudo pacman -Syu --needed --noconfirm \
-                git mangohud steam firewalld
-            ;;
         *)
             sudo apt update && sudo apt install -y \
                 git openssh-client wget podman
@@ -43,7 +39,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*|fedora*|archlinux*)
+        steamdeck*|fedora*)
             just installs-common
             ;;
         *)

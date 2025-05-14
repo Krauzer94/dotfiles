@@ -13,7 +13,7 @@ install_base() {
             ;;
         archlinux*)
             sudo pacman -Syu --needed --noconfirm \
-                git mangohud steam
+                git mangohud steam firewalld
             ;;
         *)
             sudo apt update && sudo apt install -y \

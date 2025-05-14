@@ -12,8 +12,8 @@ install_base() {
                 git mangohud steam
             ;;
         *)
-            sudo apt update && sudo apt install -y \
-                git openssh-client wget podman
+            sudo dnf install -y \
+                git wget docker
             ;;
     esac
 }
@@ -43,6 +43,7 @@ remaining_apps() {
             just installs-common
             ;;
         *)
+            sudo usermod -aG docker $USER
             just setup-github
             ;;
     esac

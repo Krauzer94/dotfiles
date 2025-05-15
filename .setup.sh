@@ -9,11 +9,11 @@ install_base() {
             ;;
         fedora*)
             sudo dnf install -y \
-                git mangohud steam
+                git distrobox mangohud steam
             ;;
         *)
             sudo dnf install -y \
-                git wget docker
+                git distrobox docker wget
             ;;
     esac
 }

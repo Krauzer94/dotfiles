@@ -42,7 +42,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*|fedora*)
+        steamdeck*|fedora*|bazzite*)
             just installs-common
             ;;
         *)

@@ -11,6 +11,9 @@ install_base() {
             sudo dnf install -y \
                 git distrobox mangohud steam
             ;;
+        bazzite*)
+            flatpak uninstall --all -y
+            ;;
         *)
             sudo dnf install -y \
                 git distrobox docker wget

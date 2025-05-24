@@ -4,14 +4,7 @@
 install_base() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*)
-            echo -e "\n Nothing to do here \n"
-            ;;
-        fedora*)
-            sudo dnf install -y \
-                git distrobox mangohud steam
-            ;;
-        bazzite*)
+        bazzite*|steamdeck*)
             flatpak uninstall --all -y
             ;;
         *)
@@ -42,7 +35,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*|fedora*|bazzite*)
+        bazzite*|steamdeck*)
             just installs-common
             ;;
         *)

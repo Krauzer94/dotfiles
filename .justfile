@@ -7,7 +7,6 @@ installs-common:
 
     just setup-themes
     flatpak install -y flathub \
-        org.freedesktop.Platform.VulkanLayer.MangoHud \
         org.mozilla.firefox \
         org.gimp.GIMP \
         org.qbittorrent.qBittorrent \
@@ -21,7 +20,7 @@ installs-common:
         com.rtosta.zapzap \
         com.github.tchx84.Flatseal \
         net.davidotek.pupgui2 \
-        net.lutris.Lutris \
+        com.ranfdev.DistroShelf \
         com.vscodium.codium \
         org.videolan.VLC \
         org.kde.kcalc \

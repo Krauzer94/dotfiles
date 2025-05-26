@@ -15,6 +15,6 @@
 # Other aliases
   alias ll='ls -l --color=auto'
   alias aliases='cat ~/.bash_aliases'
-  alias vs='flatpak run com.vscodium.codium'
+  alias vs='flatpak run com.visualstudio.code'
   alias save='just upload-savegame'
   alias wclean='find ~/ -type f -name "*.Identifier" -delete'

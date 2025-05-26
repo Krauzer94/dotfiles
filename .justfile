@@ -21,7 +21,7 @@ installs-common:
         com.github.tchx84.Flatseal \
         net.davidotek.pupgui2 \
         com.ranfdev.DistroShelf \
-        com.vscodium.codium \
+        com.visualstudio.code \
         org.videolan.VLC \
         org.kde.kcalc \
         org.kde.gwenview \

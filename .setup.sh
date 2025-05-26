@@ -7,6 +7,10 @@ install_base() {
         bazzite*|steamdeck*)
             flatpak uninstall --all -y
             ;;
+        fedora*)
+            sudo dnf install -y \
+                git distrobox steam mangohud
+            ;;
         *)
             sudo dnf install -y \
                 git distrobox docker wget
@@ -35,7 +39,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        bazzite*|steamdeck*)
+        bazzite*|steamdeck*|fedora*)
             just installs-common
             ;;
         *)

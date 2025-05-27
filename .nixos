@@ -10,10 +10,15 @@
       ./hardware-configuration.nix
     ];
 
-  # Enable: Flatpak, Steam and Podman
+  # Flatpak, Steam and Podman
   services.flatpak.enable = true;
   programs.steam.enable = true;
   virtualisation.podman.enable = true;
+
+  # NVIDIA Graphics Drivers
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

@@ -42,7 +42,7 @@ remaining_apps() {
             just installs-common
             ;;
         nixos*)
-            sudo cp -f ~/.nixos /etc/nixos/configuration.nix
+            sudo cp -fb ~/.nixos /etc/nixos/configuration.nix
             sudo nixos-rebuild switch && just installs-common
             ;;
         *)

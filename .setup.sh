@@ -43,7 +43,7 @@ remaining_apps() {
             ;;
         nixos*)
             sudo cp -f ~/.nixos /etc/nixos/configuration.nix
-            just installs-common
+            sudo nixos-rebuild switch && just installs-common
             ;;
         *)
             sudo usermod -aG docker $USER

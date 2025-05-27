@@ -13,6 +13,9 @@
   # Enable Flatpak
   services.flatpak.enable = true;
 
+  # Enable 
+  programs.steam.enable = true;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -103,6 +106,9 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
+    distrobox
+    podman
+    mangohud
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];

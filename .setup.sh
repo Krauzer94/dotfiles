@@ -7,9 +7,8 @@ install_base() {
         bazzite*|steamdeck*)
             flatpak uninstall --all -y
             ;;
-        fedora*)
-            sudo dnf install -y \
-                git distrobox steam mangohud
+        nixos*)
+            sudo nixos-rebuild switch
             ;;
         *)
             sudo dnf install -y \
@@ -39,7 +38,11 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        bazzite*|steamdeck*|fedora*)
+        bazzite*|steamdeck*)
+            just installs-common
+            ;;
+        nixos*)
+            sudo cp -f ~/.nixos /etc/nixos/configuration.nix
             just installs-common
             ;;
         *)

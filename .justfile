@@ -58,6 +58,7 @@ setup-github:
     echo -e ''
     cat ~/.ssh/id_ed25519.pub
     echo -e ''
+    git remote set-url origin git@github.com:Krauzer94/dotfiles.git
 
 # Upload savegame folder files
 [no-cd]

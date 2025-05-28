@@ -16,12 +16,9 @@ install_base() {
 
 # Set up dotfiles
 setup_dotfiles() {
-    echo '*' > ~/.gitignore
-    mv ~/.bashrc ~/.bashrc.old
     git clone https://github.com/Krauzer94/dotfiles.git
-    mv ~/dotfiles/.git ~/
-    rm -rdf ~/dotfiles
-    git restore .
+    mv ~/dotfiles/.git ~/dotfiles/.gitignore ~/
+    rm -rdf ~/dotfiles && git restore .
 }
 
 # Install Just CLI

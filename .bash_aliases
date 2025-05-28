@@ -1,8 +1,3 @@
-# NixOS specific
-  alias nupdate='sudo cp -f ~/.nixos /etc/nixos/configuration.nix'
-  alias nupgrade='nupdate && sudo nixos-rebuild switch'
-  alias nclean='sudo nix-collect-garbage --delete-older-than 5d'
-
 # Flatpak specific
   alias fupdate='flatpak update -y'
   alias fclean='flatpak uninstall --unused'

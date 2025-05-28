@@ -7,9 +7,6 @@ install_base() {
         bazzite*|steamdeck*)
             flatpak uninstall --all -y
             ;;
-        nixos*)
-            sudo nixos-rebuild switch
-            ;;
         *)
             sudo dnf install -y \
                 git distrobox docker wget
@@ -40,10 +37,6 @@ remaining_apps() {
     case "$HOST" in
         bazzite*|steamdeck*)
             just installs-common
-            ;;
-        nixos*)
-            sudo cp -fb ~/.nixos /etc/nixos/configuration.nix
-            sudo nixos-rebuild switch && just installs-common
             ;;
         *)
             sudo usermod -aG docker $USER

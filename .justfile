@@ -28,6 +28,18 @@ installs-common:
         org.kde.okular \
         com.dec05eba.gpu_screen_recorder
 
+# Installs Fedora specific apps
+installs-fedora:
+    #!/usr/bin/env bash
+
+    rpm-ostree install \
+        akmod-nvidia \
+        xorg-x11-drv-nvidia \
+        distrobox \
+        mangohud \
+        steam
+    just installs-common
+
 # Set up application theming
 setup-themes:
     #!/usr/bin/env bash

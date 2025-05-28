@@ -7,6 +7,10 @@ install_base() {
         bazzite*|steamdeck*)
             flatpak uninstall --all -y
             ;;
+        fedora*)
+            rpm-ostree install \
+                akmod-nvidia xorg-x11-drv-nvidia distrobox mangohud steam
+            ;;
         *)
             sudo dnf install -y \
                 git distrobox docker wget
@@ -32,7 +36,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        bazzite*|steamdeck*)
+        bazzite*|steamdeck*|fedora*)
             just installs-common
             ;;
         *)

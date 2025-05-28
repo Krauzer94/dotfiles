@@ -8,6 +8,7 @@ install_base() {
             flatpak uninstall --all -y
             ;;
         fedora*)
+            flatpak uninstall --all -y
             rpm-ostree install \
                 akmod-nvidia xorg-x11-drv-nvidia distrobox mangohud steam
             ;;

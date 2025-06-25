@@ -39,7 +39,6 @@ remaining_apps() {
             just installs-fedora
             ;;
         *)
-            sudo usermod -aG docker $USER
             just setup-github
             ;;
     esac

@@ -8,8 +8,8 @@ install_base() {
             flatpak uninstall --all -y
             ;;
         *)
-            sudo dnf install -y \
-                git distrobox docker wget
+            sudo apt update && sudo apt install -y \
+                git distrobox podman wget
             ;;
     esac
 }

@@ -1,3 +1,5 @@
+set quiet
+
 _default:
     just --list
 
@@ -53,11 +55,11 @@ setup-themes:
 setup-github:
     #!/usr/bin/env bash
 
-    echo -e ''
+    echo ''
     ssh-keygen -t ed25519 -C 13894059+Krauzer94@users.noreply.github.com
-    echo -e ''
+    echo ''
     cat ~/.ssh/id_ed25519.pub
-    echo -e ''
+    echo ''
     git remote set-url origin git@github.com:Krauzer94/dotfiles.git
 
 # Upload savegame folder files

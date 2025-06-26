@@ -25,7 +25,7 @@ installs-common:
         org.videolan.VLC \
         org.kde.kcalc \
         org.kde.gwenview \
-        org.kde.okular \
+        dev.lizardbyte.app.Sunshine \
         com.dec05eba.gpu_screen_recorder
 
 # Installs Mint specific apps

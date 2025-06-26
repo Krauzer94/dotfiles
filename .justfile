@@ -5,6 +5,7 @@ _default:
 
 # Installs common applications
 installs-common:
+    #!/bin/bash
     just setup-themes
     flatpak install -y flathub \
         org.mozilla.firefox \
@@ -30,6 +31,7 @@ installs-common:
 
 # Installs Mint specific apps
 installs-mint:
+    #!/bin/bash
     sudo apt install -y \
         steam-installer \
         distrobox \
@@ -39,6 +41,7 @@ installs-mint:
 
 # Set up application theming
 setup-themes:
+    #!/bin/bash
     mkdir $HOME/.themes
     mkdir $HOME/.icons
     cp -r /usr/share/themes/* $HOME/.themes/
@@ -46,6 +49,7 @@ setup-themes:
 
 # Set up git and GitHub account
 setup-github:
+    #!/bin/bash
     echo ''
     ssh-keygen -t ed25519 -C 13894059+Krauzer94@users.noreply.github.com
     echo ''
@@ -56,6 +60,7 @@ setup-github:
 # Upload savegame folder files
 [no-cd]
 upload-savegame:
+    #!/bin/bash
     git add .
     git commit -m "Save game upload"
     git push

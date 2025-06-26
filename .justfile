@@ -28,14 +28,13 @@ installs-common:
         org.kde.okular \
         com.dec05eba.gpu_screen_recorder
 
-# Installs Fedora specific apps
-installs-fedora:
-    rpm-ostree install \
-        akmod-nvidia \
-        xorg-x11-drv-nvidia \
+# Installs Mint specific apps
+installs-mint:
+    sudo apt install -y \
+        steam-installer \
         distrobox \
         mangohud \
-        steam
+        podman
     just installs-common
 
 # Set up application theming

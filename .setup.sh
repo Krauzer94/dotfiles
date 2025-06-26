@@ -1,11 +1,14 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Install base packages
 install_base() {
     HOST=$HOSTNAME
     case "$HOST" in
-        bazzite*|steamdeck*|fedora*)
+        steamdeck*)
             flatpak uninstall --all -y
+            ;;
+        mint*)
+            sudo apt update && sudo apt install -y git
             ;;
         *)
             sudo apt update && sudo apt install -y \
@@ -32,11 +35,11 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        bazzite*|steamdeck*)
+        steamdeck*)
             just installs-common
             ;;
-        fedora*)
-            just installs-fedora
+        mint*)
+            just installs-mint
             ;;
         *)
             just setup-github

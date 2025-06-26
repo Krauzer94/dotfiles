@@ -5,8 +5,6 @@ _default:
 
 # Installs common applications
 installs-common:
-    #!/usr/bin/env bash
-
     just setup-themes
     flatpak install -y flathub \
         org.mozilla.firefox \
@@ -32,8 +30,6 @@ installs-common:
 
 # Installs Fedora specific apps
 installs-fedora:
-    #!/usr/bin/env bash
-
     rpm-ostree install \
         akmod-nvidia \
         xorg-x11-drv-nvidia \
@@ -44,8 +40,6 @@ installs-fedora:
 
 # Set up application theming
 setup-themes:
-    #!/usr/bin/env bash
-
     mkdir $HOME/.themes
     mkdir $HOME/.icons
     cp -r /usr/share/themes/* $HOME/.themes/
@@ -53,8 +47,6 @@ setup-themes:
 
 # Set up git and GitHub account
 setup-github:
-    #!/usr/bin/env bash
-
     echo ''
     ssh-keygen -t ed25519 -C 13894059+Krauzer94@users.noreply.github.com
     echo ''
@@ -65,8 +57,6 @@ setup-github:
 # Upload savegame folder files
 [no-cd]
 upload-savegame:
-    #!/usr/bin/env bash
-
     git add .
     git commit -m "Save game upload"
     git push

@@ -13,6 +13,7 @@
   alias pull='git pull'
 
 # Other aliases
+  alias allow='direnv allow'
   alias ll='ls -l --color=auto'
   alias aliases='cat ~/.bash_aliases'
   alias vs='flatpak run com.visualstudio.code'

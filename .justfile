@@ -8,6 +8,7 @@ installs-common:
     #!/bin/bash
 
     just setup-themes
+    curl -sfL https://direnv.net/install.sh | bash
     flatpak install -y flathub \
         org.mozilla.firefox \
         org.gimp.GIMP \

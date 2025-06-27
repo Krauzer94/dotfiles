@@ -27,7 +27,7 @@ installs-common:
         org.videolan.VLC \
         org.kde.kcalc \
         org.kde.gwenview \
-        dev.lizardbyte.app.Sunshine \
+        org.kde.okular \
         com.dec05eba.gpu_screen_recorder
 
 # Installs Fedora specific apps

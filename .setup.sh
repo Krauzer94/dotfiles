@@ -4,7 +4,7 @@
 install_base() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*)
+        bazzite*|steamdeck*)
             flatpak uninstall --all -y
             ;;
         fedora*)
@@ -35,7 +35,7 @@ install_just () {
 remaining_apps() {
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*)
+        bazzite*|steamdeck*)
             just installs-common
             ;;
         fedora*)

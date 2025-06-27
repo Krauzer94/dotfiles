@@ -7,8 +7,8 @@ install_base() {
         steamdeck*)
             flatpak uninstall --all -y
             ;;
-        mint*)
-            sudo apt update && sudo apt install -y git
+        fedora*)
+            sudo dnf install -y git
             ;;
         *)
             sudo apt update && sudo apt install -y \
@@ -38,8 +38,8 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        mint*)
-            just installs-mint
+        fedora*)
+            just installs-fedora
             ;;
         *)
             just setup-github

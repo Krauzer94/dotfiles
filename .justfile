@@ -29,14 +29,13 @@ installs-common:
         dev.lizardbyte.app.Sunshine \
         com.dec05eba.gpu_screen_recorder
 
-# Installs Mint specific apps
-installs-mint:
+# Installs Fedora specific apps
+installs-fedora:
     #!/bin/bash
-    sudo apt install -y \
-        steam-installer \
+    sudo dnf install -y \
         distrobox \
         mangohud \
-        podman
+        steam
     just installs-common
 
 # Set up application theming

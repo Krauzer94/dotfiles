@@ -6,6 +6,7 @@ _default:
 # Installs common applications
 installs-common:
     #!/bin/bash
+
     just setup-themes
     flatpak install -y flathub \
         org.mozilla.firefox \
@@ -32,6 +33,7 @@ installs-common:
 # Installs Fedora specific apps
 installs-fedora:
     #!/bin/bash
+
     sudo dnf install -y \
         distrobox \
         mangohud \
@@ -41,6 +43,7 @@ installs-fedora:
 # Set up application theming
 setup-themes:
     #!/bin/bash
+
     mkdir $HOME/.themes
     mkdir $HOME/.icons
     cp -r /usr/share/themes/* $HOME/.themes/
@@ -49,6 +52,7 @@ setup-themes:
 # Set up git and GitHub account
 setup-github:
     #!/bin/bash
+
     echo ''
     ssh-keygen -t ed25519 -C 13894059+Krauzer94@users.noreply.github.com
     echo ''
@@ -60,6 +64,7 @@ setup-github:
 [no-cd]
 upload-savegame:
     #!/bin/bash
+
     git add .
     git commit -m "Save game upload"
     git push

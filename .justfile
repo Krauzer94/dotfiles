@@ -35,6 +35,7 @@ installs-fedora:
     #!/bin/bash
 
     sudo dnf install -y \
+        btrfs-assistant \
         distrobox \
         mangohud \
         steam

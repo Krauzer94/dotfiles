@@ -8,7 +8,6 @@ installs-common:
     #!/bin/bash
 
     just setup-themes
-    curl -sfL https://direnv.net/install.sh | bash
     flatpak install -y flathub \
         org.mozilla.firefox \
         org.gimp.GIMP \
@@ -51,8 +50,8 @@ setup-themes:
     cp -r /usr/share/themes/* $HOME/.themes/
     cp -r /usr/share/icons/* $HOME/.icons/
 
-# Set up git and GitHub account
-setup-github:
+# Set up development environment
+setup-devenv:
     #!/bin/bash
 
     echo ''
@@ -61,6 +60,7 @@ setup-github:
     cat ~/.ssh/id_ed25519.pub
     echo ''
     git remote set-url origin git@github.com:Krauzer94/dotfiles.git
+    curl -sfL https://direnv.net/install.sh | bash
 
 # Upload savegame folder files
 [no-cd]

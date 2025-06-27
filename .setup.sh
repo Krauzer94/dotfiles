@@ -42,7 +42,7 @@ remaining_apps() {
             just installs-fedora
             ;;
         *)
-            just setup-github
+            just setup-devenv
             ;;
     esac
 }

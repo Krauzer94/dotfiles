@@ -55,12 +55,13 @@ setup-devenv:
     #!/bin/bash
 
     echo ''
+    curl -sfL https://direnv.net/install.sh | bash
+    echo ''
     ssh-keygen -t ed25519 -C 13894059+Krauzer94@users.noreply.github.com
     echo ''
     cat ~/.ssh/id_ed25519.pub
     echo ''
     git remote set-url origin git@github.com:Krauzer94/dotfiles.git
-    curl -sfL https://direnv.net/install.sh | bash
 
 # Upload savegame folder files
 [no-cd]

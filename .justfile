@@ -70,6 +70,15 @@ setup-devenv:
     echo ''
     git remote set-url origin git@github.com:Krauzer94/dotfiles.git
 
+# Set up Tailscale application
+setup-tailscale:
+    #!/bin/bash
+
+    git clone git@github.com:tailscale-dev/deck-tailscale.git
+    cd ./deck-tailscale
+    sudo bash ./tailscale.sh
+    source /etc/profile.d/tailscale.sh
+
 # Upload savegame folder files
 [no-cd]
 upload-savegame:

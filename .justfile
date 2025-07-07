@@ -41,6 +41,13 @@ installs-fedora:
         steam
     just installs-common
 
+# Installs Sunshine application
+installs-sunshine:
+    #!/bin/bash
+
+    sudo dnf copr enable lizardbyte/stable
+    sudo dnf install -y Sunshine
+
 # Set up application theming
 setup-themes:
     #!/bin/bash

@@ -38,6 +38,7 @@ installs-fedora:
         btrfs-assistant \
         distrobox \
         mangohud \
+        podlet \
         steam
     just installs-common
 

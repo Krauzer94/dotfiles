@@ -48,7 +48,14 @@ remaining_apps() {
 }
 
 # Execute all functions
+echo -e "\n Installing base packages \n"
 install_base
+
+echo -e "\n Setting up the dotfiles \n"
 setup_dotfiles
+
+echo -e "\n Installing just CLI tool \n"
 install_just
+
+echo -e "\n Installing remaining apps \n"
 remaining_apps

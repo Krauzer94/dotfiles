@@ -1,0 +1,8 @@
+# nextcloud.container
+[Container]
+Image=nextcloud
+PublishPort=8080:80
+Volume=nextcloud:/var/www/html
+
+[Install]
+WantedBy=default.target

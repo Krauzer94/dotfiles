@@ -2,7 +2,7 @@
 
 # Install base packages
 install_base() {
-    echo -e "\n Installing base packages \n"
+    echo -e "\n\t Installing base packages \n"
     HOST=$HOSTNAME
     case "$HOST" in
         bazzite*|steamdeck*)
@@ -16,30 +16,30 @@ install_base() {
                 git distrobox podman wget
             ;;
     esac
-    echo -e "\n Finished installing base packages \n"
+    echo -e "\n\t Finished installing base packages \n"
 }
 
 # Set up dotfiles
 setup_dotfiles() {
-    echo -e "\n Setting up the dotfiles \n"
+    echo -e "\n\t Setting up the dotfiles \n"
     git clone https://github.com/Krauzer94/dotfiles.git
     mv ~/dotfiles/.git ~/dotfiles/.gitignore ~/
     rm -rdf ~/dotfiles && git restore .
-    echo -e "\n Finished setting up the dotfiles \n"
+    echo -e "\n\t Finished setting up the dotfiles \n"
 }
 
 # Install Just CLI
 install_just () {
-    echo -e "\n Installing just CLI tool \n"
+    echo -e "\n\t Installing just CLI tool \n"
     mkdir -p ~/.local/bin
     curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/.local/bin
     export PATH=$PATH:~/.local/bin
-    echo -e "\n Finished installing just CLI tool \n"
+    echo -e "\n\t Finished installing just CLI tool \n"
 }
 
 # Install remaining apps
 remaining_apps() {
-    echo -e "\n Installing remaining apps \n"
+    echo -e "\n\t Installing remaining apps \n"
     HOST=$HOSTNAME
     case "$HOST" in
         bazzite*|steamdeck*)
@@ -52,7 +52,7 @@ remaining_apps() {
             just setup-devenv
             ;;
     esac
-    echo -e "\n Finished installing remaining apps \n"
+    echo -e "\n\t Finished installing remaining apps \n"
 }
 
 # Execute all functions

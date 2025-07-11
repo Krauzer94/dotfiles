@@ -49,15 +49,6 @@ installs-sunshine:
     sudo dnf copr enable lizardbyte/stable
     sudo dnf install -y Sunshine
 
-# Set up application theming
-setup-themes:
-    #!/bin/bash
-
-    mkdir $HOME/.themes
-    mkdir $HOME/.icons
-    cp -r /usr/share/themes/* $HOME/.themes/
-    cp -r /usr/share/icons/* $HOME/.icons/
-
 # Set up development environment
 setup-devenv:
     #!/bin/bash
@@ -79,6 +70,15 @@ setup-tailscale:
     cd ./deck-tailscale
     sudo bash ./tailscale.sh
     source /etc/profile.d/tailscale.sh
+
+# Set up application theming
+setup-themes:
+    #!/bin/bash
+
+    mkdir $HOME/.themes
+    mkdir $HOME/.icons
+    cp -r /usr/share/themes/* $HOME/.themes/
+    cp -r /usr/share/icons/* $HOME/.icons/
 
 # Upload savegame folder files
 [no-cd]

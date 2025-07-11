@@ -3,6 +3,14 @@ set quiet
 _default:
     just --list
 
+# Enable user service Quadlets
+enable-quadlets:
+    #!/bin/bash
+
+    systemctl --user daemon-reload
+    systemctl --user start nextcloud
+    loginctl enable-linger $USER
+
 # Installs common applications
 installs-common:
     #!/bin/bash

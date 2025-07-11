@@ -56,6 +56,11 @@ installs-sunshine:
 
     sudo dnf copr enable lizardbyte/stable
     sudo dnf install -y Sunshine
+    for port in 47984 47989 47990 48010; do
+        sudo firewall-cmd --permanent --add-port=${port}/tcp
+    done
+    sudo firewall-cmd --permanent --add-port=47998-48000/udp
+    sudo firewall-cmd --reload
 
 # Set up development environment
 setup-devenv:

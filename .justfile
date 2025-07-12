@@ -77,11 +77,11 @@ installs-sunshine:
 
     echo -e "\n\t Installing Sunshine application \n"
 
-    # Install Sunshine from COPR repo
+    # Install Sunshine from COPR
     sudo dnf copr enable lizardbyte/stable
     sudo dnf install -y Sunshine
 
-    # Enable the necessary Firewall ports
+    # Enable necessary Firewall ports
     for port in 47984 47989 47990 48010; do
         sudo firewall-cmd --permanent --add-port=${port}/tcp
     done

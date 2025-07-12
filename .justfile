@@ -6,8 +6,8 @@ _default:
 # Enable user service Quadlets
 enable-quadlets:
     #!/bin/bash
-
     echo -e "\n\t Enabling user service Quadlets \n"
+
     # Enable Firewall port
     sudo firewall-cmd --permanent --add-port=8080/tcp
 
@@ -21,8 +21,8 @@ enable-quadlets:
 # Installs Arch specific apps
 installs-archlinux:
     #!/bin/bash
-
     echo -e "\n\t Installing Arch specific apps \n"
+
     # Native package installs
     sudo pacman -Syu --needed --noconfirm \
         noto-fonts-cjk firewalld \
@@ -41,8 +41,8 @@ installs-archlinux:
 # Installs common applications
 installs-common:
     #!/bin/bash
-
     echo -e "\n\t Installing common applications \n"
+
     # Ensure app theming
     just setup-themes
 
@@ -75,8 +75,8 @@ installs-common:
 # Installs Fedora specific apps
 installs-fedora:
     #!/bin/bash
-
     echo -e "\n\t Installing Fedora specific apps \n"
+
     # Native RPM package installs
     sudo dnf install -y \
         btrfs-assistant \
@@ -91,8 +91,8 @@ installs-fedora:
 # Installs Sunshine application
 installs-sunshine:
     #!/bin/bash
-
     echo -e "\n\t Installing Sunshine application \n"
+
     # Install based on hostname
     HOST=$HOSTNAME
     case "$HOST" in
@@ -131,8 +131,8 @@ installs-sunshine:
 # Set up development environment
 setup-devenv:
     #!/bin/bash
-
     echo -e "\n\t Setting up development environment \n"
+
     # Install the direnv CLI tool
     curl -sfL https://direnv.net/install.sh | bash
 
@@ -144,8 +144,8 @@ setup-devenv:
 # Set up Tailscale application
 setup-tailscale:
     #!/bin/bash
-
     echo -e "\n\t Settin up Tailscale application \n"
+
     # Download necessary files
     git clone git@github.com:tailscale-dev/deck-tailscale.git
     cd ./deck-tailscale && sudo bash ./tailscale.sh

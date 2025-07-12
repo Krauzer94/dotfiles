@@ -12,11 +12,17 @@ installs-archlinux:
     # Native package installs
     sudo pacman -Syu --needed --noconfirm \
         noto-fonts-cjk \
+        firewalld \
         timeshift \
         distrobox \
         mangohud \
         podlet \
         steam
+
+    # Enable system services
+    sudo systemctl enable --now \
+        NetworkManager \
+        bluetooth
 
     # Remaining configurations
     just enable-quadlets

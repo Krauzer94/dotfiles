@@ -7,14 +7,11 @@ install_base() {
     # Install based on hostname
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*)
+        bazzite*|steamdeck*)
             flatpak uninstall --all -y
             ;;
         fedora*)
             sudo dnf install -y git
-            ;;
-        archlinux*)
-            sudo pacman -S --noconfirm git
             ;;
         *)
             sudo apt update && sudo apt install -y \
@@ -54,8 +51,9 @@ remaining_apps() {
         fedora*)
             just installs-fedora
             ;;
-        archlinux*)
-            just installs-archlinux
+        bazzite*)
+            just enable-quadlets
+            just installs-common
             ;;
         *)
             just setup-devenv

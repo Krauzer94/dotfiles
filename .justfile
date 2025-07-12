@@ -11,32 +11,12 @@ enable-quadlets:
     # Enable Firewall port
     sudo firewall-cmd --permanent --add-port=8080/tcp
 
-    # Start NextCloud quadlet
+    # Start NextCloud Quadlet
     systemctl --user daemon-reload
     systemctl --user start nextcloud
 
     # Enable at system startup
     loginctl enable-linger $USER
-
-# Installs Arch specific apps
-installs-archlinux:
-    #!/bin/bash
-    echo -e "\n\t Installing Arch specific apps \n"
-
-    # Native package installs
-    sudo pacman -Syu --needed --noconfirm \
-        noto-fonts-cjk firewalld \
-        podman podlet distrobox \
-        mangohud steam
-
-    # Enable system services
-    sudo systemctl enable --now \
-        firewalld NetworkManager bluetooth
-
-    # Remaining configurations
-    just enable-quadlets
-    just installs-sunshine
-    just installs-common
 
 # Installs common applications
 installs-common:
@@ -93,29 +73,9 @@ installs-sunshine:
     #!/bin/bash
     echo -e "\n\t Installing Sunshine application \n"
 
-    # Install based on hostname
-    HOST=$HOSTNAME
-    case "$HOST" in
-        fedora*)
-            # Install Sunshine from COPR
-            sudo dnf copr enable lizardbyte/stable
-            sudo dnf install -y Sunshine
-            ;;
-        archlinux*)
-            # Add LizardByte repo
-            echo "
-            [lizardbyte]
-            SigLevel = Optional
-            Server = https://github.com/LizardByte/pacman-repo/releases/latest/download" \
-            | sudo tee -a /etc/pacman.conf > /dev/null
-
-            # Install Sunshine app
-            sudo pacman -Syu --noconfirm sunshine
-            ;;
-        *)
-            echo -e "\n\t Unsupported platform... Exiting... \n"
-            ;;
-    esac
+    # Install Sunshine from COPR
+    sudo dnf copr enable lizardbyte/stable
+    sudo dnf install -y Sunshine
 
     # Enable necessary Firewall ports
     for port in 47984 47989 47990 48010; do
@@ -141,16 +101,17 @@ setup-devenv:
     echo '' && cat ~/.ssh/id_ed25519.pub && echo ''
     git remote set-url origin git@github.com:Krauzer94/dotfiles.git
 
-# Set up Tailscale application
-setup-tailscale:
+# Set up Tailscale on the Deck
+setup-taildeck:
     #!/bin/bash
-    echo -e "\n\t Settin up Tailscale application \n"
+    echo -e "\n\t Setting up Tailscale on the Deck \n"
 
     # Download necessary files
     git clone git@github.com:tailscale-dev/deck-tailscale.git
-    cd ./deck-tailscale && sudo bash ./tailscale.sh
-
-    # Ensure binary in $PATH
+    cd ./deck-tailscale
+    
+    # Install and source binary
+    sudo bash ./tailscale.sh
     source /etc/profile.d/tailscale.sh
 
 # Set up application theming

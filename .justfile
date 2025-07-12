@@ -13,9 +13,9 @@ installs-archlinux:
     sudo pacman -Syu --needed --noconfirm \
         noto-fonts-cjk \
         firewalld \
-        timeshift \
         distrobox \
         mangohud \
+        podman \
         podlet \
         steam
 

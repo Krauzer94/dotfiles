@@ -27,7 +27,7 @@ installs-common:
     # Ensure app theming
     just setup-themes
 
-    # Starting installing apps
+    # Start installing apps
     flatpak install -y flathub \
         org.mozilla.firefox \
         org.gimp.GIMP \

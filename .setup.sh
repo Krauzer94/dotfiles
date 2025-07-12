@@ -21,8 +21,6 @@ install_base() {
                 git distrobox podman wget
             ;;
     esac
-
-    echo -e "\n\t Finished installing base packages \n"
 }
 
 # Set up dotfiles
@@ -33,8 +31,6 @@ setup_dotfiles() {
     git clone https://github.com/Krauzer94/dotfiles.git
     mv ~/dotfiles/.git ~/dotfiles/.gitignore ~/
     rm -rdf ~/dotfiles && git restore .
-
-    echo -e "\n\t Finished setting up the dotfiles \n"
 }
 
 # Install Just CLI
@@ -45,8 +41,6 @@ install_just () {
     mkdir -p ~/.local/bin
     curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/.local/bin
     export PATH=$PATH:~/.local/bin
-
-    echo -e "\n\t Finished installing just CLI tool \n"
 }
 
 # Install remaining apps
@@ -69,8 +63,6 @@ remaining_apps() {
             just setup-devenv
             ;;
     esac
-
-    echo -e "\n\t Finished installing remaining apps \n"
 }
 
 # Execute all functions

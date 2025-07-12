@@ -11,18 +11,13 @@ installs-archlinux:
 
     # Native package installs
     sudo pacman -Syu --needed --noconfirm \
-        noto-fonts-cjk \
-        firewalld \
-        distrobox \
-        mangohud \
-        podman \
-        podlet \
-        steam
+        noto-fonts-cjk firewalld \
+        podman podlet distrobox \
+        mangohud steam
 
     # Enable system services
     sudo systemctl enable --now \
-        NetworkManager \
-        bluetooth
+        NetworkManager bluetooth
 
     # Remaining configurations
     just enable-quadlets
@@ -95,10 +90,8 @@ installs-fedora:
     # Native RPM package installs
     sudo dnf install -y \
         btrfs-assistant \
-        distrobox \
-        mangohud \
-        podlet \
-        steam
+        podlet distrobox \
+        mangohud steam
 
     # Remaining configurations
     just enable-quadlets

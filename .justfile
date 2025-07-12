@@ -3,6 +3,21 @@ set quiet
 _default:
     just --list
 
+# Enable user service Quadlets
+enable-quadlets:
+    #!/bin/bash
+
+    echo -e "\n\t Enabling user service Quadlets \n"
+    # Enable Firewall port
+    sudo firewall-cmd --permanent --add-port=8080/tcp
+
+    # Start NextCloud quadlet
+    systemctl --user daemon-reload
+    systemctl --user start nextcloud
+
+    # Enable at system startup
+    loginctl enable-linger $USER
+
 # Installs Arch specific apps
 installs-archlinux:
     #!/bin/bash
@@ -22,21 +37,6 @@ installs-archlinux:
     just enable-quadlets
     just installs-sunshine
     just installs-common
-
-# Enable user service Quadlets
-enable-quadlets:
-    #!/bin/bash
-
-    echo -e "\n\t Enabling user service Quadlets \n"
-    # Enable Firewall port
-    sudo firewall-cmd --permanent --add-port=8080/tcp
-
-    # Start NextCloud quadlet
-    systemctl --user daemon-reload
-    systemctl --user start nextcloud
-
-    # Enable at system startup
-    loginctl enable-linger $USER
 
 # Installs common applications
 installs-common:

@@ -27,7 +27,7 @@ installs-common:
     # Ensure app theming
     just setup-themes
 
-    # Start installing apps
+    # Install all Flatpaks
     flatpak install -y flathub \
         org.mozilla.firefox \
         org.gimp.GIMP \
@@ -50,6 +50,9 @@ installs-common:
         org.kde.okular \
         com.dec05eba.gpu_screen_recorder
 
+    # Development tools
+    just setup-devenv
+
     echo -e "\n\t Finished installing common applications \n"
 
 # Installs Fedora specific apps
@@ -66,7 +69,9 @@ installs-fedora:
         podlet \
         steam
 
-    # Flatpak application installs
+    # Remaining configurations
+    just enable-quadlets
+    just installs-sunshine
     just installs-common
 
     echo -e "\n\t Finished installing Fedora specific apps \n"

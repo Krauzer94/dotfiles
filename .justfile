@@ -3,6 +3,28 @@ set quiet
 _default:
     just --list
 
+# Installs Arch specific apps
+installs-archlinux:
+    #!/bin/bash
+
+    echo -e "\n\t Installing Arch specific apps \n"
+
+    # Native package installs
+    sudo pacman -Syu --needed --noconfirm \
+        noto-fonts-cjk \
+        timeshift \
+        distrobox \
+        mangohud \
+        podlet \
+        steam
+
+    # Remaining configurations
+    just enable-quadlets
+    just installs-sunshine
+    just installs-common
+
+    echo -e "\n\t Finished installing Arch specific apps \n"
+
 # Enable user service Quadlets
 enable-quadlets:
     #!/bin/bash
@@ -85,9 +107,29 @@ installs-sunshine:
 
     echo -e "\n\t Installing Sunshine application \n"
 
-    # Install Sunshine from COPR
-    sudo dnf copr enable lizardbyte/stable
-    sudo dnf install -y Sunshine
+        # Install based on hostname
+    HOST=$HOSTNAME
+    case "$HOST" in
+        fedora*)
+            # Install Sunshine from COPR
+            sudo dnf copr enable lizardbyte/stable
+            sudo dnf install -y Sunshine
+            ;;
+        archlinux*)
+            # Add LizardByte repo
+            echo "
+            [lizardbyte]
+            SigLevel = Optional
+            Server = https://github.com/LizardByte/pacman-repo/releases/latest/download" \
+            | sudo tee -a /etc/pacman.conf > /dev/null
+
+            # Install Sunshine app
+            sudo pacman -Syu --noconfirm sunshine
+            ;;
+        *)
+            echo -e "\n\t Unsupported platform... Exiting... \n"
+            ;;
+    esac
 
     # Enable necessary Firewall ports
     for port in 47984 47989 47990 48010; do

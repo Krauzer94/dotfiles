@@ -63,9 +63,7 @@ installs-fedora:
         podlet distrobox \
         mangohud steam
 
-    # Remaining configurations
-    just enable-quadlets
-    just installs-sunshine
+    # Install remaining apps
     just installs-common
 
 # Installs Sunshine application

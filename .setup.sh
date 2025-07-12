@@ -45,15 +45,11 @@ remaining_apps() {
     # Install based on hostname
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*)
+        bazzite*|steamdeck*)
             just installs-common
             ;;
         fedora*)
             just installs-fedora
-            ;;
-        bazzite*)
-            just enable-quadlets
-            just installs-common
             ;;
         *)
             just setup-devenv

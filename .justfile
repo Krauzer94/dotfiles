@@ -88,6 +88,10 @@ installs-sunshine:
     sudo firewall-cmd --permanent --add-port=47998-48000/udp
     sudo firewall-cmd --reload
 
+    # Enable WoL on system startup
+    ETH_CONN=$(nmcli -t -f NAME,TYPE con show | grep ethernet | cut -d: -f1 | head -n 1)
+    nmcli con modify "$ETH_CONN" ethernet.wake-on-lan magic
+
     echo -e "\n\t Finished installing Sunshine application \n"
 
 # Set up development environment

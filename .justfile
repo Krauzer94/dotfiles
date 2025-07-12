@@ -16,7 +16,7 @@ installs-archlinux:
 
     # Enable system services
     sudo systemctl enable --now \
-        NetworkManager bluetooth
+        firewalld NetworkManager bluetooth
 
     # Remaining configurations
     just enable-quadlets

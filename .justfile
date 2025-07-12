@@ -113,7 +113,7 @@ installs-sunshine:
 
     echo -e "\n\t Installing Sunshine application \n"
 
-        # Install based on hostname
+    # Install based on hostname
     HOST=$HOSTNAME
     case "$HOST" in
         fedora*)

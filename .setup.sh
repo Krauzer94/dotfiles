@@ -45,8 +45,6 @@ install_just () {
 
 # Install remaining apps
 remaining_apps() {
-    echo -e "\n\t Installing remaining apps \n"
-
     # Install based on hostname
     HOST=$HOSTNAME
     case "$HOST" in

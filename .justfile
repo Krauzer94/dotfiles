@@ -157,7 +157,6 @@ setup-tailscale:
 setup-themes:
     #!/bin/bash
 
-    echo -e "\n\t Setting up application theming \n"
     # Create necessary folders
     mkdir $HOME/.themes && mkdir $HOME/.icons
 

@@ -98,13 +98,9 @@ installs-sunshine:
             ;;
         kubuntu*)
             # Download latest installer
-            UBUNTU_VERSION=$(lsb_release -rs)
-            URL=$(curl -s https://api.github.com/repos/LizardByte/Sunshine/releases/latest \
-            | grep "browser_download_url.*ubuntu-${UBUNTU_VERSION}-amd64.deb" \
-            | cut -d '"' -f 4)
-
-            # Install using DEB file
-            wget "$URL" && sudo dpkg -i "./$(basename "$URL")"
+            flatpak run org.mozilla.firefox \
+                https://github.com/LizardByte/Sunshine/releases
+            echo -e "\n\t Use the downloaded installer \n"
             ;;
     esac
 

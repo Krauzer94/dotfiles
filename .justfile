@@ -67,7 +67,7 @@ installs-fedora:
     just installs-common
 
 # Installs Kubuntu specific apps
-installs-fedora:
+installs-kubuntu:
     #!/bin/bash
     echo -e "\n\t Installing Kubuntu specific apps \n"
 

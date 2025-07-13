@@ -7,13 +7,13 @@ install_base() {
     # Install based on hostname
     HOST=$HOSTNAME
     case "$HOST" in
-        bazzite*|steamdeck*)
+        steamdeck*)
             flatpak uninstall --all -y
             ;;
         fedora*)
             sudo dnf install -y git
             ;;
-        *)
+        kubuntu*|*)
             sudo apt update && sudo apt install -y \
                 git podman distrobox
             ;;
@@ -45,11 +45,14 @@ remaining_apps() {
     # Install based on hostname
     HOST=$HOSTNAME
     case "$HOST" in
-        bazzite*|steamdeck*)
+        steamdeck*)
             just installs-common
             ;;
         fedora*)
             just installs-fedora
+            ;;
+        kubuntu*)
+            just installs-kubuntu
             ;;
         *)
             just setup-devenv

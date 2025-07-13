@@ -66,6 +66,20 @@ installs-fedora:
     # Install remaining apps
     just installs-common
 
+# Installs Kubuntu specific apps
+installs-fedora:
+    #!/bin/bash
+    echo -e "\n\t Installing Kubuntu specific apps \n"
+
+    # Native RPM package installs
+    sudo apt install -y \
+        timeshift firewalld \
+        podlet distrobox \
+        mangohud steam-installer
+
+    # Install remaining apps
+    just installs-common
+
 # Installs Sunshine application
 installs-sunshine:
     #!/bin/bash

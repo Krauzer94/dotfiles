@@ -15,7 +15,7 @@ install_base() {
             ;;
         *)
             sudo apt update && sudo apt install -y \
-                git distrobox podman wget
+                git podman distrobox
             ;;
     esac
 }

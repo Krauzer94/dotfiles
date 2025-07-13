@@ -71,7 +71,10 @@ installs-fedora:
     #!/bin/bash
     echo -e "\n\t Installing Kubuntu specific apps \n"
 
-    # Native RPM package installs
+    # Install NVIDIA drivers
+    sudo ubuntu-drivers install
+    
+    # Native APT package installs
     sudo apt install -y \
         timeshift firewalld \
         podlet distrobox \

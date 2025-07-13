@@ -85,9 +85,25 @@ installs-sunshine:
     #!/bin/bash
     echo -e "\n\t Installing Sunshine application \n"
 
-    # Install Sunshine from COPR
-    sudo dnf copr enable lizardbyte/stable
-    sudo dnf install -y Sunshine
+    # Install based on hostname
+    HOST=$HOSTNAME
+    case "$HOST" in
+        fedora*)
+            # Install Sunshine from COPR
+            sudo dnf copr enable lizardbyte/stable
+            sudo dnf install -y Sunshine
+            ;;
+        kubuntu*)
+            # Download latest installer
+            UBUNTU_VERSION=$(lsb_release -rs)
+            URL=$(curl -s https://api.github.com/repos/LizardByte/Sunshine/releases/latest \
+            | grep "browser_download_url.*ubuntu-${UBUNTU_VERSION}-amd64.deb" \
+            | cut -d '"' -f 4)
+
+            # Install using DEB file
+            wget "$URL" && sudo dpkg -i "./$(basename "$URL")"
+            ;;
+    esac
 
     # Enable necessary Firewall ports
     for port in 47984 47989 47990 48010; do

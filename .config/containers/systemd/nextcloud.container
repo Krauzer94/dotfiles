@@ -1,6 +1,6 @@
 # nextcloud.container
 [Container]
-Image=nextcloud
+Image=docker.io/nextcloud
 PublishPort=8080:80
 Volume=nextcloud:/var/www/html
 

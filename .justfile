@@ -148,7 +148,7 @@ setup-themes:
     #!/bin/bash
 
     # Create necessary folders
-    mkdir $HOME/.themes && mkdir $HOME/.icons
+    mkdir -p $HOME/{.themes,.icons}
 
     # Copy system files over
     cp -r /usr/share/themes/* $HOME/.themes/

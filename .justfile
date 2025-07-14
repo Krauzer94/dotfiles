@@ -73,7 +73,7 @@ installs-fedora:
     #!/bin/bash
     echo -e "\n\t Installing Fedora specific apps \n"
 
-    # Native RPM package installs
+    # Native package installs
     sudo dnf install -y \
         btrfs-assistant \
         distrobox \

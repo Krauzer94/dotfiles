@@ -79,7 +79,7 @@ installs-fedora:
     # Native RPM package installs
     sudo dnf install -y \
         btrfs-assistant \
-        podlet distrobox \
+        distrobox \
         mangohud steam
 
     # Install remaining apps

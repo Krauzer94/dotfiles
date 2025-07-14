@@ -10,6 +10,7 @@ enable-quadlets:
 
     # Enable Firewall port
     sudo firewall-cmd --permanent --add-port=8080/tcp
+    sudo firewall-cmd --reload
 
     # Start NextCloud Quadlet
     systemctl --user daemon-reload

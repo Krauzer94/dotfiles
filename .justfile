@@ -105,7 +105,7 @@ installs-sunshine:
             SigLevel = Optional
             Server = https://github.com/LizardByte/pacman-repo/releases/latest/download" \
             | sudo tee -a /etc/pacman.conf > /dev/null
-            sudo pacman -S --noconfirm sunshine
+            sudo pacman -Syu --noconfirm sunshine
             ;;
     esac
 

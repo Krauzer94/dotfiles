@@ -68,9 +68,6 @@ installs-common:
         org.kde.okular \
         com.dec05eba.gpu_screen_recorder
 
-    # Development tools
-    just setup-devenv
-
 # Installs Fedora specific apps
 installs-fedora:
     #!/bin/bash

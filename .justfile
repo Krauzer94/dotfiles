@@ -72,7 +72,8 @@ installs-kubuntu:
     # Native package installs
     sudo ubuntu-drivers install
     sudo apt install -y \
-        timeshift firewall-config firewalld \
+        timeshift firewalld \
+        firewall-config \
         mangohud steam-installer
 
     # Enable system services

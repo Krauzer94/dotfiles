@@ -13,9 +13,6 @@ install_base() {
         fedora*)
             sudo dnf install -y git
             ;;
-        archlinux*)
-            sudo pacman -S --noconfirm git
-            ;;
         *)
             sudo apt update && sudo apt install -y \
                 git podman distrobox
@@ -54,8 +51,8 @@ remaining_apps() {
         fedora*)
             just installs-fedora
             ;;
-        archlinux*)
-            just installs-archlinux
+        kubuntu*)
+            just installs-kubuntu
             ;;
         *)
             just setup-devenv

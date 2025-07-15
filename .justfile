@@ -19,24 +19,6 @@ enable-quadlets:
     # Enable at system startup
     loginctl enable-linger $USER
 
-# Installs Arch specific apps
-installs-archlinux:
-    #!/bin/bash
-    echo -e "\n\t Installing Arch specific apps \n"
-
-    # Native package installs
-    sudo pacman -Syu --needed --noconfirm \
-        noto-fonts-cjk firewalld \
-        podman distrobox \
-        mangohud steam
-
-    # Enable system services
-    sudo systemctl enable --now \
-        firewalld NetworkManager bluetooth
-
-    # Install remaining apps
-    just installs-common
-
 # Installs common applications
 installs-common:
     #!/bin/bash
@@ -82,6 +64,23 @@ installs-fedora:
     # Install remaining apps
     just installs-common
 
+# Installs Kubuntu specific apps
+installs-kubuntu:
+    #!/bin/bash
+    echo -e "\n\t Installing Kubuntu specific apps \n"
+
+    # Native package installs
+    sudo ubuntu-drivers install
+    sudo apt install -y \
+        timeshift firewall-config firewalld \
+        mangohud steam-installer
+
+    # Enable system services
+    sudo systemctl enable --now firewalld
+
+    # Install remaining apps
+    just installs-common
+
 # Installs Sunshine application
 installs-sunshine:
     #!/bin/bash
@@ -95,14 +94,9 @@ installs-sunshine:
             sudo dnf copr enable lizardbyte/stable
             sudo dnf install -y Sunshine
             ;;
-        archlinux*)
-            # Install from the pacman-repo
-            echo "
-            [lizardbyte]
-            SigLevel = Optional
-            Server = https://github.com/LizardByte/pacman-repo/releases/latest/download" \
-            | sudo tee -a /etc/pacman.conf > /dev/null
-            sudo pacman -Syu --noconfirm sunshine
+        kubuntu*)
+            # Download the DEB installer
+            echo -e "\t Installer: https://github.com/LizardByte/Sunshine/releases \n"
             ;;
     esac
 

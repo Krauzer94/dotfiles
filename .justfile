@@ -55,6 +55,10 @@ installs-fedora:
     #!/bin/bash
     echo -e "\n\t Installing Fedora specific apps \n"
 
+    # Install NVIDIA driver
+    sudo sh -c 'echo "%_with_kmod_nvidia_open 1" > /etc/rpm/macros.nvidia-kmod'
+    sudo akmods --kernels $(uname -r) --rebuild
+
     # Native package installs
     sudo dnf install -y \
         btrfs-assistant \
@@ -69,14 +73,14 @@ installs-kubuntu:
     #!/bin/bash
     echo -e "\n\t Installing Kubuntu specific apps \n"
 
-    # Native package installs
+    # Install NVIDIA driver
     sudo ubuntu-drivers install
+
+    # Native package installs
     sudo apt install -y \
         timeshift firewalld \
         firewall-config \
         mangohud steam-installer
-
-    # Enable system services
     sudo systemctl enable --now firewalld
 
     # Install remaining apps

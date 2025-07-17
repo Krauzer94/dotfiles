@@ -68,18 +68,6 @@ installs-fedora:
     # Install remaining apps
     just installs-common
 
-# Install NixOS specific apps
-installs-nixos:
-    #!/usr/bin/env bash
-    echo -e "\n\t Installing NixOS specific apps \n"
-
-    # Apply Flake settings
-    sudo cp -f /etc/nixos/hardware-configuration.nix ~/.flake
-    sudo nixos-rebuild switch --flake ~/.flake
-
-    # Install remaining apps
-    just installs-common
-
 # Installs Sunshine application
 installs-sunshine:
     #!/bin/bash
@@ -146,22 +134,6 @@ setup-themes:
     # Copy system files over
     cp -r /usr/share/themes/* $HOME/.themes/
     cp -r /usr/share/icons/* $HOME/.icons/
-
-# Update NixOS system packages
-update-nixos:
-    #!/bin/bash
-    echo -e "\n\t Updating NixOS system packages \n"
-
-    # Update the lock file
-    nix flake update ~/.flake
-    git add -f ~/.flake/flake.lock
-
-    # Apply system updates
-    sudo nixos-rebuild switch --flake ~/.flake
-
-    # Restore the lock file
-    git restore --staged ~/.flake/flake.lock
-    git restore ~/.flake/flake.lock
 
 # Upload savegame folder files
 [no-cd]

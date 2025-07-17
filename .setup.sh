@@ -13,9 +13,6 @@ install_base() {
         fedora*)
             sudo dnf install -y git
             ;;
-        nixos*)
-            sudo nixos-rebuild switch
-            ;;
         *)
             sudo apt update && sudo apt install -y \
                 git podman distrobox
@@ -53,9 +50,6 @@ remaining_apps() {
             ;;
         fedora*)
             just installs-fedora
-            ;;
-        nixos*)
-            just installs-nixos
             ;;
         *)
             just setup-devenv

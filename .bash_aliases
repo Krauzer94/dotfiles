@@ -1,8 +1,3 @@
-# NixOS specific
-  alias flakeup='nix flake update ~/.flake && git add -f ~/.flake/flake.lock'
-  alias nupdate='flakeup && sudo nixos-rebuild switch --flake ~/.flake'
-  alias nrevert='git restore --staged . && git restore .'
-
 # Flatpak specific
   alias fupdate='flatpak update -y'
   alias fclean='flatpak uninstall --unused'

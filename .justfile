@@ -68,20 +68,14 @@ installs-fedora:
     # Install remaining apps
     just installs-common
 
-# Installs Kubuntu specific apps
-installs-kubuntu:
-    #!/bin/bash
-    echo -e "\n\t Installing Kubuntu specific apps \n"
+# Install NixOS specific apps
+installs-nixos:
+    #!/usr/bin/env bash
+    echo -e "\n\t Installing NixOS specific apps \n"
 
-    # Install NVIDIA driver
-    sudo ubuntu-drivers install
-
-    # Native package installs
-    sudo apt install -y \
-        timeshift firewalld \
-        firewall-config \
-        mangohud steam-installer
-    sudo systemctl enable --now firewalld
+    # Apply Flake settings
+    sudo cp -f /etc/nixos/hardware-configuration.nix ~/.flake
+    sudo nixos-rebuild switch --flake ~/.flake
 
     # Install remaining apps
     just installs-common
@@ -152,6 +146,22 @@ setup-themes:
     # Copy system files over
     cp -r /usr/share/themes/* $HOME/.themes/
     cp -r /usr/share/icons/* $HOME/.icons/
+
+# Update NixOS system packages
+update-nixos:
+    #!/bin/bash
+    echo -e "\n\t Updating NixOS system packages \n"
+
+    # Update the lock file
+    nix flake update ~/.flake
+    git add -f ~/.flake/flake.lock
+
+    # Apply system updates
+    sudo nixos-rebuild switch --flake ~/.flake
+
+    # Restore the lock file
+    git restore --staged ~/.flake/flake.lock
+    git restore ~/.flake/flake.lock
 
 # Upload savegame folder files
 [no-cd]

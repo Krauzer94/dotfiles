@@ -68,6 +68,24 @@ installs-fedora:
     # Install remaining apps
     just installs-common
 
+# Installs Kubuntu specific apps
+installs-kubuntu:
+    #!/bin/bash
+    echo -e "\n\t Installing Kubuntu specific apps \n"
+
+    # Install NVIDIA driver
+    sudo ubuntu-drivers install
+
+    # Native package installs
+    sudo apt install -y \
+        timeshift firewalld \
+        firewall-config \
+        mangohud steam-installer
+    sudo systemctl enable --now firewalld
+
+    # Install remaining apps
+    just installs-common
+
 # Installs Sunshine application
 installs-sunshine:
     #!/bin/bash

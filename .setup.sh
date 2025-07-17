@@ -51,6 +51,9 @@ remaining_apps() {
         fedora*)
             just installs-fedora
             ;;
+        kubuntu*)
+            just installs-kubuntu
+            ;;
         *)
             just setup-devenv
             ;;

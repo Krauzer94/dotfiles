@@ -55,15 +55,15 @@ installs-fedora:
     #!/bin/bash
     echo -e "\n\t Installing Fedora specific apps \n"
 
-    # Install NVIDIA driver
-    sudo sh -c 'echo "%_with_kmod_nvidia_open 1" > /etc/rpm/macros.nvidia-kmod'
-    sudo akmods --kernels $(uname -r) --rebuild
+    # Enable bootable snapshots
+    sudo dnf copr enable kylegospo/grub-btrfs
 
     # Native package installs
     sudo dnf install -y \
         btrfs-assistant \
-        distrobox \
+        grub-btrfs distrobox \
         mangohud steam
+    sudo systemctl enable --now grub-btrfs.path
 
     # Install remaining apps
     just installs-common
@@ -73,7 +73,7 @@ installs-kubuntu:
     #!/bin/bash
     echo -e "\n\t Installing Kubuntu specific apps \n"
 
-    # Install NVIDIA driver
+    # Install GPU drivers
     sudo ubuntu-drivers install
 
     # Native package installs

@@ -61,8 +61,10 @@ installs-fedora:
     # Native package installs
     sudo dnf install -y \
         btrfs-assistant \
-        grub-btrfs distrobox \
-        mangohud steam
+        grub-btrfs \
+        distrobox \
+        mangohud \
+        steam
     sudo systemctl enable --now grub-btrfs.path
 
     # Install remaining apps
@@ -78,9 +80,11 @@ installs-kubuntu:
 
     # Native package installs
     sudo apt install -y \
-        timeshift firewalld \
+        timeshift \
+        firewalld \
         firewall-config \
-        mangohud steam-installer
+        mangohud \
+        steam-installer
     sudo systemctl enable --now firewalld
 
     # Install remaining apps

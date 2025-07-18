@@ -51,7 +51,7 @@ installs-common:
         com.dec05eba.gpu_screen_recorder
 
 # Installs Fedora specific apps
-install-fedora:
+installs-fedora:
     #!/bin/bash
     echo -e "\n\t Installing Fedora specific apps \n"
 

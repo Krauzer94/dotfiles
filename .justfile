@@ -55,17 +55,12 @@ installs-fedora:
     #!/bin/bash
     echo -e "\n\t Installing Fedora specific apps \n"
 
-    # Enable bootable snapshots
-    sudo dnf copr enable kylegospo/grub-btrfs
-
     # Native package installs
     sudo dnf install -y \
         btrfs-assistant \
-        grub-btrfs \
         distrobox \
         mangohud \
         steam
-    sudo systemctl enable --now grub-btrfs.path
 
     # Install remaining apps
     just installs-common
@@ -75,16 +70,11 @@ installs-kubuntu:
     #!/bin/bash
     echo -e "\n\t Installing Kubuntu specific apps \n"
 
-    # Install GPU drivers
-    sudo ubuntu-drivers install
-
     # Native package installs
     sudo apt install -y \
-        timeshift \
-        firewalld \
+        timeshift firewalld \
         firewall-config \
-        mangohud \
-        steam-installer
+        mangohud steam-installer
     sudo systemctl enable --now firewalld
 
     # Install remaining apps

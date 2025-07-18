@@ -90,7 +90,7 @@ installs-sunshine:
     case "$HOST" in
         fedora*)
             # Install Sunshine from COPR
-            sudo dnf copr enable lizardbyte/stable
+            sudo dnf copr enable -y lizardbyte/stable
             sudo dnf install -y Sunshine
             ;;
         kubuntu*)

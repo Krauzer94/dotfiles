@@ -3,22 +3,6 @@ set quiet
 _default:
     just --list
 
-# Enable user service Quadlets
-enable-quadlets:
-    #!/bin/bash
-    echo -e "\n\t Enabling user service Quadlets \n"
-
-    # Enable Firewall port
-    sudo firewall-cmd --permanent --add-port=8080/tcp
-    sudo firewall-cmd --reload
-
-    # Start NextCloud Quadlet
-    systemctl --user daemon-reload
-    systemctl --user start nextcloud
-
-    # Enable at system startup
-    loginctl enable-linger $USER
-
 # Installs common applications
 installs-common:
     #!/bin/bash
@@ -122,6 +106,22 @@ setup-devenv:
     ssh-keygen -t ed25519 -C 13894059+Krauzer94@users.noreply.github.com
     echo '' && cat ~/.ssh/id_ed25519.pub && echo ''
     git remote set-url origin git@github.com:Krauzer94/dotfiles.git
+
+# Set up user service Quadlets
+setup-quadlets:
+    #!/bin/bash
+    echo -e "\n\t Setting up user service Quadlets \n"
+
+    # Enable Firewall port
+    sudo firewall-cmd --permanent --add-port=8080/tcp
+    sudo firewall-cmd --reload
+
+    # Start NextCloud Quadlet
+    systemctl --user daemon-reload
+    systemctl --user start nextcloud
+
+    # Enable at system startup
+    loginctl enable-linger $USER
 
 # Set up Tailscale on the Deck
 setup-taildeck:

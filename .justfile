@@ -123,7 +123,7 @@ setup-fedora:
     sudo systemctl enable --now dnf-automatic.timer
 
     # GRUB bootable snapshots
-    sudo dnf copr enable kylegospo/grub-btrfs
+    sudo dnf copr enable -y kylegospo/grub-btrfs
     sudo dnf install -y grub-btrfs
     sudo systemctl enable --now grub-btrfs.path
 

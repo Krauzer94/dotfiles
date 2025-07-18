@@ -71,11 +71,9 @@ installs-sunshine:
     HOST=$HOSTNAME
     case "$HOST" in
         fedora*)
-            # Install Sunshine from COPR
             sudo dnf copr enable -y lizardbyte/stable
             sudo dnf install -y Sunshine
 
-            # Enable the firewall ports
             for port in 47984 47989 47990 48010; do
                 sudo firewall-cmd --permanent --add-port=${port}/tcp
             done
@@ -83,14 +81,15 @@ installs-sunshine:
             sudo firewall-cmd --reload
             ;;
         kubuntu*)
-            # Download the DEB installer
             echo -e "\t Installer: https://github.com/LizardByte/Sunshine/releases \n"
 
-            # Enable the firewall ports
             for port in 47984 47989 47990 48010; do
                 sudo ufw allow ${port}/tcp
             done
             sudo ufw allow 47998:48000/udp
+            ;;
+        *)
+            echo -e "\t Unsupported distro, operation failed... \n"
             ;;
     esac
 
@@ -116,9 +115,20 @@ setup-quadlets:
     #!/bin/bash
     echo -e "\n\t Setting up user service Quadlets \n"
 
-    # Enable Firewall port
-    sudo firewall-cmd --permanent --add-port=8080/tcp
-    sudo firewall-cmd --reload
+    # Enable the firewall port
+    HOST=$HOSTNAME
+    case "$HOST" in
+        fedora*)
+            sudo firewall-cmd --permanent --add-port=8080/tcp
+            sudo firewall-cmd --reload
+            ;;
+        kubuntu*)
+            sudo ufw allow 8080/tcp
+            ;;
+        *)
+            echo -e "\t Unsupported distro, operation failed... \n"
+            ;;
+    esac
 
     # Start NextCloud Quadlet
     systemctl --user daemon-reload

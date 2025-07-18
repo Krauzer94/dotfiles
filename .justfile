@@ -51,7 +51,7 @@ installs-common:
         com.dec05eba.gpu_screen_recorder
 
 # Installs Fedora specific apps
-installs-fedora:
+install-fedora:
     #!/bin/bash
     echo -e "\n\t Installing Fedora specific apps \n"
 
@@ -109,6 +109,24 @@ installs-sunshine:
     # Enable WoL on system startup
     ETH_CONN=$(nmcli -t -f NAME,TYPE con show | grep ethernet | cut -d: -f1 | head -n 1)
     nmcli con modify "$ETH_CONN" ethernet.wake-on-lan magic
+
+# Set up optional Fedora features
+setup-fedora:
+    #!/bin/bash
+    echo -e "\n\t Setting up optional Fedora features \n"
+
+    # Enable automatic updates
+    sudo dnf install -y grub-btrfs
+    echo "[commands]
+    apply_updates=True
+    reboot=when-needed" | \
+    sudo tee -a /etc/dnf/automatic.conf | > /dev/null
+    sudo systemctl enable --now dnf-automatic.timer
+
+    # GRUB bootable snapshots
+    sudo dnf copr enable kylegospo/grub-btrfs
+    sudo dnf install -y grub-btrfs
+    sudo systemctl enable --now grub-btrfs.path
 
 # Set up development environment
 setup-devenv:

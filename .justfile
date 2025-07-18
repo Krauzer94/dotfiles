@@ -115,17 +115,17 @@ setup-fedora:
     #!/bin/bash
     echo -e "\n\t Setting up optional Fedora features \n"
 
-    # Enable automatic updates
+    # Install auto update plugin
     sudo dnf install -y dnf-automatic
+
+    # Ensure updates are applied
     echo "[commands]
     apply_updates=True
-    reboot=when-needed" | sudo tee -a /etc/dnf/automatic.conf > /dev/null
-    sudo systemctl enable --now dnf-automatic.timer
+    reboot=when-needed" \
+    | sudo tee -a /etc/dnf/automatic.conf > /dev/null
 
-    # GRUB bootable snapshots
-    sudo dnf copr enable -y kylegospo/grub-btrfs
-    sudo dnf install -y grub-btrfs
-    sudo systemctl enable --now grub-btrfs.path
+    # Enable the timer service
+    sudo systemctl enable --now dnf-automatic.timer
 
 # Set up development environment
 setup-devenv:

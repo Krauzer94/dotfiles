@@ -110,23 +110,6 @@ installs-sunshine:
     ETH_CONN=$(nmcli -t -f NAME,TYPE con show | grep ethernet | cut -d: -f1 | head -n 1)
     nmcli con modify "$ETH_CONN" ethernet.wake-on-lan magic
 
-# Set up optional Fedora features
-setup-fedora:
-    #!/bin/bash
-    echo -e "\n\t Setting up optional Fedora features \n"
-
-    # Install auto update plugin
-    sudo dnf install -y dnf-automatic
-
-    # Ensure updates are applied
-    echo "[commands]
-    apply_updates=True
-    reboot=when-needed" \
-    | sudo tee -a /etc/dnf/automatic.conf > /dev/null
-
-    # Enable the timer service
-    sudo systemctl enable --now dnf-automatic.timer
-
 # Set up development environment
 setup-devenv:
     #!/bin/bash

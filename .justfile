@@ -74,19 +74,25 @@ installs-sunshine:
             # Install Sunshine from COPR
             sudo dnf copr enable -y lizardbyte/stable
             sudo dnf install -y Sunshine
+
+            # Enable the firewall ports
+            for port in 47984 47989 47990 48010; do
+                sudo firewall-cmd --permanent --add-port=${port}/tcp
+            done
+            sudo firewall-cmd --permanent --add-port=47998-48000/udp
+            sudo firewall-cmd --reload
             ;;
         kubuntu*)
             # Download the DEB installer
             echo -e "\t Installer: https://github.com/LizardByte/Sunshine/releases \n"
+
+            # Enable the firewall ports
+            for port in 47984 47989 47990 48010; do
+                sudo ufw allow ${port}/tcp
+            done
+            sudo ufw allow 47998:48000/udp
             ;;
     esac
-
-    # Enable necessary Firewall ports
-    for port in 47984 47989 47990 48010; do
-        sudo firewall-cmd --permanent --add-port=${port}/tcp
-    done
-    sudo firewall-cmd --permanent --add-port=47998-48000/udp
-    sudo firewall-cmd --reload
 
     # Enable WoL on system startup
     ETH_CONN=$(nmcli -t -f NAME,TYPE con show | grep ethernet | cut -d: -f1 | head -n 1)

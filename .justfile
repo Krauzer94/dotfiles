@@ -116,11 +116,10 @@ setup-fedora:
     echo -e "\n\t Setting up optional Fedora features \n"
 
     # Enable automatic updates
-    sudo dnf install -y grub-btrfs
+    sudo dnf install -y dnf-automatic
     echo "[commands]
     apply_updates=True
-    reboot=when-needed" | \
-    sudo tee -a /etc/dnf/automatic.conf | > /dev/null
+    reboot=when-needed" | sudo tee -a /etc/dnf/automatic.conf > /dev/null
     sudo systemctl enable --now dnf-automatic.timer
 
     # GRUB bootable snapshots

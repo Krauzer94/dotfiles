@@ -13,7 +13,7 @@ install_base() {
         fedora*)
             sudo dnf install -y git
             ;;
-        *)
+        kubuntu*|*)
             sudo apt update && sudo apt install -y \
                 git podman distrobox
             ;;
@@ -48,11 +48,8 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        fedora*)
-            just installs-fedora
-            ;;
-        kubuntu*)
-            just installs-kubuntu
+        fedora*|kubuntu*)
+            just installs-specific
             ;;
         *)
             just setup-devenv

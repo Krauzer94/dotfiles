@@ -85,30 +85,31 @@ installs-docker:
     sudo systemctl enable --now docker
     sudo usermod -aG docker $USER
 
-# Installs Fedora specific apps
-installs-fedora:
+# Installs distro specific apps
+installs-specific:
     #!/bin/bash
-    echo -e "\n\t Installing Fedora specific apps \n"
+    echo -e "\n\t Installing distro specific apps \n"
 
-    # Native package installs
-    sudo dnf install -y \
-        distrobox \
-        mangohud \
-        steam
+    # Main packages to install
+    DISTRO_PACKAGES=( "distrobox" "mangohud" "steam" )
 
-    # Install remaining apps
-    just installs-common
-
-# Installs Kubuntu specific apps
-installs-kubuntu:
-    #!/bin/bash
-    echo -e "\n\t Installing Kubuntu specific apps \n"
-
-    # Native package installs
-    sudo apt install -y \
-        distrobox \
-        mangohud \
-        steam
+    # Install based on hostname
+    HOST=$HOSTNAME
+    case "$HOST" in
+        fedora*)
+            for package in "${DISTRO_PACKAGES[@]}"; do
+                sudo dnf install -y "$package"
+            done
+            ;;
+        kubuntu*)
+            for package in "${DISTRO_PACKAGES[@]}"; do
+                sudo apt install -y "$package"
+            done
+            ;;
+        *)
+            echo -e "\t Unsupported distro, operation failed... \n"
+            ;;
+    esac
 
     # Install remaining apps
     just installs-common

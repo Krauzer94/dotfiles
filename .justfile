@@ -63,8 +63,8 @@ installs-docker:
         kubuntu*)
             sudo apt update && sudo apt install -y \
                 apt-transport-https \
-                ca-certificates \
-                curl software-properties-common
+                ca-certificates curl \
+                software-properties-common
 
             curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
                 | sudo tee /etc/apt/trusted.gpg.d/docker.asc

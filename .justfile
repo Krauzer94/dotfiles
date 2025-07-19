@@ -40,13 +40,12 @@ installs-docker:
     echo -e "\n\t Installing the Docker application \n"
 
     # Main packages to install
-    DOCKER_PACKAGES=(
-        "docker-ce"
-        "docker-ce-cli"
-        "containerd.io"
-        "docker-buildx-plugin"
-        "docker-compose-plugin"
-    )
+    DOCKER_PACKAGES="\
+    docker-ce \
+    docker-ce-cli \
+    containerd.io \
+    docker-buildx-plugin \
+    docker-compose-plugin"
 
     # Install based on hostname
     HOST=$HOSTNAME
@@ -56,9 +55,7 @@ installs-docker:
             sudo dnf config-manager --add-repo \
                 https://download.docker.com/linux/fedora/docker-ce.repo
 
-            for package in "${DOCKER_PACKAGES[@]}"; do
-                sudo dnf install -y "$package"
-            done
+            sudo dnf install -y $DOCKER_PACKAGES
             ;;
         kubuntu*)
             sudo apt update && sudo apt install -y \
@@ -71,13 +68,11 @@ installs-docker:
             echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
                 | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-            sudo apt update
-            for package in "${DOCKER_PACKAGES[@]}"; do
-                sudo apt install -y "$package"
-            done
+            sudo apt update && sudo apt install -y $DOCKER_PACKAGES
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
+            exit 1
             ;;
     esac
 
@@ -91,23 +86,20 @@ installs-specific:
     echo -e "\n\t Installing distro specific apps \n"
 
     # Main packages to install
-    DISTRO_PACKAGES=( "distrobox" "mangohud" "steam" )
+    DISTRO_PACKAGES="distrobox mangohud steam"
 
     # Install based on hostname
     HOST=$HOSTNAME
     case "$HOST" in
         fedora*)
-            for package in "${DISTRO_PACKAGES[@]}"; do
-                sudo dnf install -y "$package"
-            done
+            sudo dnf install -y $DISTRO_PACKAGES
             ;;
         kubuntu*)
-            for package in "${DISTRO_PACKAGES[@]}"; do
-                sudo apt install -y "$package"
-            done
+            sudo apt install -y $DISTRO_PACKAGES
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
+            exit 1
             ;;
     esac
 
@@ -142,6 +134,7 @@ installs-sunshine:
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
+            exit 1
             ;;
     esac
 
@@ -179,6 +172,7 @@ setup-quadlets:
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
+            exit 1
             ;;
     esac
 

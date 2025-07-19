@@ -196,7 +196,7 @@ setup-taildeck:
     # Download necessary files
     git clone git@github.com:tailscale-dev/deck-tailscale.git
     cd ./deck-tailscale
-    
+
     # Install and source binary
     sudo bash ./tailscale.sh
     source /etc/profile.d/tailscale.sh

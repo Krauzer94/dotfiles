@@ -47,17 +47,17 @@ installs-docker:
     docker-buildx-plugin \
     docker-compose-plugin"
 
-    # Install based on hostname
-    HOST=$HOSTNAME
-    case "$HOST" in
-        fedora*)
+    # Install based on distro
+    DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    case "$DISTRO" in
+        fedora)
             sudo dnf install -y dnf-plugins-core
             sudo dnf config-manager --add-repo \
                 https://download.docker.com/linux/fedora/docker-ce.repo
 
             sudo dnf install -y $DOCKER_PACKAGES
             ;;
-        kubuntu*)
+        ubuntu)
             sudo apt update && sudo apt install -y \
                 apt-transport-https \
                 ca-certificates curl \
@@ -88,13 +88,13 @@ installs-specific:
     # Main packages to install
     DISTRO_PACKAGES="distrobox mangohud steam"
 
-    # Install based on hostname
-    HOST=$HOSTNAME
-    case "$HOST" in
-        fedora*)
+    # Install based on distro
+    DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    case "$DISTRO" in
+        fedora)
             sudo dnf install -y $DISTRO_PACKAGES
             ;;
-        kubuntu*)
+        ubuntu)
             sudo apt install -y $DISTRO_PACKAGES
             ;;
         *)
@@ -111,10 +111,10 @@ installs-sunshine:
     #!/bin/bash
     echo -e "\n\t Installing Sunshine application \n"
 
-    # Install based on hostname
-    HOST=$HOSTNAME
-    case "$HOST" in
-        fedora*)
+    # Install based on distro
+    DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    case "$DISTRO" in
+        fedora)
             sudo dnf copr enable -y lizardbyte/stable
             sudo dnf install -y Sunshine
 
@@ -124,7 +124,7 @@ installs-sunshine:
             sudo firewall-cmd --permanent --add-port=47998-48000/udp
             sudo firewall-cmd --reload
             ;;
-        kubuntu*)
+        ubuntu)
             echo -e "\t Installer: https://github.com/LizardByte/Sunshine/releases \n"
 
             for port in 47984 47989 47990 48010; do

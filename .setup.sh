@@ -4,18 +4,22 @@
 install_base() {
     echo -e "\n\t Installing base packages \n"
 
-    # Install based on hostname
-    HOST=$HOSTNAME
-    case "$HOST" in
-        steamdeck*)
+    # Install based on distro
+    DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    case "$DISTRO" in
+        steamos)
             flatpak uninstall --all -y
             ;;
-        fedora*)
+        fedora)
             sudo dnf install -y git
             ;;
-        kubuntu*|*)
+        ubuntu)
             sudo apt update && sudo apt install -y \
                 git podman distrobox
+            ;;
+        *)
+            echo -e "\t Unsupported distro, operation failed... \n"
+            exit 1
             ;;
     esac
 }

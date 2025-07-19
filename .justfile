@@ -39,7 +39,7 @@ installs-docker:
     #!/bin/bash
     echo -e "\n\t Installing the Docker application \n"
 
-    # Docker packages to install
+    # Main packages to install
     DOCKER_PACKAGES=(
         "docker-ce"
         "docker-ce-cli"

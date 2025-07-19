@@ -34,6 +34,57 @@ installs-common:
         org.kde.okular \
         com.dec05eba.gpu_screen_recorder
 
+# Installs the Docker application
+installs-docker:
+    #!/bin/bash
+    echo -e "\n\t Installing the Docker application \n"
+
+    # Docker packages to install
+    DOCKER_PACKAGES=(
+        "docker-ce"
+        "docker-ce-cli"
+        "containerd.io"
+        "docker-buildx-plugin"
+        "docker-compose-plugin"
+    )
+
+    # Install based on hostname
+    HOST=$HOSTNAME
+    case "$HOST" in
+        fedora*)
+            sudo dnf install -y dnf-plugins-core
+            sudo dnf config-manager --add-repo \
+                https://download.docker.com/linux/fedora/docker-ce.repo
+
+            for package in "${DOCKER_PACKAGES[@]}"; do
+                sudo dnf install -y "$package"
+            done
+            ;;
+        kubuntu*)
+            sudo apt update && sudo apt install -y \
+                apt-transport-https \
+                ca-certificates \
+                curl software-properties-common
+
+            curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
+                | sudo tee /etc/apt/trusted.gpg.d/docker.asc
+            echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+                | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+            sudo apt update
+            for package in "${DOCKER_PACKAGES[@]}"; do
+                sudo apt install -y "$package"
+            done
+            ;;
+        *)
+            echo -e "\t Unsupported distro, operation failed... \n"
+            ;;
+    esac
+
+    # Post install configuration
+    sudo systemctl enable --now docker
+    sudo usermod -aG docker $USER
+
 # Installs Fedora specific apps
 installs-fedora:
     #!/bin/bash

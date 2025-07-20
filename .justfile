@@ -161,13 +161,13 @@ setup-quadlets:
     echo -e "\n\t Setting up user service Quadlets \n"
 
     # Enable the firewall port
-    HOST=$HOSTNAME
-    case "$HOST" in
-        fedora*)
+    DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    case "$DISTRO" in
+        fedora)
             sudo firewall-cmd --permanent --add-port=8080/tcp
             sudo firewall-cmd --reload
             ;;
-        kubuntu*)
+        ubuntu)
             sudo ufw allow 8080/tcp
             ;;
         *)

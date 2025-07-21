@@ -125,12 +125,14 @@ installs-sunshine:
             sudo firewall-cmd --reload
             ;;
         ubuntu)
-            echo -e "\t Installer: https://github.com/LizardByte/Sunshine/releases \n"
-
+            sudo apt update
             for port in 47984 47989 47990 48010; do
                 sudo ufw allow ${port}/tcp
             done
             sudo ufw allow 47998:48000/udp
+
+            echo -e "\n\t Download: https://github.com/LizardByte/Sunshine/releases "
+            echo -e "\n\t Install: sudo apt install -y ~/Downloads/sunshine-*.deb \n"
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"

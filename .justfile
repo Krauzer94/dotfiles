@@ -131,8 +131,16 @@ installs-sunshine:
             done
             sudo ufw allow 47998:48000/udp
 
-            echo -e "\n\t Download: https://github.com/LizardByte/Sunshine/releases "
-            echo -e "\n\t Install: sudo apt install -y ~/Downloads/sunshine-*.deb \n"
+            # Find the latest installer
+            DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
+            GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
+            DEB_URL=$(curl -s "$GITHUB_URL" | grep browser_download_url | grep "$DISTRO_VERSION" | grep "amd64\.deb" | cut -d '"' -f 4)
+
+            # Download, install and clean
+            FILENAME=$(basename "$DEB_URL")
+            wget -q --show-progress "$DEB_URL" -O "/tmp/$FILENAME"
+            sudo apt install -y "/tmp/$FILENAME"
+            rm "/tmp/$FILENAME"
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"

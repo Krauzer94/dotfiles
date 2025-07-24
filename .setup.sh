@@ -21,6 +21,9 @@ install_base() {
             sudo apt update && sudo apt install -y \
                 git podman distrobox
             ;;
+        arch)
+            sudo pacman -S --noconfirm git
+            ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
             exit 1
@@ -56,7 +59,7 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        fedora*|ubuntu*)
+        fedora*|ubuntu*|archlinux*)
             just installs-specific
             ;;
         *)

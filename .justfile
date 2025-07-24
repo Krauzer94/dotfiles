@@ -12,7 +12,7 @@ installs-common:
     just setup-themes
 
     # Install all Flatpaks
-    flatpak install -y flathub \
+    flatpak install -y --noninteractive flathub \
         org.mozilla.firefox \
         org.gimp.GIMP \
         org.qbittorrent.qBittorrent \
@@ -32,7 +32,7 @@ installs-common:
         org.kde.kcalc \
         org.kde.gwenview \
         org.kde.okular \
-        com.dec05eba.gpu_screen_recorder
+        com.dec05eba.gpu_screen_recorder > /dev/null
 
 # Installs the Docker application
 installs-docker:

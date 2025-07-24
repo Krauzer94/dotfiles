@@ -119,8 +119,17 @@ installs-sunshine:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         fedora)
-            sudo dnf copr enable -y lizardbyte/stable
-            sudo dnf install -y Sunshine
+            if command -v dnf &> /dev/null; then
+                sudo dnf copr enable -y lizardbyte/stable
+                sudo dnf install -y Sunshine
+            else
+                OS_VERSION=$(lsb_release -rs)
+                URL_PREFIX="https://copr.fedorainfracloud.org/coprs/lizardbyte/stable/repo/"
+                URL_RESULT="${URL_PREFIX}fedora-${OS_VERSION}/lizardbyte-stable-fedora-${OS_VERSION}.repo"
+
+                sudo curl -o /etc/yum.repos.d/lizardbyte-stable.repo "$URL_RESULT"
+                sudo rpm-ostree install --apply-live -y Sunshine
+            fi
 
             for port in 47984 47989 47990 48010; do
                 sudo firewall-cmd --permanent --add-port=${port}/tcp

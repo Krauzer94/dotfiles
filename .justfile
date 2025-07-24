@@ -177,7 +177,7 @@ installs-sunshine:
             ;;
     esac
 
-    # For firewalld only systems
+    # For UFW only systems
     if [[ "$DISTRO" == "ubuntu" || "$DISTRO" == "arch" ]]; then
         for port in 47984 47989 47990 48010; do
             sudo ufw allow ${port}/tcp

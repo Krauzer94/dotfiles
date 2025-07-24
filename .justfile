@@ -75,6 +75,10 @@ installs-docker:
 
             sudo apt update && sudo apt install -y $DOCKER_PACKAGES
             ;;
+        arch)
+            sudo pacman -Syu --noconfirm \
+                docker docker-buildx docker-compose
+            ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
             exit 1

@@ -208,7 +208,7 @@ setup-quadlets:
     # Enable the firewall port
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        fedora)
+        fedora|arch)
             sudo firewall-cmd --permanent --add-port=8080/tcp
             sudo firewall-cmd --reload
             ;;

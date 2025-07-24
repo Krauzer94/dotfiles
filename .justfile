@@ -51,11 +51,16 @@ installs-docker:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         fedora)
-            sudo dnf install -y dnf-plugins-core
-            sudo dnf config-manager --add-repo \
-                https://download.docker.com/linux/fedora/docker-ce.repo
-
-            sudo dnf install -y $DOCKER_PACKAGES
+            if command -v dnf &> /dev/null; then
+                sudo dnf install -y dnf-plugins-core
+                sudo dnf config-manager --add-repo \
+                    https://download.docker.com/linux/fedora/docker-ce.repo
+                sudo dnf install -y $DOCKER_PACKAGES
+            else
+                sudo curl -o /etc/yum.repos.d/docker-ce.repo \
+                    https://download.docker.com/linux/fedora/docker-ce.repo
+                sudo rpm-ostree install --apply-live -y $DOCKER_PACKAGES
+            fi
             ;;
         ubuntu)
             sudo apt update && sudo apt install -y \

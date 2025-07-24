@@ -106,6 +106,12 @@ installs-specific:
         ubuntu)
             sudo apt install -y $DISTRO_PACKAGES
             ;;
+        arch)
+            sudo pacman -Syu --noconfirm $DISTRO_PACKAGES \
+                noto-fonts-cjk firewall-config firewalld podman
+            sudo systemctl enable --now \
+                NetworkManager firewalld bluetooth
+            ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
             exit 1

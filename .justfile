@@ -141,12 +141,6 @@ installs-sunshine:
                 sudo curl -o /etc/yum.repos.d/lizardbyte-stable.repo "$URL_RESULT"
                 sudo rpm-ostree install --apply-live -y Sunshine
             fi
-
-            for port in 47984 47989 47990 48010; do
-                sudo firewall-cmd --permanent --add-port=${port}/tcp
-            done
-            sudo firewall-cmd --permanent --add-port=47998-48000/udp
-            sudo firewall-cmd --reload
             ;;
         ubuntu)
             sudo apt update
@@ -166,11 +160,28 @@ installs-sunshine:
             sudo apt install -y "/tmp/$FILENAME"
             rm "/tmp/$FILENAME"
             ;;
+        arch)
+            echo "
+            [lizardbyte]
+            SigLevel = Optional
+            Server = https://github.com/LizardByte/pacman-repo/releases/latest/download" \
+            | sudo tee -a /etc/pacman.conf > /dev/null
+            sudo pacman -Syu --noconfirm sunshine
+            ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
             exit 1
             ;;
     esac
+
+    # For firewalld only systems
+    if [[ "$DISTRO" == "fedora" || "$DISTRO" == "arch" ]]; then
+        for port in 47984 47989 47990 48010; do
+            sudo firewall-cmd --permanent --add-port=${port}/tcp
+        done
+        sudo firewall-cmd --permanent --add-port=47998-48000/udp
+        sudo firewall-cmd --reload
+    fi
 
     # Enable WoL on system startup
     ETH_CONN=$(nmcli -t -f NAME,TYPE con show | grep ethernet | cut -d: -f1 | head -n 1)

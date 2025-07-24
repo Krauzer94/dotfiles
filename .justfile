@@ -112,9 +112,9 @@ installs-specific:
             ;;
         arch)
             sudo pacman -Syu --noconfirm $DISTRO_PACKAGES \
-                noto-fonts-cjk firewall-config firewalld podman
+                noto-fonts-cjk podman ufw
             sudo systemctl enable --now \
-                NetworkManager firewalld bluetooth
+                NetworkManager bluetooth ufw
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"

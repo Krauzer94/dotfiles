@@ -134,6 +134,12 @@ installs-sunshine:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         fedora)
+            for port in 47984 47989 47990 48010; do
+                sudo firewall-cmd --permanent --add-port=${port}/tcp
+            done
+            sudo firewall-cmd --permanent --add-port=47998-48000/udp
+            sudo firewall-cmd --reload
+
             if command -v dnf &> /dev/null; then
                 sudo dnf copr enable -y lizardbyte/stable
                 sudo dnf install -y Sunshine
@@ -141,18 +147,11 @@ installs-sunshine:
                 OS_VERSION=$(lsb_release -rs)
                 URL_PREFIX="https://copr.fedorainfracloud.org/coprs/lizardbyte/stable/repo/"
                 URL_RESULT="${URL_PREFIX}fedora-${OS_VERSION}/lizardbyte-stable-fedora-${OS_VERSION}.repo"
-
                 sudo curl -o /etc/yum.repos.d/lizardbyte-stable.repo "$URL_RESULT"
                 sudo rpm-ostree install --apply-live -y Sunshine
             fi
             ;;
         ubuntu)
-            sudo apt update
-            for port in 47984 47989 47990 48010; do
-                sudo ufw allow ${port}/tcp
-            done
-            sudo ufw allow 47998:48000/udp
-
             # Find the latest installer
             DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
             GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
@@ -179,12 +178,11 @@ installs-sunshine:
     esac
 
     # For firewalld only systems
-    if [[ "$DISTRO" == "fedora" || "$DISTRO" == "arch" ]]; then
+    if [[ "$DISTRO" == "ubuntu" || "$DISTRO" == "arch" ]]; then
         for port in 47984 47989 47990 48010; do
-            sudo firewall-cmd --permanent --add-port=${port}/tcp
+            sudo ufw allow ${port}/tcp
         done
-        sudo firewall-cmd --permanent --add-port=47998-48000/udp
-        sudo firewall-cmd --reload
+        sudo ufw allow 47998:48000/udp
     fi
 
     # Enable WoL on system startup
@@ -212,11 +210,11 @@ setup-quadlets:
     # Enable the firewall port
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        fedora|arch)
+        fedora)
             sudo firewall-cmd --permanent --add-port=8080/tcp
             sudo firewall-cmd --reload
             ;;
-        ubuntu)
+        ubuntu|arch)
             sudo ufw allow 8080/tcp
             ;;
         *)

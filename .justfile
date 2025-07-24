@@ -183,6 +183,7 @@ installs-sunshine:
             sudo ufw allow ${port}/tcp
         done
         sudo ufw allow 47998:48000/udp
+        sudo ufw reload
     fi
 
     # Enable WoL on system startup
@@ -216,6 +217,7 @@ setup-quadlets:
             ;;
         ubuntu|arch)
             sudo ufw allow 8080/tcp
+            sudo ufw reload
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"

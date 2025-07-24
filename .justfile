@@ -92,7 +92,11 @@ installs-specific:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         fedora)
-            sudo dnf install -y $DISTRO_PACKAGES
+            if command -v dnf &> /dev/null; then
+                sudo dnf install -y $DISTRO_PACKAGES
+            else
+                sudo rpm-ostree install --apply-live -y $DISTRO_PACKAGES
+            fi
             ;;
         ubuntu)
             sudo apt install -y $DISTRO_PACKAGES

@@ -104,7 +104,9 @@ installs-specific:
             if command -v dnf &> /dev/null; then
                 sudo dnf install -y $DISTRO_PACKAGES
             else
-                sudo rpm-ostree install --apply-live -y $DISTRO_PACKAGES
+                sudo sed -i '0,/^enabled=0$/s//enabled=1/' /etc/yum.repos.d/rpmfusion*
+                sudo rpm-ostree install --apply-live -y $DISTRO_PACKAGES \
+                    akmod-nvidia xorg-x11-drv-nvidia
             fi
             ;;
         ubuntu)

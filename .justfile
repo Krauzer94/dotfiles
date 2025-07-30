@@ -110,7 +110,14 @@ installs-specific:
             fi
             ;;
         ubuntu)
-            sudo apt install -y $DISTRO_PACKAGES
+            DESKTOP=$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')
+            if [[ "$DE" == *gnome* ]]; then
+                sudo apt install -y $DISTRO_PACKAGES \
+                    flatpak gnome-software-plugin-flatpak
+                flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            else
+                sudo apt install -y $DISTRO_PACKAGES
+            fi
             ;;
         arch)
             sudo pacman -Syu --needed --noconfirm $DISTRO_PACKAGES \

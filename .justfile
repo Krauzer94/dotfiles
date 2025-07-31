@@ -30,8 +30,8 @@ installs-common:
         com.visualstudio.code \
         org.videolan.VLC \
         org.kde.kcalc \
-        org.kde.gwenview \
-        org.kde.okular \
+        org.kde.pix \
+        io.missioncenter.MissionCenter \
         com.dec05eba.gpu_screen_recorder > /dev/null
 
 # Installs the Docker application
@@ -110,7 +110,15 @@ installs-specific:
             fi
             ;;
         ubuntu)
-            sudo apt install -y $DISTRO_PACKAGES
+            DESKTOP=$(echo "${XDG_CURRENT_DESKTOP}" | tr '[:upper:]' '[:lower:]')
+            if [[ "$DESKTOP" == *gnome* ]]; then
+                sudo dpkg --add-architecture i386
+                sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
+                    flatpak gnome-software-plugin-flatpak
+                flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            else
+                sudo apt install -y $DISTRO_PACKAGES
+            fi
             ;;
         arch)
             sudo pacman -Syu --needed --noconfirm $DISTRO_PACKAGES \

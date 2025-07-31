@@ -30,8 +30,8 @@ installs-common:
         com.visualstudio.code \
         org.videolan.VLC \
         org.kde.kcalc \
-        io.missioncenter.MissionCenter \
-        org.kde.pix \
+        org.kde.gwenview \
+        org.kde.okular \
         com.dec05eba.gpu_screen_recorder > /dev/null
 
 # Installs the Docker application

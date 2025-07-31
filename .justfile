@@ -111,7 +111,7 @@ installs-specific:
             ;;
         ubuntu)
             DESKTOP=$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')
-            if [[ "$DE" == *gnome* ]]; then
+            if [[ "$DESKTOP" == *gnome* ]]; then
                 sudo dpkg --add-architecture i386 && sudo apt update
                 sudo apt install -y $DISTRO_PACKAGES \
                     flatpak gnome-software-plugin-flatpak

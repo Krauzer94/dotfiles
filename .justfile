@@ -104,21 +104,15 @@ installs-specific:
             if command -v dnf &> /dev/null; then
                 sudo dnf install -y $DISTRO_PACKAGES
             else
-                sudo sed -i '0,/^enabled=0$/s//enabled=1/' /etc/yum.repos.d/rpmfusion*
                 sudo rpm-ostree install --apply-live -y $DISTRO_PACKAGES \
                     akmod-nvidia xorg-x11-drv-nvidia
             fi
             ;;
         ubuntu)
-            DESKTOP=$(echo "${XDG_CURRENT_DESKTOP}" | tr '[:upper:]' '[:lower:]')
-            if [[ "$DESKTOP" == *gnome* ]]; then
-                sudo dpkg --add-architecture i386
-                sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
-                    flatpak gnome-software-plugin-flatpak
-                flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-            else
-                sudo apt install -y $DISTRO_PACKAGES
-            fi
+            sudo dpkg --add-architecture i386
+            sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
+                flatpak gnome-software-plugin-flatpak
+            flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
             ;;
         arch)
             sudo pacman -Syu --needed --noconfirm $DISTRO_PACKAGES \

@@ -17,7 +17,7 @@ install_base() {
                 flatpak uninstall --all -y
             fi
             ;;
-        ubuntu)
+        debian|ubuntu)
             sudo apt update && sudo apt install -y \
                 git podman distrobox
             ;;
@@ -59,7 +59,7 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        fedora*|ubuntu*|archlinux*)
+       fedora*|debian*|ubuntu*|archlinux*)
             just installs-specific
             ;;
         *)

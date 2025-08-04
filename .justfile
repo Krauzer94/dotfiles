@@ -16,7 +16,7 @@ installs-common:
         org.mozilla.firefox \
         org.gimp.GIMP \
         org.qbittorrent.qBittorrent \
-        org.flameshot.Flameshot \
+        be.alexandervanhee.gradia \
         com.stremio.Stremio \
         org.bleachbit.BleachBit \
         com.spotify.Client \

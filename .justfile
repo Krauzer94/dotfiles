@@ -190,7 +190,7 @@ installs-sunshine:
         sudo ufw reload
     fi
 
-    # Enable WoL on system startup
+    # Enable WoL on startup
     ETH_CONN=$(nmcli -t -f NAME,TYPE con show | grep ethernet | cut -d: -f1 | head -n 1)
     nmcli con modify "$ETH_CONN" ethernet.wake-on-lan magic
 

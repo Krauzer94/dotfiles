@@ -62,15 +62,17 @@ installs-docker:
                 sudo rpm-ostree install --apply-live -y $DOCKER_PACKAGES
             fi
             ;;
-        ubuntu)
+        debian|ubuntu)
             sudo apt update && sudo apt install -y \
                 apt-transport-https \
-                ca-certificates curl \
-                software-properties-common
+                ca-certificates \
+                curl \
+                software-properties-common \
+                gnupg
 
-            curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
+            curl -fsSL https://download.docker.com/linux/$DISTRO/gpg \
                 | sudo tee /etc/apt/trusted.gpg.d/docker.asc
-            echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+            echo "deb [arch=amd64] https://download.docker.com/linux/$DISTRO $(lsb_release -cs) stable" \
                 | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
             sudo apt update && sudo apt install -y $DOCKER_PACKAGES
@@ -113,6 +115,11 @@ installs-specific:
             sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
                 flatpak gnome-software-plugin-flatpak
             flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+            if [[ "$DISTRO" == "debian" ]]; then
+                sudo apt install -y ufw nvidia-driver firmware-misc-nonfree
+                sudo systemctl enable --now ufw
+            fi
             ;;
         arch)
             sudo pacman -Syu --needed --noconfirm $DISTRO_PACKAGES \
@@ -155,9 +162,13 @@ installs-sunshine:
                 sudo rpm-ostree install --apply-live -y Sunshine
             fi
             ;;
-        ubuntu)
+        debian|ubuntu)
+            if [[ "$DISTRO" == "debian" ]]; then
+                DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
+            else
+                DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
+            fi
             # Find the latest installer
-            DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
             GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
             DEB_URL=$(curl -s "$GITHUB_URL" | grep browser_download_url | grep "$DISTRO_VERSION" | grep "amd64\.deb" | cut -d '"' -f 4)
 
@@ -182,7 +193,7 @@ installs-sunshine:
     esac
 
     # For UFW systems only
-    if [[ "$DISTRO" == "ubuntu" || "$DISTRO" == "arch" ]]; then
+    if [[ "$DISTRO" != "fedora" ]]; then
         for port in 47984 47989 47990 48010; do
             sudo ufw allow ${port}/tcp
         done
@@ -219,7 +230,7 @@ setup-quadlets:
             sudo firewall-cmd --permanent --add-port=8080/tcp
             sudo firewall-cmd --reload
             ;;
-        ubuntu|arch)
+        debian|ubuntu|arch)
             sudo ufw allow 8080/tcp
             sudo ufw reload
             ;;

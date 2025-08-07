@@ -17,7 +17,7 @@ install_base() {
                 flatpak uninstall --all -y
             fi
             ;;
-        ubuntu|debian)
+        debian|ubuntu)
             sudo apt update && sudo apt install -y \
                 git podman distrobox
             ;;

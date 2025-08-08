@@ -97,7 +97,7 @@ installs-specific:
     echo -e "\n\t Installing distro specific apps \n"
 
     # Main packages to install
-    DISTRO_PACKAGES="distrobox mangohud steam"
+    DISTRO_PACKAGES="podman distrobox mangohud steam"
 
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
@@ -123,9 +123,9 @@ installs-specific:
             ;;
         arch)
             sudo pacman -Syu --needed --noconfirm $DISTRO_PACKAGES \
-                noto-fonts-cjk networkmanager podman ufw
+                noto-fonts-cjk networkmanager timeshift ufw
             sudo systemctl enable --now \
-                NetworkManager bluetooth ufw
+                NetworkManager bluetooth cronie ufw
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"

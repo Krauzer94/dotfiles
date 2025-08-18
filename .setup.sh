@@ -22,7 +22,7 @@ install_base() {
                 git podman distrobox
             ;;
         arch)
-            sudo pacman -S --noconfirm git
+            sudo pacman -Syu --noconfirm git
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"

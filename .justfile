@@ -141,16 +141,25 @@ installs-sunshine:
     #!/bin/bash
     echo -e "\n\t Installing Sunshine application \n"
 
+    # Firewall port configuration
+    if command -v ufw &> /dev/null; then
+        for port in 47984 47989 47990 48010; do
+            sudo ufw allow ${port}/tcp
+        done
+        sudo ufw allow 47998:48000/udp
+        sudo ufw reload
+    else
+        for port in 47984 47989 47990 48010; do
+            sudo firewall-cmd --permanent --add-port=${port}/tcp
+        done
+        sudo firewall-cmd --permanent --add-port=47998-48000/udp
+        sudo firewall-cmd --reload
+    fi
+
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         fedora)
-            for port in 47984 47989 47990 48010; do
-                sudo firewall-cmd --permanent --add-port=${port}/tcp
-            done
-            sudo firewall-cmd --permanent --add-port=47998-48000/udp
-            sudo firewall-cmd --reload
-
             if command -v dnf &> /dev/null; then
                 sudo dnf copr enable -y lizardbyte/stable
                 sudo dnf install -y Sunshine
@@ -163,11 +172,13 @@ installs-sunshine:
             fi
             ;;
         debian|ubuntu)
+            # Differenciate the system
             if [[ "$DISTRO" == "debian" ]]; then
                 DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
             else
                 DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
             fi
+
             # Find the latest installer
             GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
             DEB_URL=$(curl -s "$GITHUB_URL" | grep browser_download_url | grep "$DISTRO_VERSION" | grep "amd64\.deb" | cut -d '"' -f 4)
@@ -191,15 +202,6 @@ installs-sunshine:
             exit 1
             ;;
     esac
-
-    # For UFW systems only
-    if [[ "$DISTRO" != "fedora" ]]; then
-        for port in 47984 47989 47990 48010; do
-            sudo ufw allow ${port}/tcp
-        done
-        sudo ufw allow 47998:48000/udp
-        sudo ufw reload
-    fi
 
     # Enable WoL on startup
     ETH_CONN=$(nmcli -t -f NAME,TYPE con show | grep ethernet | cut -d: -f1 | head -n 1)

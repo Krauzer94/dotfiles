@@ -172,7 +172,7 @@ installs-sunshine:
             fi
             ;;
         debian|ubuntu)
-            # Differenciate the system
+            # Differentiate the system
             if [[ "$DISTRO" == "debian" ]]; then
                 DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
             else

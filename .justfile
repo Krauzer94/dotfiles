@@ -51,14 +51,13 @@ installs-docker:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         fedora)
+            DOCKER_REPO=https://download.docker.com/linux/$DISTRO/docker-ce.repo
             if command -v dnf &> /dev/null; then
                 sudo dnf install -y dnf-plugins-core
-                sudo dnf config-manager --add-repo \
-                    https://download.docker.com/linux/fedora/docker-ce.repo
+                sudo dnf config-manager --add-repo $DOCKER_REPO
                 sudo dnf install -y $DOCKER_PACKAGES
             else
-                sudo curl -o /etc/yum.repos.d/docker-ce.repo \
-                    https://download.docker.com/linux/fedora/docker-ce.repo
+                sudo curl -o /etc/yum.repos.d/docker-ce.repo $DOCKER_REPO
                 sudo rpm-ostree install --apply-live -y $DOCKER_PACKAGES
             fi
             ;;
@@ -165,8 +164,8 @@ installs-sunshine:
                 sudo dnf install -y Sunshine
             else
                 OS_VERSION=$(lsb_release -rs)
-                URL_PREFIX="https://copr.fedorainfracloud.org/coprs/lizardbyte/stable/repo/"
-                URL_RESULT="${URL_PREFIX}fedora-${OS_VERSION}/lizardbyte-stable-fedora-${OS_VERSION}.repo"
+                URL_PREFIX="https://copr.${$DISTRO}infracloud.org/coprs/lizardbyte/stable/repo/"
+                URL_RESULT="${URL_PREFIX}${$DISTRO}-${OS_VERSION}/lizardbyte-stable-${$DISTRO}-${OS_VERSION}.repo"
                 sudo curl -o /etc/yum.repos.d/lizardbyte-stable.repo "$URL_RESULT"
                 sudo rpm-ostree install --apply-live -y Sunshine
             fi

@@ -17,9 +17,12 @@ install_base() {
                 flatpak uninstall --all -y
             fi
             ;;
-        ubuntu)
+        debian|ubuntu)
             sudo apt update && sudo apt install -y \
                 git podman distrobox
+            ;;
+        arch)
+            sudo pacman -Syu --noconfirm git
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
@@ -56,7 +59,7 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-       fedora*|ubuntu*)
+       fedora*|debian*|ubuntu*|archlinux*)
             just installs-specific
             ;;
         *)

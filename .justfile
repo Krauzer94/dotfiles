@@ -105,19 +105,26 @@ installs-specific:
             if command -v dnf &> /dev/null; then
                 sudo dnf install -y $DISTRO_PACKAGES
             else
+                if [[ "$XDG_CURRENT_DESKTOP" != *"GNOME"* ]]; then
+                    sed -i '0,/enabled=0/s/enabled=0/enabled=1/' /etc/yum.repos.d/rpmfusion-nonfree*
+                fi
                 sudo rpm-ostree install --apply-live -y $DISTRO_PACKAGES \
                     akmod-nvidia xorg-x11-drv-nvidia
             fi
             ;;
         debian|ubuntu)
-            sudo dpkg --add-architecture i386
-            sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
-                flatpak gnome-software-plugin-flatpak
-            flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
+                sudo dpkg --add-architecture i386
+                sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
+                    flatpak gnome-software-plugin-flatpak
+                flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            else
+                sudo apt update && sudo apt install -y $DISTRO_PACKAGES ufw
+                sudo systemctl enable --now ufw
+            fi
 
             if [[ "$DISTRO" == "debian" ]]; then
-                sudo apt install -y ufw nvidia-driver firmware-misc-nonfree
-                sudo systemctl enable --now ufw
+                sudo apt install -y nvidia-driver firmware-misc-nonfree
             fi
             ;;
         arch)

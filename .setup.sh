@@ -18,8 +18,7 @@ install_base() {
             fi
             ;;
         debian|ubuntu)
-            sudo apt update && sudo apt install -y \
-                git podman distrobox
+            sudo apt install -y git
             ;;
         arch)
             sudo pacman -Syu --noconfirm git
@@ -63,6 +62,7 @@ remaining_apps() {
             just installs-specific
             ;;
         *)
+            sudo apt install -y podman distrobox
             just setup-devenv
             ;;
     esac

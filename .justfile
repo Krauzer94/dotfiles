@@ -62,13 +62,11 @@ installs-docker:
                 sudo rpm-ostree install --apply-live -y $DOCKER_PACKAGES
             fi
             ;;
-        debian|ubuntu)
+        ubuntu)
             sudo apt update && sudo apt install -y \
-                apt-transport-https \
-                ca-certificates \
-                curl \
                 software-properties-common \
-                gnupg
+                apt-transport-https \
+                ca-certificates
 
             curl -fsSL https://download.docker.com/linux/$DISTRO/gpg \
                 | sudo tee /etc/apt/trusted.gpg.d/docker.asc
@@ -76,10 +74,6 @@ installs-docker:
                 | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
             sudo apt update && sudo apt install -y $DOCKER_PACKAGES
-            ;;
-        arch)
-            sudo pacman -Syu --noconfirm \
-                docker docker-buildx docker-compose
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
@@ -113,7 +107,7 @@ installs-specific:
                     akmod-nvidia xorg-x11-drv-nvidia
             fi
             ;;
-        debian|ubuntu)
+        ubuntu)
             if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
                 sudo dpkg --add-architecture i386
                 sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
@@ -122,18 +116,6 @@ installs-specific:
             else
                 sudo apt update && sudo apt install -y $DISTRO_PACKAGES
             fi
-
-            if [[ "$DISTRO" == "debian" ]]; then
-                sudo apt install -y ufw \
-                    nvidia-kernel-dkms nvidia-driver firmware-misc-nonfree
-                sudo systemctl enable --now ufw
-            fi
-            ;;
-        arch)
-            sudo pacman -Syu --needed --noconfirm $DISTRO_PACKAGES \
-                noto-fonts-cjk networkmanager timeshift ufw
-            sudo systemctl enable --now \
-                NetworkManager bluetooth cronie ufw
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
@@ -179,15 +161,9 @@ installs-sunshine:
                 sudo rpm-ostree install --apply-live -y Sunshine
             fi
             ;;
-        debian|ubuntu)
-            # Differentiate the system
-            if [[ "$DISTRO" == "debian" ]]; then
-                DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
-            else
-                DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
-            fi
-
+        ubuntu)
             # Find the latest installer
+            DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
             GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
             DEB_URL=$(curl -s "$GITHUB_URL" | grep browser_download_url | grep "$DISTRO_VERSION" | grep "amd64\.deb" | cut -d '"' -f 4)
 
@@ -196,14 +172,6 @@ installs-sunshine:
             wget -q --show-progress "$DEB_URL" -O "/tmp/$FILENAME"
             sudo apt install -y "/tmp/$FILENAME"
             rm "/tmp/$FILENAME"
-            ;;
-        arch)
-            echo "
-            [lizardbyte]
-            SigLevel = Optional
-            Server = https://github.com/LizardByte/pacman-repo/releases/latest/download" \
-            | sudo tee -a /etc/pacman.conf > /dev/null
-            sudo pacman -Syu --noconfirm sunshine
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
@@ -240,7 +208,7 @@ setup-quadlets:
             sudo firewall-cmd --permanent --add-port=8080/tcp
             sudo firewall-cmd --reload
             ;;
-        debian|ubuntu|arch)
+        ubuntu)
             sudo ufw allow 8080/tcp
             sudo ufw reload
             ;;

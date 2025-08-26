@@ -52,7 +52,6 @@ installs-docker:
     case "$DISTRO" in
         fedora)
             DOCKER_REPO=https://download.docker.com/linux/$DISTRO/docker-ce.repo
-
             if command -v dnf &> /dev/null; then
                 sudo dnf install -y dnf-plugins-core
                 sudo dnf config-manager --add-repo $DOCKER_REPO
@@ -62,7 +61,7 @@ installs-docker:
                 sudo rpm-ostree install --apply-live -y $DOCKER_PACKAGES
             fi
             ;;
-        ubuntu)
+        debian|ubuntu)
             sudo apt update && sudo apt install -y \
                 apt-transport-https \
                 ca-certificates \
@@ -76,6 +75,10 @@ installs-docker:
                 | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
             sudo apt update && sudo apt install -y $DOCKER_PACKAGES
+            ;;
+        arch)
+            sudo pacman -Syu --noconfirm \
+                docker docker-buildx docker-compose
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
@@ -102,23 +105,26 @@ installs-specific:
             if command -v dnf &> /dev/null; then
                 sudo dnf install -y $DISTRO_PACKAGES
             else
-                if [[ "$XDG_CURRENT_DESKTOP" != *"GNOME"* ]]; then
-                    sed -i '0,/enabled=0/s/enabled=0/enabled=1/' /etc/yum.repos.d/rpmfusion-nonfree*
-                fi
                 sudo rpm-ostree install --apply-live -y $DISTRO_PACKAGES \
                     akmod-nvidia xorg-x11-drv-nvidia
             fi
             ;;
-        ubuntu)
-            if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
-                sudo dpkg --add-architecture i386
-                sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
-                    flatpak gnome-software-plugin-flatpak
-                flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-            else
-                sudo apt update && sudo apt install -y $DISTRO_PACKAGES ufw
+        debian|ubuntu)
+            sudo dpkg --add-architecture i386
+            sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
+                flatpak gnome-software-plugin-flatpak
+            flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+            if [[ "$DISTRO" == "debian" ]]; then
+                sudo apt install -y ufw nvidia-driver firmware-misc-nonfree
                 sudo systemctl enable --now ufw
             fi
+            ;;
+        arch)
+            sudo pacman -Syu --needed --noconfirm $DISTRO_PACKAGES \
+                noto-fonts-cjk networkmanager timeshift ufw
+            sudo systemctl enable --now \
+                NetworkManager bluetooth cronie ufw
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
@@ -134,16 +140,25 @@ installs-sunshine:
     #!/bin/bash
     echo -e "\n\t Installing Sunshine application \n"
 
+    # Firewall port configuration
+    if command -v ufw &> /dev/null; then
+        for port in 47984 47989 47990 48010; do
+            sudo ufw allow ${port}/tcp
+        done
+        sudo ufw allow 47998:48000/udp
+        sudo ufw reload
+    else
+        for port in 47984 47989 47990 48010; do
+            sudo firewall-cmd --permanent --add-port=${port}/tcp
+        done
+        sudo firewall-cmd --permanent --add-port=47998-48000/udp
+        sudo firewall-cmd --reload
+    fi
+
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         fedora)
-            for port in 47984 47989 47990 48010; do
-                sudo firewall-cmd --permanent --add-port=${port}/tcp
-            done
-            sudo firewall-cmd --permanent --add-port=47998-48000/udp
-            sudo firewall-cmd --reload
-
             if command -v dnf &> /dev/null; then
                 sudo dnf copr enable -y lizardbyte/stable
                 sudo dnf install -y Sunshine
@@ -155,15 +170,15 @@ installs-sunshine:
                 sudo rpm-ostree install --apply-live -y Sunshine
             fi
             ;;
-        ubuntu)
-            for port in 47984 47989 47990 48010; do
-                sudo ufw allow ${port}/tcp
-            done
-            sudo ufw allow 47998:48000/udp
-            sudo ufw reload
+        debian|ubuntu)
+            # Differentiate the system
+            if [[ "$DISTRO" == "debian" ]]; then
+                DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
+            else
+                DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
+            fi
 
             # Find the latest installer
-            DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
             GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
             DEB_URL=$(curl -s "$GITHUB_URL" | grep browser_download_url | grep "$DISTRO_VERSION" | grep "amd64\.deb" | cut -d '"' -f 4)
 
@@ -172,6 +187,14 @@ installs-sunshine:
             wget -q --show-progress "$DEB_URL" -O "/tmp/$FILENAME"
             sudo apt install -y "/tmp/$FILENAME"
             rm "/tmp/$FILENAME"
+            ;;
+        arch)
+            echo "
+            [lizardbyte]
+            SigLevel = Optional
+            Server = https://github.com/LizardByte/pacman-repo/releases/latest/download" \
+            | sudo tee -a /etc/pacman.conf > /dev/null
+            sudo pacman -Syu --noconfirm sunshine
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
@@ -208,7 +231,7 @@ setup-quadlets:
             sudo firewall-cmd --permanent --add-port=8080/tcp
             sudo firewall-cmd --reload
             ;;
-        ubuntu)
+        debian|ubuntu|arch)
             sudo ufw allow 8080/tcp
             sudo ufw reload
             ;;

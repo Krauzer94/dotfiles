@@ -124,7 +124,8 @@ installs-specific:
             fi
 
             if [[ "$DISTRO" == "debian" ]]; then
-                sudo apt install -y ufw nvidia-driver firmware-misc-nonfree
+                sudo apt install -y ufw \
+                    nvidia-kernel-dkms nvidia-driver firmware-misc-nonfree
                 sudo systemctl enable --now ufw
             fi
             ;;

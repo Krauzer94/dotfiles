@@ -120,12 +120,12 @@ installs-specific:
                     flatpak gnome-software-plugin-flatpak
                 flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
             else
-                sudo apt update && sudo apt install -y $DISTRO_PACKAGES ufw
-                sudo systemctl enable --now ufw
+                sudo apt update && sudo apt install -y $DISTRO_PACKAGES
             fi
 
             if [[ "$DISTRO" == "debian" ]]; then
-                sudo apt install -y nvidia-driver firmware-misc-nonfree
+                sudo apt install -y ufw nvidia-driver firmware-misc-nonfree
+                sudo systemctl enable --now ufw
             fi
             ;;
         arch)

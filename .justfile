@@ -52,6 +52,7 @@ installs-docker:
     case "$DISTRO" in
         fedora)
             DOCKER_REPO=https://download.docker.com/linux/$DISTRO/docker-ce.repo
+
             if command -v dnf &> /dev/null; then
                 sudo dnf install -y dnf-plugins-core
                 sudo dnf config-manager --add-repo $DOCKER_REPO

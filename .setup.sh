@@ -11,11 +11,7 @@ install_base() {
             flatpak uninstall --all -y
             ;;
         fedora)
-            if command -v dnf &> /dev/null; then
-                sudo dnf install -y git
-            else
-                flatpak uninstall --all -y
-            fi
+            sudo dnf install -y git
             ;;
         ubuntu)
             sudo apt install -y git

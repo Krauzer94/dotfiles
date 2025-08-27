@@ -11,9 +11,13 @@ install_base() {
             flatpak uninstall --all -y
             ;;
         fedora)
-            sudo dnf install -y git
+            if command -v dnf &> /dev/null; then
+                sudo dnf install -y git
+            else
+                flatpak uninstall --all -y
+            fi
             ;;
-        debian|ubuntu)
+        ubuntu)
             sudo apt install -y git
             ;;
         *)
@@ -51,7 +55,7 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        fedora*|debian*|ubuntu*)
+        fedora*|ubuntu*)
             just installs-specific
             ;;
         *)

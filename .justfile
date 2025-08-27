@@ -51,19 +51,22 @@ installs-docker:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         fedora)
-            sudo dnf install -y dnf-plugins-core
+            DOCKER_REPO=https://download.docker.com/linux/$DISTRO/docker-ce.repo
 
-            sudo dnf config-manager --add-repo \
-                https://download.docker.com/linux/$DISTRO/docker-ce.repo
-
-            sudo dnf install -y $DOCKER_PACKAGES
+            if command -v dnf &> /dev/null; then
+                sudo dnf install -y dnf-plugins-core
+                sudo dnf config-manager --add-repo $DOCKER_REPO
+                sudo dnf install -y $DOCKER_PACKAGES
+            else
+                sudo curl -o /etc/yum.repos.d/docker-ce.repo $DOCKER_REPO
+                sudo rpm-ostree install --apply-live -y $DOCKER_PACKAGES
+            fi
             ;;
-        debian|ubuntu)
+        ubuntu)
             sudo apt update && sudo apt install -y \
                 software-properties-common \
                 apt-transport-https \
-                ca-certificates \
-                gnupg
+                ca-certificates
 
             curl -fsSL https://download.docker.com/linux/$DISTRO/gpg \
                 | sudo tee /etc/apt/trusted.gpg.d/docker.asc
@@ -94,22 +97,18 @@ installs-specific:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         fedora)
-            sudo dnf install -y $DISTRO_PACKAGES
+            if command -v dnf &> /dev/null; then
+                sudo dnf install -y $DISTRO_PACKAGES
+            else
+                sudo rpm-ostree install --apply-live -y $DISTRO_PACKAGES \
+                    akmod-nvidia xorg-x11-drv-nvidia
+            fi
             ;;
-        debian|ubuntu)
+        ubuntu)
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
-                ufw flatpak gnome-software-plugin-flatpak
+                flatpak gnome-software-plugin-flatpak
             flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-            if [[ "$DISTRO" == "debian" ]]; then
-                sudo apt install -y \
-                    firmware-misc-nonfree \
-                    nvidia-kernel-dkms \
-                    nvidia-driver
-
-                sudo systemctl enable --now ufw
-            fi
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
@@ -145,18 +144,20 @@ installs-sunshine:
     case "$DISTRO" in
         fedora)
             # Install the RPM from COPR
-            sudo dnf copr enable -y lizardbyte/stable
-            sudo dnf install -y Sunshine
-            ;;
-        debian|ubuntu)
-            # Differentiate the system
-            if [[ "$DISTRO" == "debian" ]]; then
-                DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
+            if command -v dnf &> /dev/null; then
+                sudo dnf copr enable -y lizardbyte/stable
+                sudo dnf install -y Sunshine
             else
-                DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
+                OS_VERSION=$(lsb_release -rs)
+                URL_PREFIX="https://copr.${$DISTRO}infracloud.org/coprs/lizardbyte/stable/repo/"
+                URL_RESULT="${URL_PREFIX}${$DISTRO}-${OS_VERSION}/lizardbyte-stable-${$DISTRO}-${OS_VERSION}.repo"
+                sudo curl -o /etc/yum.repos.d/lizardbyte-stable.repo "$URL_RESULT"
+                sudo rpm-ostree install --apply-live -y Sunshine
             fi
-
-            # Download the latest installer
+            ;;
+        ubuntu)
+            # Find the latest installer
+            DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
             GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
             DEB_URL=$(curl -s "$GITHUB_URL" | grep browser_download_url | grep "$DISTRO_VERSION" | grep "amd64\.deb" | cut -d '"' -f 4)
 
@@ -201,7 +202,7 @@ setup-quadlets:
             sudo firewall-cmd --permanent --add-port=8080/tcp
             sudo firewall-cmd --reload
             ;;
-        debian|ubuntu)
+        ubuntu)
             sudo ufw allow 8080/tcp
             sudo ufw reload
             ;;

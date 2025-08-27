@@ -96,14 +96,10 @@ installs-specific:
             sudo dnf install -y $DISTRO_PACKAGES
             ;;
         ubuntu)
-            if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
-                sudo dpkg --add-architecture i386
-                sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
-                    flatpak gnome-software-plugin-flatpak
-                flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-            else
-                sudo apt update && sudo apt install -y $DISTRO_PACKAGES
-            fi
+            sudo dpkg --add-architecture i386
+            sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
+                flatpak gnome-software-plugin-flatpak
+            flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"

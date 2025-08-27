@@ -51,16 +51,12 @@ installs-docker:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         fedora)
-            DOCKER_REPO=https://download.docker.com/linux/$DISTRO/docker-ce.repo
+            sudo dnf install -y dnf-plugins-core
 
-            if command -v dnf &> /dev/null; then
-                sudo dnf install -y dnf-plugins-core
-                sudo dnf config-manager --add-repo $DOCKER_REPO
-                sudo dnf install -y $DOCKER_PACKAGES
-            else
-                sudo curl -o /etc/yum.repos.d/docker-ce.repo $DOCKER_REPO
-                sudo rpm-ostree install --apply-live -y $DOCKER_PACKAGES
-            fi
+            sudo dnf config-manager --add-repo \
+                https://download.docker.com/linux/$DISTRO/docker-ce.repo
+
+            sudo dnf install -y $DOCKER_PACKAGES
             ;;
         ubuntu)
             sudo apt update && sudo apt install -y \
@@ -97,15 +93,7 @@ installs-specific:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         fedora)
-            if command -v dnf &> /dev/null; then
-                sudo dnf install -y $DISTRO_PACKAGES
-            else
-                if [[ "$XDG_CURRENT_DESKTOP" != *"GNOME"* ]]; then
-                    sed -i '0,/enabled=0/s/enabled=0/enabled=1/' /etc/yum.repos.d/rpmfusion-nonfree*
-                fi
-                sudo rpm-ostree install --apply-live -y $DISTRO_PACKAGES \
-                    akmod-nvidia xorg-x11-drv-nvidia
-            fi
+            sudo dnf install -y $DISTRO_PACKAGES
             ;;
         ubuntu)
             if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
@@ -150,16 +138,9 @@ installs-sunshine:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         fedora)
-            if command -v dnf &> /dev/null; then
-                sudo dnf copr enable -y lizardbyte/stable
-                sudo dnf install -y Sunshine
-            else
-                OS_VERSION=$(lsb_release -rs)
-                URL_PREFIX="https://copr.${$DISTRO}infracloud.org/coprs/lizardbyte/stable/repo/"
-                URL_RESULT="${URL_PREFIX}${$DISTRO}-${OS_VERSION}/lizardbyte-stable-${$DISTRO}-${OS_VERSION}.repo"
-                sudo curl -o /etc/yum.repos.d/lizardbyte-stable.repo "$URL_RESULT"
-                sudo rpm-ostree install --apply-live -y Sunshine
-            fi
+            # Install the RPM from COPR
+            sudo dnf copr enable -y lizardbyte/stable
+            sudo dnf install -y Sunshine
             ;;
         ubuntu)
             # Find the latest installer

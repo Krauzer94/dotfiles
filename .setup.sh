@@ -13,7 +13,7 @@ install_base() {
         fedora)
             sudo dnf install -y git
             ;;
-        ubuntu)
+        ubuntu|debian)
             sudo apt install -y git
             ;;
         *)

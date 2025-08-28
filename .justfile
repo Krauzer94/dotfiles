@@ -56,11 +56,12 @@ installs-docker:
                 https://download.docker.com/linux/$DISTRO/docker-ce.repo
             sudo dnf install -y $DOCKER_PACKAGES
             ;;
-        ubuntu)
+        ubuntu|debian)
             sudo apt update && sudo apt install -y \
                 software-properties-common \
                 apt-transport-https \
-                ca-certificates
+                ca-certificates \
+                gnupg
 
             curl -fsSL https://download.docker.com/linux/$DISTRO/gpg \
                 | sudo tee /etc/apt/trusted.gpg.d/docker.asc

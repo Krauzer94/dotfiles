@@ -219,11 +219,11 @@ setup-themes:
     #!/bin/bash
 
     # Create necessary folders
-    mkdir -p $HOME/.local/share/{themes,icons}
+    mkdir -p $HOME/{.themes,.icons}
 
     # Copy system files over
-    cp -r /usr/share/themes/* $HOME/.local/share/themes/
-    cp -r /usr/share/icons/* $HOME/.local/share/icons/
+    cp -r /usr/share/themes/* $HOME/.themes/
+    cp -r /usr/share/icons/* $HOME/.icons/
 
 # Upload savegame folder files
 [no-cd]

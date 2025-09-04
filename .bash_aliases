@@ -19,7 +19,3 @@
   alias vs='flatpak run com.visualstudio.code'
   alias save='just upload-savegame'
   alias wclean='find ~/ -type f -name "*.Identifier" -delete'
-
-# GNOME specific
-  alias panel-enable='gnome-extensions enable dash-to-panel@jderose9.github.com'
-  alias panel-disable='gnome-extensions disable dash-to-panel@jderose9.github.com'

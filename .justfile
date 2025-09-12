@@ -100,9 +100,6 @@ installs-specific:
                 flatpak gnome-software-plugin-flatpak
             flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
             ;;
-        linuxmint)
-            sudo apt update && sudo apt install -y $DISTRO_PACKAGES
-            ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
             exit 1
@@ -187,7 +184,7 @@ setup-quadlets:
             sudo firewall-cmd --permanent --add-port=8080/tcp
             sudo firewall-cmd --reload
             ;;
-        ubuntu|linuxmint)
+        ubuntu)
             sudo ufw allow 8080/tcp
             sudo ufw reload
             ;;

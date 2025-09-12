@@ -100,7 +100,7 @@ installs-specific:
                 flatpak gnome-software-plugin-flatpak
             flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
             ;;
-        mint)
+        linuxmint)
             sudo apt update && sudo apt install -y $DISTRO_PACKAGES
             ;;
         *)
@@ -187,7 +187,7 @@ setup-quadlets:
             sudo firewall-cmd --permanent --add-port=8080/tcp
             sudo firewall-cmd --reload
             ;;
-        ubuntu)
+        ubuntu|linuxmint)
             sudo ufw allow 8080/tcp
             sudo ufw reload
             ;;

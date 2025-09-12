@@ -100,6 +100,9 @@ installs-specific:
                 flatpak gnome-software-plugin-flatpak
             flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
             ;;
+        mint)
+            sudo apt update && sudo apt install -y $DISTRO_PACKAGES
+            ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
             exit 1

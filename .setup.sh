@@ -13,7 +13,7 @@ install_base() {
         fedora)
             sudo dnf install -y git
             ;;
-        ubuntu)
+        ubuntu|debian)
             sudo apt install -y git
             ;;
         *)
@@ -51,7 +51,7 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        fedora*|ubuntu*)
+        fedora*|ubuntu*|debian*)
             just installs-specific
             ;;
         *)

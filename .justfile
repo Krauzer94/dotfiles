@@ -99,7 +99,7 @@ installs-specific:
             sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
                 ufw flatpak gnome-software-plugin-flatpak
             flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-            sudo systemctl enable --now ufw
+            sudo ufw enable
 
             if [[ "$DISTRO" == "debian" ]]; then
                 sudo apt install -y \

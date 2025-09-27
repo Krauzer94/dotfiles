@@ -56,7 +56,7 @@ installs-docker:
                 https://download.docker.com/linux/$DISTRO/docker-ce.repo
             sudo dnf install -y $DOCKER_PACKAGES
             ;;
-        ubuntu|debian)
+        debian)
             sudo apt update && sudo apt install -y \
                 software-properties-common \
                 apt-transport-https \
@@ -94,20 +94,19 @@ installs-specific:
         fedora)
             sudo dnf install -y $DISTRO_PACKAGES
             ;;
-        ubuntu|debian)
+        debian)
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
                 ufw flatpak gnome-software-plugin-flatpak
             flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
             sudo ufw enable
 
-            if [[ "$DISTRO" == "debian" ]]; then
-                sudo apt install -y \
-                    linux-headers-$(dpkg --print-architecture) \
-                    firmware-misc-nonfree \
-                    nvidia-kernel-dkms \
-                    nvidia-driver
-            fi
+            # Non-free GPU Drivers
+            sudo apt install -y \
+                linux-headers-$(dpkg --print-architecture) \
+                firmware-misc-nonfree \
+                nvidia-kernel-dkms \
+                nvidia-driver
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
@@ -146,14 +145,9 @@ installs-sunshine:
             sudo dnf copr enable -y lizardbyte/stable
             sudo dnf install -y Sunshine
             ;;
-        ubuntu|debian)
-            if [[ "$DISTRO" == "ubuntu" ]]; then
-                DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
-            else
-                DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
-            fi
-
+        debian)
             # Find the latest installer
+            DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
             GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
             DEB_URL=$(curl -s "$GITHUB_URL" | grep browser_download_url | grep "$DISTRO_VERSION" | grep "amd64\.deb" | cut -d '"' -f 4)
 
@@ -198,7 +192,7 @@ setup-quadlets:
             sudo firewall-cmd --permanent --add-port=8080/tcp
             sudo firewall-cmd --reload
             ;;
-        ubuntu|debian)
+        debian)
             sudo ufw allow 8080/tcp
             sudo ufw reload
             ;;

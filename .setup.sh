@@ -51,7 +51,7 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        fedora*|ubuntu*|debian*)
+        fedora*|debian*)
             just installs-specific
             ;;
         *)

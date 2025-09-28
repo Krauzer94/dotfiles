@@ -105,6 +105,8 @@ installs-specific:
             if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]]; then
                 sudo apt install -y flatpak gnome-software-plugin-flatpak
                 flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            else
+                sudo apt install -y ark
             fi
 
             # Non-free GPU Drivers

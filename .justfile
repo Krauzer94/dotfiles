@@ -98,7 +98,7 @@ installs-specific:
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y $DISTRO_PACKAGES ufw
 
-            # Enable firewal
+            # Enable firewall
             sudo ufw enable
 
             # GNOME specific section

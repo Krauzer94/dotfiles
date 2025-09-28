@@ -32,7 +32,7 @@ installs-common:
         org.kde.kcalc \
         io.github.flattool.Warehouse \
         io.missioncenter.MissionCenter \
-        com.dec05eba.gpu_screen_recorder > /dev/null
+        com.obsproject.Studio > /dev/null
 
 # Installs the Docker application
 installs-docker:

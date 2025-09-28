@@ -96,10 +96,16 @@ installs-specific:
             ;;
         debian)
             sudo dpkg --add-architecture i386
-            sudo apt update && sudo apt install -y $DISTRO_PACKAGES \
-                ufw flatpak gnome-software-plugin-flatpak
-            flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            sudo apt update && sudo apt install -y $DISTRO_PACKAGES ufw
+
+            # Enable firewal
             sudo ufw enable
+
+            # GNOME specific section
+            if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]]; then
+                sudo apt install -y flatpak gnome-software-plugin-flatpak
+                flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            fi
 
             # Non-free GPU Drivers
             sudo apt install -y \

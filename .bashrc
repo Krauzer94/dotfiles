@@ -7,7 +7,8 @@
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-#PS1='[\u@\h \W]\$ ' # Default
+
+# Customized shell prompt
 PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='[\[\e[92m\]\u\[\e[92m\]@\[\e[92m\]\h\[\e[0m\] \[\e[93m\]\W\[\e[0m\]] \[\e[96m\]${PS1_CMD1}\[\e[0m\] \\$ '
 
 # User specific environment
@@ -24,7 +25,10 @@ fi
 # Enable direnv
 eval "$(direnv hook bash)"
 
-# paste.rs
+# Enable mise
+eval "$(~/.local/bin/mise activate bash)"
+
+# Terminal Pastebin
 function paste() {
     echo ""
     local file=${1:-/dev/stdin}

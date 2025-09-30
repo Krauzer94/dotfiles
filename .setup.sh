@@ -16,6 +16,9 @@ install_base() {
         ubuntu|debian)
             sudo apt install -y git
             ;;
+        arch)
+            sudo pacman -Syu --needed --noconfirm git
+            ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
             exit 1
@@ -51,7 +54,7 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        fedora*|debian*)
+        fedora*|debian*|archlinux*)
             just installs-specific
             ;;
         *)

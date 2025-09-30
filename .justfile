@@ -70,6 +70,10 @@ installs-docker:
 
             sudo apt update && sudo apt install -y $DOCKER_PACKAGES
             ;;
+        arch)
+            sudo pacman -Syu --needed --noconfirm \
+                docker docker-buildx docker-compose
+            ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
             exit 1
@@ -115,6 +119,15 @@ installs-specific:
                 firmware-misc-nonfree \
                 nvidia-kernel-dkms \
                 nvidia-driver
+            ;;
+        arch)
+            sudo pacman -Syu --needed --noconfirm $DISTRO_PACKAGES \
+                noto-fonts-cjk networkmanager timeshift ufw
+            sudo systemctl enable --now \
+                NetworkManager bluetooth cronie
+
+            # Enable firewall
+            sudo ufw enable
             ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
@@ -165,6 +178,14 @@ installs-sunshine:
             sudo apt install -y "/tmp/$FILENAME"
             rm "/tmp/$FILENAME"
             ;;
+        arch)
+            echo "
+            [lizardbyte]
+            SigLevel = Optional
+            Server = https://github.com/LizardByte/pacman-repo/releases/latest/download" \
+            | sudo tee -a /etc/pacman.conf > /dev/null
+            sudo pacman -Syu --noconfirm sunshine
+            ;;
         *)
             echo -e "\t Unsupported distro, operation failed... \n"
             exit 1
@@ -200,7 +221,7 @@ setup-quadlets:
             sudo firewall-cmd --permanent --add-port=8080/tcp
             sudo firewall-cmd --reload
             ;;
-        debian)
+        debian|arch)
             sudo ufw allow 8080/tcp
             sudo ufw reload
             ;;

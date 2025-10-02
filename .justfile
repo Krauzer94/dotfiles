@@ -210,35 +210,6 @@ setup-devenv:
     echo '' && cat ~/.ssh/id_ed25519.pub && echo ''
     git remote set-url origin git@github.com:Krauzer94/dotfiles.git
 
-# Set up user service Quadlets
-setup-quadlets:
-    #!/bin/bash
-    echo -e "\n\t Setting up user service Quadlets \n"
-
-    # Enable the firewall port
-    DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
-    case "$DISTRO" in
-        fedora)
-            sudo firewall-cmd --permanent --add-port=8080/tcp
-            sudo firewall-cmd --reload
-            ;;
-        debian|arch)
-            sudo ufw allow 8080/tcp
-            sudo ufw reload
-            ;;
-        *)
-            echo -e "\t Unsupported distro, operation failed... \n"
-            exit 1
-            ;;
-    esac
-
-    # Start NextCloud Quadlet
-    systemctl --user daemon-reload
-    systemctl --user start nextcloud
-
-    # Enable at system startup
-    loginctl enable-linger $USER
-
 # Set up Tailscale on the Deck
 setup-taildeck:
     #!/bin/bash

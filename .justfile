@@ -13,26 +13,26 @@ installs-common:
 
     # Install all Flatpaks
     flatpak install -y --noninteractive flathub \
-        org.mozilla.firefox \
-        org.gimp.GIMP \
-        org.qbittorrent.qBittorrent \
         be.alexandervanhee.gradia \
-        com.stremio.Stremio \
-        org.bleachbit.BleachBit \
-        com.spotify.Client \
-        com.google.Chrome \
-        org.onlyoffice.desktopeditors \
         com.discordapp.Discord \
-        com.rtosta.zapzap \
         com.github.tchx84.Flatseal \
-        net.davidotek.pupgui2 \
+        com.google.Chrome \
+        com.obsproject.Studio \
+        com.rtosta.zapzap \
+        com.spotify.Client \
+        com.stremio.Stremio \
         com.visualstudio.code \
-        org.videolan.VLC \
-        org.kde.kcalc \
-        org.kde.pix \
         io.github.flattool.Warehouse \
         io.missioncenter.MissionCenter \
-        com.obsproject.Studio > /dev/null
+        net.davidotek.pupgui2 \
+        org.bleachbit.BleachBit \
+        org.gimp.GIMP \
+        org.kde.kcalc \
+        org.kde.pix \
+        org.mozilla.firefox \
+        org.onlyoffice.desktopeditors \
+        org.qbittorrent.qBittorrent \
+        org.videolan.VLC > /dev/null
 
 # Installs the Docker application
 installs-docker:

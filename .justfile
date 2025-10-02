@@ -90,7 +90,7 @@ installs-specific:
     echo -e "\n\t Installing distro specific apps \n"
 
     # Main packages to install
-    DISTRO_PACKAGES="podman distrobox mangohud steam"
+    DISTRO_PACKAGES="mangohud steam"
 
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')

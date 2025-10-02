@@ -13,7 +13,7 @@ install_base() {
         fedora)
             sudo dnf install -y git
             ;;
-        ubuntu|debian)
+        debian)
             sudo apt install -y git
             ;;
         arch)
@@ -58,7 +58,7 @@ remaining_apps() {
             just installs-specific
             ;;
         *)
-            sudo apt install -y wget podman distrobox
+            sudo apt install -y wget
             just setup-devenv
             ;;
     esac

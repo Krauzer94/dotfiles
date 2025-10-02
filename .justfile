@@ -26,10 +26,10 @@ installs-common:
         com.rtosta.zapzap \
         com.github.tchx84.Flatseal \
         net.davidotek.pupgui2 \
-        com.ranfdev.DistroShelf \
         com.visualstudio.code \
         org.videolan.VLC \
         org.kde.kcalc \
+        org.kde.pix \
         io.github.flattool.Warehouse \
         io.missioncenter.MissionCenter \
         com.obsproject.Studio > /dev/null

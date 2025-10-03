@@ -52,7 +52,6 @@ installs-docker:
     case "$DISTRO" in
         debian|ubuntu)
             sudo apt update && sudo apt install -y \
-                software-properties-common \
                 apt-transport-https \
                 ca-certificates \
                 gnupg

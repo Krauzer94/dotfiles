@@ -50,7 +50,7 @@ installs-docker:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        debian)
+        debian|ubuntu)
             sudo apt update && sudo apt install -y \
                 software-properties-common \
                 apt-transport-https \
@@ -85,7 +85,7 @@ installs-specific:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        debian)
+        debian|ubuntu)
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y $DISTRO_PACKAGES ufw
 
@@ -101,11 +101,13 @@ installs-specific:
             fi
 
             # Non-free GPU Drivers
-            sudo apt install -y \
-                linux-headers-$(dpkg --print-architecture) \
-                firmware-misc-nonfree \
-                nvidia-kernel-dkms \
-                nvidia-driver
+            if [[ "$DISTRO" == "debian" ]]; then
+                sudo apt install -y \
+                    linux-headers-$(dpkg --print-architecture) \
+                    firmware-misc-nonfree \
+                    nvidia-kernel-dkms \
+                    nvidia-driver
+            fi
             ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"
@@ -131,7 +133,7 @@ installs-sunshine:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        debian)
+        debian|ubuntu)
             # Find the latest installer
             DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
             GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"

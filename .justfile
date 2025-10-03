@@ -50,12 +50,6 @@ installs-docker:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        fedora)
-            sudo dnf install -y dnf-plugins-core
-            sudo dnf config-manager --add-repo \
-                https://download.docker.com/linux/$DISTRO/docker-ce.repo
-            sudo dnf install -y $DOCKER_PACKAGES
-            ;;
         debian)
             sudo apt update && sudo apt install -y \
                 software-properties-common \
@@ -70,12 +64,8 @@ installs-docker:
 
             sudo apt update && sudo apt install -y $DOCKER_PACKAGES
             ;;
-        arch)
-            sudo pacman -Syu --needed --noconfirm \
-                docker docker-buildx docker-compose
-            ;;
         *)
-            echo -e "\t Unsupported distro, operation failed... \n"
+            echo -e "\t Unsupported system, operation failed... \n"
             exit 1
             ;;
     esac
@@ -95,9 +85,6 @@ installs-specific:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        fedora)
-            sudo dnf install -y $DISTRO_PACKAGES
-            ;;
         debian)
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y $DISTRO_PACKAGES ufw
@@ -120,17 +107,8 @@ installs-specific:
                 nvidia-kernel-dkms \
                 nvidia-driver
             ;;
-        arch)
-            sudo pacman -Syu --needed --noconfirm $DISTRO_PACKAGES \
-                noto-fonts-cjk networkmanager timeshift ufw
-            sudo systemctl enable --now \
-                NetworkManager bluetooth cronie
-
-            # Enable firewall
-            sudo ufw enable
-            ;;
         *)
-            echo -e "\t Unsupported distro, operation failed... \n"
+            echo -e "\t Unsupported system, operation failed... \n"
             exit 1
             ;;
     esac
@@ -144,28 +122,15 @@ installs-sunshine:
     echo -e "\n\t Installing Sunshine application \n"
 
     # Firewall port configuration
-    if command -v ufw &> /dev/null; then
-        for port in 47984 47989 47990 48010; do
-            sudo ufw allow ${port}/tcp
-        done
-        sudo ufw allow 47998:48000/udp
-        sudo ufw reload
-    else
-        for port in 47984 47989 47990 48010; do
-            sudo firewall-cmd --permanent --add-port=${port}/tcp
-        done
-        sudo firewall-cmd --permanent --add-port=47998-48000/udp
-        sudo firewall-cmd --reload
-    fi
+    for port in 47984 47989 47990 48010; do
+        sudo ufw allow ${port}/tcp
+    done
+    sudo ufw allow 47998:48000/udp
+    sudo ufw reload
 
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        fedora)
-            # Install the RPM from COPR
-            sudo dnf copr enable -y lizardbyte/stable
-            sudo dnf install -y Sunshine
-            ;;
         debian)
             # Find the latest installer
             DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
@@ -178,16 +143,8 @@ installs-sunshine:
             sudo apt install -y "/tmp/$FILENAME"
             rm "/tmp/$FILENAME"
             ;;
-        arch)
-            echo "
-            [lizardbyte]
-            SigLevel = Optional
-            Server = https://github.com/LizardByte/pacman-repo/releases/latest/download" \
-            | sudo tee -a /etc/pacman.conf > /dev/null
-            sudo pacman -Syu --needed --noconfirm sunshine
-            ;;
         *)
-            echo -e "\t Unsupported distro, operation failed... \n"
+            echo -e "\t Unsupported system, operation failed... \n"
             exit 1
             ;;
     esac

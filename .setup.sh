@@ -10,17 +10,11 @@ install_base() {
         steamos)
             flatpak uninstall --all -y
             ;;
-        fedora)
-            sudo dnf install -y git
-            ;;
         debian)
             sudo apt install -y git
             ;;
-        arch)
-            sudo pacman -Syu --needed --noconfirm git
-            ;;
         *)
-            echo -e "\t Unsupported distro, operation failed... \n"
+            echo -e "\t Unsupported system, operation failed... \n"
             exit 1
             ;;
     esac
@@ -54,12 +48,12 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        fedora*|debian*|archlinux*)
+        debian*)
             just installs-specific
             ;;
         *)
-            sudo apt install -y wget
-            just setup-devenv
+            echo -e "\t Unsupported system, operation failed... \n"
+            exit 1
             ;;
     esac
 }

@@ -79,7 +79,9 @@ installs-specific:
     echo -e "\n\t Installing distro specific apps \n"
 
     # Main packages to install
-    DISTRO_PACKAGES="ufw flatpak mangohud steam"
+    DISTRO_PACKAGES="\
+    gnome-software-plugin-flatpak \
+    ufw flatpak mangohud steam"
 
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
@@ -87,17 +89,10 @@ installs-specific:
         debian|ubuntu)
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y $DISTRO_PACKAGES
+            flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
             # Enable firewall
             sudo ufw enable
-
-            # GNOME specific section
-            if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]]; then
-                sudo apt install -y gnome-software-plugin-flatpak
-                flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-            else
-                sudo apt install -y ark
-            fi
 
             # Non-free GPU Drivers
             if [[ "$DISTRO" == "debian" ]]; then

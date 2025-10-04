@@ -52,8 +52,8 @@ remaining_apps() {
             just installs-specific
             ;;
         *)
-            echo -e "\t Unsupported system, operation failed... \n"
-            exit 1
+            sudo apt install -y wget
+            just setup-devenv
             ;;
     esac
 }

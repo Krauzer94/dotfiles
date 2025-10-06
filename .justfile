@@ -146,8 +146,8 @@ installs-sunshine:
     esac
 
     # Enable WoL on startup
-    ETH_CONN=$(nmcli -t -f NAME,TYPE con show | grep ethernet | cut -d: -f1 | head -n 1)
-    nmcli con modify "$ETH_CONN" ethernet.wake-on-lan magic
+    WIFI_CONN=$(nmcli -t -f NAME,TYPE con show | grep wireless | cut -d: -f1 | head -n 1)
+    nmcli con modify "$WIFI_CONN" 802-11-wireless.wake-on-wlan magic
 
 # Set up development environment
 setup-devenv:

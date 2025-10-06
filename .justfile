@@ -128,8 +128,14 @@ installs-sunshine:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         debian|ubuntu)
+            # Ensure compatibility
+            if [[ "$DISTRO" == "debian" ]]; then
+                DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
+            else
+                DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
+            fi
+
             # Find the latest installer
-            DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
             GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
             DEB_URL=$(curl -s "$GITHUB_URL" | grep browser_download_url | grep "$DISTRO_VERSION" | grep "amd64\.deb" | cut -d '"' -f 4)
 

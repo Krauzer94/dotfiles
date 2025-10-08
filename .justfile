@@ -178,13 +178,23 @@ setup-taildeck:
     #!/bin/bash
     echo -e "\n\t Setting up Tailscale on the Deck \n"
 
-    # Download necessary files
-    git clone git@github.com:tailscale-dev/deck-tailscale.git
-    cd ./deck-tailscale
+    # Install based on distro
+    DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    case "$DISTRO" in
+        steamos)
+            # Download necessary files
+            git clone git@github.com:tailscale-dev/deck-tailscale.git
+            cd ./deck-tailscale
 
-    # Install and source binary
-    sudo bash ./tailscale.sh
-    source /etc/profile.d/tailscale.sh
+            # Install and source binary
+            sudo bash ./tailscale.sh
+            source /etc/profile.d/tailscale.sh
+            ;;
+        *)
+            echo -e "\t Unsupported system, operation failed... \n"
+            exit 1
+            ;;
+    esac
 
 # Set up application theming
 setup-themes:

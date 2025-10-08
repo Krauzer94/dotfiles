@@ -51,16 +51,19 @@ installs-docker:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         debian|ubuntu)
+            # Ensure all dependencies
             sudo apt update && sudo apt install -y \
                 apt-transport-https \
                 ca-certificates \
                 gnupg
 
+            # Enable the Docker repo
             curl -fsSL https://download.docker.com/linux/$DISTRO/gpg \
                 | sudo tee /etc/apt/trusted.gpg.d/docker.asc
             echo "deb [arch=amd64] https://download.docker.com/linux/$DISTRO $(lsb_release -cs) stable" \
                 | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
+            # Install Docker packages
             sudo apt update && sudo apt install -y $DOCKER_PACKAGES
             ;;
         *)
@@ -87,6 +90,7 @@ installs-specific:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         debian|ubuntu)
+            # Install base packages
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y $DISTRO_PACKAGES
             flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo

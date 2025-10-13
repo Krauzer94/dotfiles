@@ -102,13 +102,11 @@ installs-specific:
             flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
             # Non-free GPU Drivers
-            if [[ "$DISTRO" == "debian" ]]; then
-                sudo apt install -y \
-                    linux-headers-$(dpkg --print-architecture) \
-                    firmware-misc-nonfree \
-                    nvidia-kernel-dkms \
-                    nvidia-driver
-            fi
+            sudo apt install -y \
+                linux-headers-$(dpkg --print-architecture) \
+                firmware-misc-nonfree \
+                nvidia-kernel-dkms \
+                nvidia-driver
             ;;
         arch)
             # Install base packages

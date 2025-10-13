@@ -66,6 +66,13 @@ installs-docker:
             # Install Docker packages
             sudo apt update && sudo apt install -y $DOCKER_PACKAGES
             ;;
+        arch)
+            # Install Docker packages
+            sudo pacman -Syu --needed --noconfirm \
+                docker-compose \
+                docker-buildx \
+                docker
+            ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"
             exit 1
@@ -95,9 +102,6 @@ installs-specific:
             sudo apt update && sudo apt install -y $DISTRO_PACKAGES
             flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-            # Enable firewall
-            sudo ufw enable
-
             # Non-free GPU Drivers
             if [[ "$DISTRO" == "debian" ]]; then
                 sudo apt install -y \
@@ -107,11 +111,29 @@ installs-specific:
                     nvidia-driver
             fi
             ;;
+        arch)
+            # Install packages
+            sudo pacman -Syu --needed --noconfirm \
+                $DISTRO_PACKAGES \
+                noto-fonts-cjk \
+                networkmanager \
+                timeshift \
+                ufw
+
+            # Enable services
+            sudo systemctl enable --now \
+                NetworkManager \
+                bluetooth \
+                cronie
+            ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"
             exit 1
             ;;
     esac
+
+    # Enable firewall
+    sudo ufw enable
 
     # Install remaining apps
     just installs-common
@@ -142,6 +164,14 @@ installs-sunshine:
             wget -q --show-progress "$DEB_URL" -O "/tmp/$FILENAME"
             sudo apt install -y "/tmp/$FILENAME"
             rm "/tmp/$FILENAME"
+            ;;
+        arch)
+            echo "
+            [lizardbyte]
+            SigLevel = Optional
+            Server = https://github.com/LizardByte/pacman-repo/releases/latest/download" \
+            | sudo tee -a /etc/pacman.conf > /dev/null
+            sudo pacman -Syu --needed --noconfirm sunshine
             ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"

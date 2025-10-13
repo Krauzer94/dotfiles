@@ -89,9 +89,7 @@ installs-specific:
     echo -e "\n\t Installing distro specific apps \n"
 
     # Main packages to install
-    DISTRO_PACKAGES="\
-    gnome-software-plugin-flatpak \
-    ufw flatpak mangohud steam"
+    DISTRO_PACKAGES="ufw flatpak mangohud steam"
 
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
@@ -99,7 +97,8 @@ installs-specific:
         debian)
             # Install base packages
             sudo dpkg --add-architecture i386
-            sudo apt update && sudo apt install -y $DISTRO_PACKAGES
+            sudo apt update && sudo apt install -y \
+                $DISTRO_PACKAGES gnome-software-plugin-flatpak
             flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
             # Non-free GPU Drivers
@@ -112,19 +111,16 @@ installs-specific:
             fi
             ;;
         arch)
-            # Install packages
+            # Install base packages
             sudo pacman -Syu --needed --noconfirm \
                 $DISTRO_PACKAGES \
                 noto-fonts-cjk \
-                networkmanager \
-                timeshift \
-                ufw
+                networkmanager
 
-            # Enable services
+            # Enable basic services
             sudo systemctl enable --now \
                 NetworkManager \
-                bluetooth \
-                cronie
+                bluetooth
             ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"

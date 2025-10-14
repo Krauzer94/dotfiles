@@ -14,10 +14,10 @@ installs-common:
     # Install all Flatpaks
     flatpak install -y --noninteractive flathub \
         be.alexandervanhee.gradia \
+        com.dec05eba.gpu_screen_recorder \
         com.discordapp.Discord \
         com.github.tchx84.Flatseal \
         com.google.Chrome \
-        com.obsproject.Studio \
         com.rtosta.zapzap \
         com.spotify.Client \
         com.stremio.Stremio \

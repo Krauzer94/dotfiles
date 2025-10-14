@@ -104,8 +104,8 @@ installs-specific:
             # Non-free GPU Drivers
             sudo apt install -y \
                 linux-headers-$(dpkg --print-architecture) \
+                nvidia-open-kernel-dkms \
                 firmware-misc-nonfree \
-                nvidia-kernel-dkms \
                 nvidia-driver
             ;;
         arch)

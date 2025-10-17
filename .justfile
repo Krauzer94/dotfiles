@@ -66,13 +66,6 @@ installs-docker:
             # Install Docker packages
             sudo apt update && sudo apt install -y $DOCKER_PACKAGES
             ;;
-        arch)
-            # Install Docker packages
-            sudo pacman -Syu --needed --noconfirm \
-                docker-compose \
-                docker-buildx \
-                docker
-            ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"
             exit 1
@@ -107,18 +100,6 @@ installs-specific:
                 nvidia-open-kernel-dkms \
                 firmware-misc-nonfree \
                 nvidia-driver
-            ;;
-        arch)
-            # Install base packages
-            sudo pacman -Syu --needed --noconfirm \
-                $DISTRO_PACKAGES \
-                noto-fonts-cjk \
-                networkmanager
-
-            # Enable basic services
-            sudo systemctl enable --now \
-                NetworkManager \
-                bluetooth
             ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"
@@ -158,14 +139,6 @@ installs-sunshine:
             wget -q --show-progress "$DEB_URL" -O "/tmp/$FILENAME"
             sudo apt install -y "/tmp/$FILENAME"
             rm "/tmp/$FILENAME"
-            ;;
-        arch)
-            echo "
-            [lizardbyte]
-            SigLevel = Optional
-            Server = https://github.com/LizardByte/pacman-repo/releases/latest/download" \
-            | sudo tee -a /etc/pacman.conf > /dev/null
-            sudo pacman -Syu --needed --noconfirm sunshine
             ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"

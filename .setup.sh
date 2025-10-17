@@ -13,9 +13,6 @@ install_base() {
         debian)
             sudo apt install -y git
             ;;
-        arch)
-            sudo pacman -Syu --needed --noconfirm git
-            ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"
             exit 1
@@ -51,7 +48,7 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        debian*|archlinux*)
+        debian*)
             just installs-specific
             ;;
         *)

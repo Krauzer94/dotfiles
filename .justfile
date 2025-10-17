@@ -93,19 +93,24 @@ installs-specific:
             sudo apt update && sudo apt install -y \
                 $DISTRO_PACKAGES gnome-software-plugin-flatpak
             flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-            # Non-free GPU Drivers
-            sudo apt install -y \
-                linux-headers-$(dpkg --print-architecture) \
-                nvidia-open-kernel-dkms \
-                firmware-misc-nonfree \
-                nvidia-driver
+            ;;
+        linuxmint)
+            # Install system packages
+            sudo dpkg --add-architecture i386
+            sudo apt update && sudo apt install -y $DISTRO_PACKAGES
             ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"
             exit 1
             ;;
     esac
+
+    # Non-free GPU Drivers
+    sudo apt install -y \
+        linux-headers-$(dpkg --print-architecture) \
+        nvidia-open-kernel-dkms \
+        firmware-misc-nonfree \
+        nvidia-driver
 
     # Enable firewall
     sudo ufw enable

@@ -50,7 +50,7 @@ installs-docker:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        debian)
+        debian|linuxmint)
             # Ensure all dependencies
             sudo apt update && sudo apt install -y \
                 apt-transport-https \
@@ -58,6 +58,7 @@ installs-docker:
                 gnupg
 
             # Enable the Docker repo
+            # WIP: modularize $(lsb_release -cs) for LMDE
             curl -fsSL https://download.docker.com/linux/$DISTRO/gpg \
                 | sudo tee /etc/apt/trusted.gpg.d/docker.asc
             echo "deb [arch=amd64] https://download.docker.com/linux/$DISTRO $(lsb_release -cs) stable" \
@@ -133,8 +134,9 @@ installs-sunshine:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        debian)
+        debian|linuxmint)
             # Find the latest installer
+            # WIP: modularize $(lsb_release -cs) for LMDE
             DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
             GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
             DEB_URL=$(curl -s "$GITHUB_URL" | grep browser_download_url | grep "$DISTRO_VERSION" | grep "amd64\.deb" | cut -d '"' -f 4)

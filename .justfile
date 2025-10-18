@@ -50,7 +50,15 @@ installs-docker:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        debian|linuxmint)
+            debian|linuxmint)
+            # Ensure compatibility
+            if [[ "$DISTRO" == "linuxmint" ]]; then
+                CODENAME=$(grep -Po '(?<=^DEBIAN_CODENAME=).*' /etc/os-release)
+            else
+                CODENAME=$(lsb_release -cs)
+            fi
+            DISTRO="debian"
+
             # Ensure all dependencies
             sudo apt update && sudo apt install -y \
                 apt-transport-https \
@@ -58,10 +66,9 @@ installs-docker:
                 gnupg
 
             # Enable the Docker repo
-            # WIP: modularize $(lsb_release -cs) for LMDE
             curl -fsSL https://download.docker.com/linux/$DISTRO/gpg \
                 | sudo tee /etc/apt/trusted.gpg.d/docker.asc
-            echo "deb [arch=amd64] https://download.docker.com/linux/$DISTRO $(lsb_release -cs) stable" \
+            echo "deb [arch=amd64] https://download.docker.com/linux/$DISTRO $CODENAME stable" \
                 | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
             # Install Docker packages

@@ -142,9 +142,16 @@ installs-sunshine:
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
         debian|linuxmint)
+            # Ensure compatibility
+            if [[ "$DISTRO" == "linuxmint" ]]; then
+                CODENAME=$(grep -Po '(?<=^DEBIAN_CODENAME=).*' /etc/os-release)
+            else
+                CODENAME=$(lsb_release -cs)
+            fi
+            DISTRO="debian"
+
             # Find the latest installer
-            # WIP: modularize $(lsb_release -cs) for LMDE
-            DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
+            DISTRO_VERSION="${DISTRO}-${CODENAME}"
             GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
             DEB_URL=$(curl -s "$GITHUB_URL" | grep browser_download_url | grep "$DISTRO_VERSION" | grep "amd64\.deb" | cut -d '"' -f 4)
 

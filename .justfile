@@ -50,7 +50,7 @@ installs-docker:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-            debian|linuxmint)
+        debian|linuxmint)
             # Ensure compatibility
             if [[ "$DISTRO" == "linuxmint" ]]; then
                 CODENAME=$(grep -Po '(?<=^DEBIAN_CODENAME=).*' /etc/os-release)

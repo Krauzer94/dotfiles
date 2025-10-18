@@ -26,9 +26,9 @@ installs-common:
         io.missioncenter.MissionCenter \
         net.davidotek.pupgui2 \
         org.bleachbit.BleachBit \
+        org.flameshot.Flameshot \
         org.gimp.GIMP \
         org.kde.kcalc \
-        org.kde.pix \
         org.mozilla.firefox \
         org.onlyoffice.desktopeditors \
         org.qbittorrent.qBittorrent \

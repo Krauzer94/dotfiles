@@ -90,7 +90,7 @@ installs-specific:
     echo -e "\n\t Installing distro specific apps \n"
 
     # Main packages to install
-    DISTRO_PACKAGES="ufw flatpak mangohud steam"
+    DISTRO_PACKAGES="extrepo ufw flatpak mangohud steam"
 
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
@@ -113,12 +113,12 @@ installs-specific:
     esac
 
     # Non-free GPU Drivers
-    # WIP: replace with the CUDA version
-    sudo apt install -y \
+    sudo extrepo enable nvidia-cuda
+    sudo apt update && sudo apt install -y \
         linux-headers-$(dpkg --print-architecture) \
         nvidia-open-kernel-dkms \
         firmware-misc-nonfree \
-        nvidia-driver
+        nvidia-open
 
     # Enable firewall
     sudo ufw enable

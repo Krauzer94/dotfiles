@@ -50,7 +50,15 @@ installs-docker:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        debian|ubuntu)
+        debian|linuxmint)
+            # Ensure compatibility
+            if [[ "$DISTRO" == "linuxmint" ]]; then
+                CODENAME=$(grep -Po '(?<=^DEBIAN_CODENAME=).*' /etc/os-release)
+            else
+                CODENAME=$(lsb_release -cs)
+            fi
+            DISTRO="debian"
+
             # Ensure all dependencies
             sudo apt update && sudo apt install -y \
                 apt-transport-https \
@@ -87,20 +95,15 @@ installs-specific:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        debian|ubuntu)
+        debian|linuxmint)
             # Install base packages
             sudo dpkg --add-architecture i386
-            sudo apt update && sudo apt install -y \
-                $DISTRO_PACKAGES gnome-software-plugin-flatpak
-            flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            sudo apt update && sudo apt install -y $DISTRO_PACKAGES
 
-            # Non-free GPU Drivers
+            # GNOME specific
             if [[ "$DISTRO" == "debian" ]]; then
-                sudo apt install -y \
-                    linux-headers-$(dpkg --print-architecture) \
-                    nvidia-open-kernel-dkms \
-                    firmware-misc-nonfree \
-                    nvidia-driver
+                sudo apt install -y gnome-software-plugin-flatpak
+                flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
             fi
             ;;
         *)
@@ -108,6 +111,14 @@ installs-specific:
             exit 1
             ;;
     esac
+
+    # Non-free GPU Drivers
+    # WIP: replace with the CUDA version
+    sudo apt install -y \
+        linux-headers-$(dpkg --print-architecture) \
+        nvidia-open-kernel-dkms \
+        firmware-misc-nonfree \
+        nvidia-driver
 
     # Enable firewall
     sudo ufw enable
@@ -130,15 +141,17 @@ installs-sunshine:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        debian|ubuntu)
+        debian|linuxmint)
             # Ensure compatibility
-            if [[ "$DISTRO" == "debian" ]]; then
-                DISTRO_VERSION="${DISTRO}-$(lsb_release -cs)"
+            if [[ "$DISTRO" == "linuxmint" ]]; then
+                CODENAME=$(grep -Po '(?<=^DEBIAN_CODENAME=).*' /etc/os-release)
             else
-                DISTRO_VERSION="${DISTRO}-$(lsb_release -rs)"
+                CODENAME=$(lsb_release -cs)
             fi
+            DISTRO="debian"
 
             # Find the latest installer
+            DISTRO_VERSION="${DISTRO}-${CODENAME}"
             GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
             DEB_URL=$(curl -s "$GITHUB_URL" | grep browser_download_url | grep "$DISTRO_VERSION" | grep "amd64\.deb" | cut -d '"' -f 4)
 

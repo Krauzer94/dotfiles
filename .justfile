@@ -68,7 +68,7 @@ installs-docker:
             # Enable the Docker repo
             curl -fsSL https://download.docker.com/linux/$DISTRO/gpg \
                 | sudo tee /etc/apt/trusted.gpg.d/docker.asc
-            echo "deb [arch=amd64] https://download.docker.com/linux/$DISTRO $(lsb_release -cs) stable" \
+            echo "deb [arch=amd64] https://download.docker.com/linux/$DISTRO $CODENAME stable" \
                 | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
             # Install Docker packages

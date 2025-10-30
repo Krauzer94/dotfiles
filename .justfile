@@ -98,7 +98,6 @@ installs-specific:
     DISTRO_PACKAGES="ufw flatpak mangohud steam"
     NVIDIA_PACKAGES="\
     linux-headers-$(dpkg --print-architecture) \
-    nvidia-open-kernel-dkms \
     firmware-misc-nonfree \
     nvidia-open"
 

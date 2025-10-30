@@ -97,8 +97,8 @@ installs-specific:
     # Main packages to install
     DISTRO_PACKAGES="ufw flatpak mangohud steam"
     NVIDIA_PACKAGES="\
-    linux-headers-$(dpkg --print-architecture) \
     firmware-misc-nonfree \
+    linux-headers-amd64 \
     nvidia-open"
 
     # Install based on distro

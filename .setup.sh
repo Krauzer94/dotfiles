@@ -10,7 +10,7 @@ install_base() {
         steamos)
             flatpak uninstall --all -y
             ;;
-        debian|linuxmint)
+        debian|linuxmint|ubuntu)
             sudo apt install -y git
             ;;
         *)
@@ -48,7 +48,7 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        debian*|mint*)
+        debian*|mint*|ubuntu*)
             just installs-specific
             ;;
         *)

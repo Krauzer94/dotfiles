@@ -50,7 +50,7 @@ installs-docker:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        debian|linuxmint)
+        debian|linuxmint|ubuntu)
             # Ensure compatibility
             if [[ "$DISTRO" == "linuxmint" ]]; then
                 if [[ -f /etc/upstream-release/lsb-release ]]; then
@@ -105,7 +105,7 @@ installs-specific:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        debian|linuxmint)
+        debian|linuxmint|ubuntu)
             # Install base packages
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y $DISTRO_PACKAGES
@@ -117,8 +117,8 @@ installs-specific:
                 sudo apt update && sudo apt install -y $NVIDIA_PACKAGES
             fi
 
-            # GNOME specific
-            if [[ "$DISTRO" == "debian" ]]; then
+            # GNOME specific packages
+            if [[ "$DESKTOP_SESSION" == *"gnome"* ]]; then
                 sudo apt install -y gnome-software-plugin-flatpak
                 flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
             fi

@@ -176,10 +176,6 @@ setup-devenv:
     #!/bin/bash
     echo -e "\n\t Setting up development environment \n"
 
-    # Install essential CLI tools
-    curl -sfL https://direnv.net/install.sh | bash
-    curl https://mise.run | sh
-
     # Ensure Github SSH connection
     ssh-keygen -t ed25519 -C 13894059+Krauzer94@users.noreply.github.com
     echo '' && cat ~/.ssh/id_ed25519.pub && echo ''

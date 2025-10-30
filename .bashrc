@@ -22,12 +22,6 @@ if [ -f ~/.bash_aliases ]; then
 . ~/.bash_aliases
 fi
 
-# Enable direnv
-eval "$(direnv hook bash)"
-
-# Enable mise
-eval "$(~/.local/bin/mise activate bash)"
-
 # Terminal Pastebin
 function paste() {
     echo ""

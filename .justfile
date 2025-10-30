@@ -135,56 +135,6 @@ installs-specific:
     # Install remaining apps
     just installs-common
 
-# Installs Sunshine application
-installs-sunshine:
-    #!/bin/bash
-    echo -e "\n\t Installing Sunshine application \n"
-
-    # Firewall port configuration
-    for port in 47984 47989 47990 48010; do
-        sudo ufw allow ${port}/tcp
-    done
-    sudo ufw allow 47998:48000/udp
-    sudo ufw reload
-
-    # Install based on distro
-    DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
-    case "$DISTRO" in
-        debian|linuxmint)
-            # Ensure compatibility
-            if [[ "$DISTRO" == "linuxmint" ]]; then
-                if [[ -f /etc/upstream-release/lsb-release ]]; then
-                    DISTRO="ubuntu"
-                    CODENAME=$(grep -Po '(?<=^DISTRIB_RELEASE=).*' /etc/upstream-release/lsb-release)
-                else
-                    DISTRO="debian"
-                    CODENAME=$(grep -Po '(?<=^DEBIAN_CODENAME=).*' /etc/os-release)
-                fi
-            else
-                CODENAME=$(lsb_release -cs)
-            fi
-
-            # Find the latest installer
-            DISTRO_VERSION="${DISTRO}-${CODENAME}"
-            GITHUB_URL="https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
-            DEB_URL=$(curl -s "$GITHUB_URL" | grep browser_download_url | grep "$DISTRO_VERSION" | grep "amd64\.deb" | cut -d '"' -f 4)
-
-            # Download, install and clean
-            FILENAME=$(basename "$DEB_URL")
-            wget -q --show-progress "$DEB_URL" -O "/tmp/$FILENAME"
-            sudo apt install -y "/tmp/$FILENAME"
-            rm "/tmp/$FILENAME"
-            ;;
-        *)
-            echo -e "\t Unsupported system, operation failed... \n"
-            exit 1
-            ;;
-    esac
-
-    # Enable WoL on startup
-    WIFI_CONN=$(nmcli -t -f NAME,TYPE con show | grep wireless | cut -d: -f1 | head -n 1)
-    nmcli con modify "$WIFI_CONN" 802-11-wireless.wake-on-wlan magic
-
 # Set up development environment
 setup-devenv:
     #!/bin/bash

@@ -55,7 +55,7 @@ installs-docker:
             if [[ "$DISTRO" == "linuxmint" ]]; then
                 if [[ -f /etc/upstream-release/lsb-release ]]; then
                     DISTRO="ubuntu"
-                    CODENAME=$(grep -Po '(?<=^CONTRIB_CODENAME=).*' /etc/upstream-release/lsb-release)
+                    CODENAME=$(grep -Po '(?<=^DISTRIB_CODENAME=).*' /etc/upstream-release/lsb-release)
                 else
                     DISTRO="debian"
                     CODENAME=$(grep -Po '(?<=^DEBIAN_CODENAME=).*' /etc/os-release)
@@ -155,7 +155,7 @@ installs-sunshine:
             if [[ "$DISTRO" == "linuxmint" ]]; then
                 if [[ -f /etc/upstream-release/lsb-release ]]; then
                     DISTRO="ubuntu"
-                    CODENAME=$(grep -Po '(?<=^CONTRIB_RELEASE=).*' /etc/upstream-release/lsb-release)
+                    CODENAME=$(grep -Po '(?<=^DISTRIB_RELEASE=).*' /etc/upstream-release/lsb-release)
                 else
                     DISTRO="debian"
                     CODENAME=$(grep -Po '(?<=^DEBIAN_CODENAME=).*' /etc/os-release)

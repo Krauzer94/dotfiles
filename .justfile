@@ -40,6 +40,7 @@ installs-docker:
     echo -e "\n\t Installing the Docker application \n"
 
     # Main packages to install
+    DEPENDENCIES="apt-transport-https ca-certificates gnupg"
     DOCKER_PACKAGES="\
     docker-ce \
     docker-ce-cli \
@@ -65,10 +66,7 @@ installs-docker:
             fi
 
             # Ensure all dependencies
-            sudo apt update && sudo apt install -y \
-                apt-transport-https \
-                ca-certificates \
-                gnupg
+            sudo apt update && sudo apt install -y $DEPENDENCIES
 
             # Enable the Docker repo
             curl -fsSL https://download.docker.com/linux/$DISTRO/gpg \

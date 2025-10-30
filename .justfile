@@ -53,11 +53,16 @@ installs-docker:
         debian|linuxmint)
             # Ensure compatibility
             if [[ "$DISTRO" == "linuxmint" ]]; then
-                CODENAME=$(grep -Po '(?<=^DEBIAN_CODENAME=).*' /etc/os-release)
+                if [[ -f /etc/upstream-release/lsb-release ]]; then
+                    DISTRO="ubuntu"
+                    CODENAME=$(grep -Po '(?<=^CONTRIB_CODENAME=).*' /etc/upstream-release/lsb-release)
+                else
+                    DISTRO="debian"
+                    CODENAME=$(grep -Po '(?<=^DEBIAN_CODENAME=).*' /etc/os-release)
+                fi
             else
                 CODENAME=$(lsb_release -cs)
             fi
-            DISTRO="debian"
 
             # Ensure all dependencies
             sudo apt update && sudo apt install -y \
@@ -90,7 +95,12 @@ installs-specific:
     echo -e "\n\t Installing distro specific apps \n"
 
     # Main packages to install
-    DISTRO_PACKAGES="extrepo ufw flatpak mangohud steam"
+    DISTRO_PACKAGES="ufw flatpak mangohud steam"
+    NVIDIA_PACKAGES="\
+    linux-headers-$(dpkg --print-architecture) \
+    nvidia-open-kernel-dkms \
+    firmware-misc-nonfree \
+    nvidia-open"
 
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
@@ -99,6 +109,13 @@ installs-specific:
             # Install base packages
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y $DISTRO_PACKAGES
+
+            # Ensure compatibility
+            if [[ ! -f /etc/upstream-release/lsb-release ]]; then
+                sudo apt install -y extrepo
+                sudo extrepo enable nvidia-cuda
+                sudo apt update && sudo apt install -y $NVIDIA_PACKAGES
+            fi
 
             # GNOME specific
             if [[ "$DISTRO" == "debian" ]]; then
@@ -111,14 +128,6 @@ installs-specific:
             exit 1
             ;;
     esac
-
-    # Non-free GPU Drivers
-    sudo extrepo enable nvidia-cuda
-    sudo apt update && sudo apt install -y \
-        linux-headers-$(dpkg --print-architecture) \
-        nvidia-open-kernel-dkms \
-        firmware-misc-nonfree \
-        nvidia-open
 
     # Enable firewall
     sudo ufw enable
@@ -144,11 +153,16 @@ installs-sunshine:
         debian|linuxmint)
             # Ensure compatibility
             if [[ "$DISTRO" == "linuxmint" ]]; then
-                CODENAME=$(grep -Po '(?<=^DEBIAN_CODENAME=).*' /etc/os-release)
+                if [[ -f /etc/upstream-release/lsb-release ]]; then
+                    DISTRO="ubuntu"
+                    CODENAME=$(grep -Po '(?<=^CONTRIB_RELEASE=).*' /etc/upstream-release/lsb-release)
+                else
+                    DISTRO="debian"
+                    CODENAME=$(grep -Po '(?<=^DEBIAN_CODENAME=).*' /etc/os-release)
+                fi
             else
                 CODENAME=$(lsb_release -cs)
             fi
-            DISTRO="debian"
 
             # Find the latest installer
             DISTRO_VERSION="${DISTRO}-${CODENAME}"

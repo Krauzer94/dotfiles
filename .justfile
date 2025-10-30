@@ -145,29 +145,6 @@ setup-devenv:
     echo '' && cat ~/.ssh/id_ed25519.pub && echo ''
     git remote set-url origin git@github.com:Krauzer94/dotfiles.git
 
-# Set up Tailscale on the Deck
-setup-taildeck:
-    #!/bin/bash
-    echo -e "\n\t Setting up Tailscale on the Deck \n"
-
-    # Install based on distro
-    DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
-    case "$DISTRO" in
-        steamos)
-            # Download necessary files
-            git clone git@github.com:tailscale-dev/deck-tailscale.git
-            cd ./deck-tailscale
-
-            # Install and source binary
-            sudo bash ./tailscale.sh
-            source /etc/profile.d/tailscale.sh
-            ;;
-        *)
-            echo -e "\t Unsupported system, operation failed... \n"
-            exit 1
-            ;;
-    esac
-
 # Set up application theming
 setup-themes:
     #!/bin/bash

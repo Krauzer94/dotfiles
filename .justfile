@@ -40,13 +40,19 @@ installs-docker:
     echo "\n\t Installing the Docker application \n"
 
     # Main packages to install
-    DEPENDENCIES="apt-transport-https ca-certificates gnupg"
-    DOCKER_PACKAGES="\
-    docker-ce \
-    docker-ce-cli \
-    containerd.io \
-    docker-buildx-plugin \
-    docker-compose-plugin"
+    DEPENDENCIES=(
+        apt-transport-https
+        ca-certificates
+        gnupg
+    )
+
+    DOCKER_PACKAGES=(
+        docker-ce
+        docker-ce-cli
+        containerd.io
+        docker-buildx-plugin
+        docker-compose-plugin
+    )
 
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
@@ -66,7 +72,7 @@ installs-docker:
             fi
 
             # Ensure all dependencies
-            sudo apt update && sudo apt install -y $DEPENDENCIES
+            sudo apt update && sudo apt install -y "${DEPENDENCIES[@]}"
 
             # Enable the Docker repo
             curl -fsSL https://download.docker.com/linux/$DISTRO/gpg \
@@ -75,7 +81,7 @@ installs-docker:
                 | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
             # Install Docker packages
-            sudo apt update && sudo apt install -y $DOCKER_PACKAGES
+            sudo apt update && sudo apt install -y "${DOCKER_PACKAGES[@]}"
             ;;
         *)
             echo "\t Unsupported system, operation failed... \n"
@@ -93,11 +99,18 @@ installs-specific:
     echo "\n\t Installing distro specific apps \n"
 
     # Main packages to install
-    DISTRO_PACKAGES="ufw flatpak mangohud steam"
-    NVIDIA_PACKAGES="\
-    firmware-misc-nonfree \
-    linux-headers-amd64 \
-    nvidia-open"
+    DISTRO_PACKAGES=(
+        mangohud
+        flatpak
+        steam
+        ufw
+    )
+
+    NVIDIA_PACKAGES=(
+        firmware-misc-nonfree
+        linux-headers-amd64
+        nvidia-open
+    )
 
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
@@ -105,13 +118,13 @@ installs-specific:
         debian|linuxmint|ubuntu)
             # Install base packages
             sudo dpkg --add-architecture i386
-            sudo apt update && sudo apt install -y $DISTRO_PACKAGES
+            sudo apt update && sudo apt install -y "${DISTRO_PACKAGES[@]}"
 
             # Ensure compatibility
             if [[ ! -f /etc/upstream-release/lsb-release ]]; then
                 sudo apt install -y extrepo
                 sudo extrepo enable nvidia-cuda
-                sudo apt update && sudo apt install -y $NVIDIA_PACKAGES
+                sudo apt update && sudo apt install -y "${NVIDIA_PACKAGES[@]}"
             fi
 
             # GNOME specific packages

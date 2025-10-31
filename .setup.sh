@@ -48,7 +48,7 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        debian*|mint*|ubuntu*)
+        debian|linuxmint|ubuntu)
             just installs-specific
             ;;
         *)

@@ -64,13 +64,8 @@ installs-docker:
         debian|linuxmint|ubuntu)
             # Ensure compatibility
             if [[ "$DISTRO" == "linuxmint" ]]; then
-                if [[ -f /etc/upstream-release/lsb-release ]]; then
-                    DISTRO="ubuntu"
-                    CODENAME=$(grep -Po '(?<=^DISTRIB_CODENAME=).*' /etc/upstream-release/lsb-release)
-                else
-                    DISTRO="debian"
-                    CODENAME=$(grep -Po '(?<=^DEBIAN_CODENAME=).*' /etc/os-release)
-                fi
+                DISTRO="ubuntu"
+                CODENAME=$(grep -Po '(?<=^DISTRIB_CODENAME=).*' /etc/upstream-release/lsb-release)
             else
                 CODENAME=$(lsb_release -cs)
             fi
@@ -111,6 +106,7 @@ installs-specific:
     )
 
     NVIDIA_PACKAGES=(
+        nvidia-open-kernel-dkms
         firmware-misc-nonfree
         linux-headers-amd64
         nvidia-open
@@ -125,16 +121,12 @@ installs-specific:
             sudo apt update && sudo apt install -y "${DISTRO_PACKAGES[@]}"
 
             # Ensure compatibility
-            if [[ ! -f /etc/upstream-release/lsb-release ]]; then
-                sudo apt install -y extrepo
-                sudo extrepo enable nvidia-cuda
-                sudo apt update && sudo apt install -y "${NVIDIA_PACKAGES[@]}"
-            fi
-
-            # GNOME specific packages
-            if [[ "$DESKTOP_SESSION" == *"gnome"* ]]; then
+            if [[ "$DISTRO" == "debian" ]]; then
+                sudo apt install -y "${NVIDIA_PACKAGES[@]}"
                 sudo apt install -y gnome-software-plugin-flatpak
                 flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            else
+                sudo ubuntu-drivers install
             fi
             ;;
         *)

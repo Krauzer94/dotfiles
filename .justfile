@@ -6,7 +6,7 @@ _default:
 # Installs common applications
 installs-common:
     #!/bin/bash
-    printf "\n\t Installing common applications \n"
+    echo -e "\n\t Installing common applications \n"
 
     # Ensure app theming
     just setup-themes
@@ -41,7 +41,7 @@ installs-common:
 # Installs the Docker application
 installs-docker:
     #!/bin/bash
-    printf "\n\t Installing the Docker application \n"
+    echo -e "\n\t Installing the Docker application \n"
 
     # Main packages to install
     DEPENDENCIES=(
@@ -83,7 +83,7 @@ installs-docker:
             sudo apt update && sudo apt install -y "${DOCKER_PACKAGES[@]}"
             ;;
         *)
-            printf "\t Unsupported system, operation failed... \n"
+            echo -e "\t Unsupported system, operation failed... \n"
             exit 1
             ;;
     esac
@@ -95,7 +95,7 @@ installs-docker:
 # Installs distro specific apps
 installs-specific:
     #!/bin/bash
-    printf "\n\t Installing distro specific apps \n"
+    echo -e "\n\t Installing distro specific apps \n"
 
     # Main packages to install
     DISTRO_PACKAGES=(
@@ -115,7 +115,7 @@ installs-specific:
             sudo ubuntu-drivers install
             ;;
         *)
-            printf "\t Unsupported system, operation failed... \n"
+            echo -e "\t Unsupported system, operation failed... \n"
             exit 1
             ;;
     esac
@@ -129,7 +129,7 @@ installs-specific:
 # Set up development environment
 setup-devenv:
     #!/bin/bash
-    printf "\n\t Setting up development environment \n"
+    echo -e "\n\t Setting up development environment \n"
 
     # Ensure Github SSH connection
     ssh-keygen -t ed25519 -C 13894059+Krauzer94@users.noreply.github.com

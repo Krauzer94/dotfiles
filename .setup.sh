@@ -2,7 +2,7 @@
 
 # Install base packages
 install_base() {
-    printf "\n\t Installing base packages \n"
+    echo -e "\n\t Installing base packages \n"
 
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
@@ -14,7 +14,7 @@ install_base() {
             sudo apt install -y git
             ;;
         *)
-            printf "\t Unsupported system, operation failed... \n"
+            echo -e "\t Unsupported system, operation failed... \n"
             exit 1
             ;;
     esac
@@ -22,7 +22,7 @@ install_base() {
 
 # Set up dotfiles
 setup_dotfiles() {
-    printf "\n\t Setting up the dotfiles \n"
+    echo -e "\n\t Setting up the dotfiles \n"
 
     # Clone and restore files
     git clone https://github.com/Krauzer94/dotfiles.git
@@ -32,7 +32,7 @@ setup_dotfiles() {
 
 # Install Just CLI
 install_just () {
-    printf "\n\t Installing just CLI tool \n"
+    echo -e "\n\t Installing just CLI tool \n"
 
     # Ensure binary in $PATH
     mkdir -p ~/.local/bin

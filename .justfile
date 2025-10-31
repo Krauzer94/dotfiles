@@ -11,28 +11,32 @@ installs-common:
     # Ensure app theming
     just setup-themes
 
+    # Flatpak apps to install
+    FLATPAK_APPS=(
+        be.alexandervanhee.gradia
+        com.dec05eba.gpu_screen_recorder
+        com.discordapp.Discord
+        com.github.tchx84.Flatseal
+        com.google.Chrome
+        com.rtosta.zapzap
+        com.spotify.Client
+        com.stremio.Stremio
+        com.visualstudio.code
+        io.github.flattool.Warehouse
+        io.missioncenter.MissionCenter
+        net.davidotek.pupgui2
+        org.bleachbit.BleachBit
+        org.flameshot.Flameshot
+        org.gimp.GIMP
+        org.kde.kcalc
+        org.mozilla.firefox
+        org.onlyoffice.desktopeditors
+        org.qbittorrent.qBittorrent
+        org.videolan.VLC
+    )
+
     # Install all Flatpaks
-    flatpak install -y --noninteractive flathub \
-        be.alexandervanhee.gradia \
-        com.dec05eba.gpu_screen_recorder \
-        com.discordapp.Discord \
-        com.github.tchx84.Flatseal \
-        com.google.Chrome \
-        com.rtosta.zapzap \
-        com.spotify.Client \
-        com.stremio.Stremio \
-        com.visualstudio.code \
-        io.github.flattool.Warehouse \
-        io.missioncenter.MissionCenter \
-        net.davidotek.pupgui2 \
-        org.bleachbit.BleachBit \
-        org.flameshot.Flameshot \
-        org.gimp.GIMP \
-        org.kde.kcalc \
-        org.mozilla.firefox \
-        org.onlyoffice.desktopeditors \
-        org.qbittorrent.qBittorrent \
-        org.videolan.VLC > /dev/null
+    flatpak install -y --noninteractive flathub "${FLATPAK_APPS[@]}" > /dev/null
 
 # Installs the Docker application
 installs-docker:

@@ -61,7 +61,7 @@ installs-docker:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        debian|linuxmint|ubuntu)
+        linuxmint|ubuntu)
             # Ensure compatibility
             if [[ "$DISTRO" == "linuxmint" ]]; then
                 DISTRO="ubuntu"
@@ -105,29 +105,14 @@ installs-specific:
         ufw
     )
 
-    NVIDIA_PACKAGES=(
-        nvidia-open-kernel-dkms
-        firmware-misc-nonfree
-        linux-headers-amd64
-        nvidia-open
-    )
-
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        debian|linuxmint|ubuntu)
+        linuxmint|ubuntu)
             # Install base packages
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y "${DISTRO_PACKAGES[@]}"
-
-            # Ensure compatibility
-            if [[ "$DISTRO" == "debian" ]]; then
-                sudo apt install -y "${NVIDIA_PACKAGES[@]}"
-                sudo apt install -y gnome-software-plugin-flatpak
-                flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-            else
-                sudo ubuntu-drivers install
-            fi
+            sudo ubuntu-drivers install
             ;;
         *)
             printf "\t Unsupported system, operation failed... \n"

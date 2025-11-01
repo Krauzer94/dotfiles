@@ -27,8 +27,8 @@ installs-common:
         org.bleachbit.BleachBit
         org.flameshot.Flameshot
         org.gimp.GIMP
+        org.kde.gwenview
         org.kde.kcalc
-        org.kde.okular
         org.mozilla.firefox
         org.onlyoffice.desktopeditors
         org.qbittorrent.qBittorrent

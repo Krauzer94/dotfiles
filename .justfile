@@ -61,14 +61,9 @@ installs-docker:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        linuxmint|ubuntu)
+        debian|ubuntu)
             # Ensure compatibility
-            if [[ "$DISTRO" == "linuxmint" ]]; then
-                DISTRO="ubuntu"
-                CODENAME=$(grep -Po '(?<=^DISTRIB_CODENAME=).*' /etc/upstream-release/lsb-release)
-            else
-                CODENAME=$(lsb_release -cs)
-            fi
+            CODENAME=$(lsb_release -cs)
 
             # Ensure all dependencies
             sudo apt update && sudo apt install -y "${DEPENDENCIES[@]}"
@@ -105,14 +100,28 @@ installs-specific:
         ufw
     )
 
+    # NVIDIA driver packages
+    NVIDIA_PACKAGES=(
+        nvidia-open-kernel-dkms
+        firmware-misc-nonfree
+        linux-headers-amd64
+        nvidia-driver
+    )
+
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        linuxmint|ubuntu)
+        debian|ubuntu)
             # Install base packages
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y "${DISTRO_PACKAGES[@]}"
-            sudo ubuntu-drivers install
+
+            # Ensure compatibility
+            if [[ "$DISTRO" == "debian" ]]; then
+                sudo apt install -y "${NVIDIA_PACKAGES[@]}"
+            else
+                sudo ubuntu-drivers install
+            fi
             ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"

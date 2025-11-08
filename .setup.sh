@@ -13,6 +13,9 @@ install_base() {
         debian|ubuntu)
             sudo apt install -y git wget
             ;;
+        fedora)
+            sudo dnf install -y git wget
+            ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"
             exit 1
@@ -48,7 +51,7 @@ remaining_apps() {
         steamdeck*)
             just installs-common
             ;;
-        debian|ubuntu)
+        debian|ubuntu|fedora)
             just installs-specific
             ;;
         *)

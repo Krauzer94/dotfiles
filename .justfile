@@ -13,7 +13,6 @@ installs-common:
 
     # Flatpak apps to install
     FLATPAK_APPS=(
-        be.alexandervanhee.gradia
         com.dec05eba.gpu_screen_recorder
         com.discordapp.Discord
         com.github.tchx84.Flatseal
@@ -28,6 +27,7 @@ installs-common:
         org.bleachbit.BleachBit
         org.flameshot.Flameshot
         org.gimp.GIMP
+        org.gnome.gThumb
         org.kde.kcalc
         org.mozilla.firefox
         org.onlyoffice.desktopeditors

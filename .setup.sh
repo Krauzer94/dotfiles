@@ -45,7 +45,7 @@ remaining_apps() {
     # Install based on hostname
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck*)
+        steamdeck)
             just installs-common
             ;;
         linuxmint|ubuntu)

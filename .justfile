@@ -61,14 +61,9 @@ installs-docker:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        linuxmint|ubuntu)
+        ubuntu)
             # Ensure compatibility
-            if [[ "$DISTRO" == "linuxmint" ]]; then
-                DISTRO="ubuntu"
-                CODENAME=$(grep -Po '(?<=^DISTRIB_CODENAME=).*' /etc/upstream-release/lsb-release)
-            else
-                CODENAME=$(lsb_release -cs)
-            fi
+            CODENAME=$(lsb_release -cs)
 
             # Ensure all dependencies
             sudo apt update && sudo apt install -y "${DEPENDENCIES[@]}"
@@ -108,7 +103,7 @@ installs-specific:
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        linuxmint|ubuntu)
+        ubuntu)
             # Install base packages
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y "${DISTRO_PACKAGES[@]}"

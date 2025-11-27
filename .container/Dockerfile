@@ -1,11 +1,9 @@
 # Container base
-FROM debian:unstable-slim
-ENV DEBIAN_FRONTEND=noninteractive
+FROM alpine:latest
 
 # Install dependencies
-RUN apt update && apt install -y \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache \
+    bash
 
 # Working directory
 WORKDIR /app

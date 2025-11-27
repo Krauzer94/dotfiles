@@ -150,3 +150,18 @@ upload-savegame:
     git add .
     git commit -m "Save game upload"
     git push
+
+# Deploy an ephemeral container
+[no-cd]
+venv-deploy:
+    #!/bin/bash
+
+    # Build the container
+    podman build -t \
+        "$(basename "$PWD"):app" \
+        .container
+
+    # Run created container
+    podman run -it --rm \
+        -v "$(pwd)":/app \
+        -w /app "$(basename "$PWD"):app"

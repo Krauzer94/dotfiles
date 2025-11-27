@@ -2,7 +2,7 @@
 FROM alpine:latest
 
 # Install dependencies
-RUN apk add --no-cache \
+RUN apk update && apk add --no-cache \
     bash
 
 # Working directory

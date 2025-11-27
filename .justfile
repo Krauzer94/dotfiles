@@ -96,6 +96,7 @@ installs-specific:
     DISTRO_PACKAGES=(
         mangohud
         flatpak
+        podman
         steam
         ufw
     )

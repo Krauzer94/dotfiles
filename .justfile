@@ -98,7 +98,6 @@ installs-specific:
         flatpak
         podman
         steam
-        ufw
     )
 
     # Install based on distro
@@ -109,15 +108,23 @@ installs-specific:
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y "${DISTRO_PACKAGES[@]}"
             sudo ubuntu-drivers install
+
+            # Firewall handling
+            sudo apt install -y ufw
+            sudo ufw enable
+            ;;
+        fedora)
+            # Install base packages
+            sudo dnf install -y "${DISTRO_PACKAGES[@]}"
+
+            # Firewall handling
+            sudo systemctl enable --now firewalld
             ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"
             exit 1
             ;;
     esac
-
-    # Enable firewall
-    sudo ufw enable
 
     # Install remaining apps
     just installs-common

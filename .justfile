@@ -77,6 +77,16 @@ installs-docker:
             # Install Docker packages
             sudo apt update && sudo apt install -y "${DOCKER_PACKAGES[@]}"
             ;;
+        fedora)
+            # Ensure all dependencies
+            sudo dnf install -y dnf-plugins-core
+
+            # Enable the Docker repo
+            sudo dnf config-manager --add-repo https://download.docker.com/linux/$DISTRO/docker-ce.repo
+
+            # Install Docker packages
+            sudo dnf install -y "${DOCKER_PACKAGES[@]}"
+            ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"
             exit 1

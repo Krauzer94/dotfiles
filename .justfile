@@ -78,14 +78,17 @@ installs-docker:
             sudo apt update && sudo apt install -y "${DOCKER_PACKAGES[@]}"
             ;;
         fedora)
-            # Ensure all dependencies
-            sudo dnf install -y dnf-plugins-core
+            DOCKER_REPO=https://download.docker.com/linux/$DISTRO/docker-ce.repo
 
-            # Enable the Docker repo
-            sudo dnf config-manager --add-repo https://download.docker.com/linux/$DISTRO/docker-ce.repo
-
-            # Install Docker packages
-            sudo dnf install -y "${DOCKER_PACKAGES[@]}"
+            # Ensure compatibility
+            if command -v dnf &> /dev/null; then
+                sudo dnf install -y dnf-plugins-core
+                sudo dnf config-manager --add-repo $DOCKER_REPO
+                sudo dnf install -y "${DOCKER_PACKAGES[@]}"
+            else
+                sudo curl -o /etc/yum.repos.d/docker-ce.repo $DOCKER_REPO
+                sudo rpm-ostree install "${DOCKER_PACKAGES[@]}"
+            fi
             ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"
@@ -124,8 +127,19 @@ installs-specific:
             sudo ufw enable
             ;;
         fedora)
-            # Install base packages
-            sudo dnf install -y "${DISTRO_PACKAGES[@]}"
+            # Ensure compatibility
+            if command -v dnf &> /dev/null; then
+                sudo dnf install -y "${DISTRO_PACKAGES[@]}"
+            else
+                sudo rpm-ostree install \
+                    xorg-x11-drv-nvidia \
+                    akmod-nvidia \
+                    mangohud \
+                    steam
+
+                # NVIDIA driver handling
+                sudo rpm-ostree kargs --append=rd.driver.blacklist=nouveau,nova_core --append=modprobe.blacklist=nouveau,nova_core
+            fi
 
             # Firewall handling
             sudo systemctl enable --now firewalld

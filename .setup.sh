@@ -14,7 +14,11 @@ install_base() {
             sudo apt install -y git
             ;;
         fedora)
-            sudo dnf install -y git
+            if command -v dnf &> /dev/null; then
+                sudo dnf install -y git
+            else
+                flatpak uninstall --all -y
+            fi
             ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"

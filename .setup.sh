@@ -7,7 +7,7 @@ install_base() {
     # Install based on distro
     DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
     case "$DISTRO" in
-        steamos)
+        steamos|bazzite)
             flatpak uninstall --all -y
             ;;
         ubuntu)
@@ -52,7 +52,7 @@ remaining_apps() {
     # Install based on hostname
     HOST=$HOSTNAME
     case "$HOST" in
-        steamdeck)
+        steamdeck|bazzite)
             just installs-common
             ;;
         ubuntu|fedora)

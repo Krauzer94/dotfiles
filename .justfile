@@ -195,5 +195,5 @@ venv-deploy:
 
     # Run created container
     podman run -it --rm \
-        -v "$(pwd)":/app \
+        -v "$(pwd)":/app:Z \
         -w /app "$(basename "$PWD"):app"

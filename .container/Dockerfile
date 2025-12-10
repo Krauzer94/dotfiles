@@ -7,7 +7,7 @@ RUN apk update && apk add --no-cache \
     && rm -rf /var/cache/apk/*
 
 # Working directory
-WORKDIR /app
+WORKDIR /work
 
 # Interactively start
 CMD ["bash"]

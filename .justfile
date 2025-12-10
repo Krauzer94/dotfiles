@@ -190,10 +190,10 @@ venv-deploy:
 
     # Build the container
     podman build -t \
-        "$(basename "$PWD"):app" \
+        "$(basename "$PWD"):work" \
         .container
 
     # Run created container
     podman run -it --rm \
-        -v "$(pwd)":/app:Z \
-        -w /app "$(basename "$PWD"):app"
+        -v "$(pwd)":/work:Z \
+        -w /work "$(basename "$PWD"):work"

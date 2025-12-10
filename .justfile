@@ -3,6 +3,21 @@ set quiet
 _default:
     just --list
 
+# Deploy an ephemeral container
+[no-cd]
+env-deploy:
+    #!/bin/bash
+
+    # Build the container
+    podman build -t \
+        "$(basename "$PWD"):latest" \
+        .container
+
+    # Run created container
+    podman run -it --rm \
+        -v "$(pwd)":/work:Z \
+        -w /work "$(basename "$PWD"):latest"
+
 # Installs common applications
 installs-common:
     #!/bin/bash
@@ -182,18 +197,3 @@ upload-savegame:
     git add .
     git commit -m "Save game upload"
     git push
-
-# Deploy an ephemeral container
-[no-cd]
-venv-deploy:
-    #!/bin/bash
-
-    # Build the container
-    podman build -t \
-        "$(basename "$PWD"):work" \
-        .container
-
-    # Run created container
-    podman run -it --rm \
-        -v "$(pwd)":/work:Z \
-        -w /work "$(basename "$PWD"):work"

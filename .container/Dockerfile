@@ -1,13 +1,14 @@
 # Container base
-FROM alpine:latest
+FROM ubuntu:latest
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies
-RUN apk update && apk add --no-cache \
+RUN apt update && apt install -y \
     bash \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/lib/apt/lists/*
 
 # Working directory
 WORKDIR /work
 
-# Interactively start
+# Start the container
 CMD ["bash"]

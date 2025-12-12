@@ -80,19 +80,8 @@ installs-specific:
             sudo ufw enable
             ;;
         fedora)
-            # Ensure compatibility
-            if command -v dnf &> /dev/null; then
-                sudo dnf install -y "${DISTRO_PACKAGES[@]}"
-            else
-                sudo rpm-ostree install \
-                    xorg-x11-drv-nvidia \
-                    akmod-nvidia \
-                    mangohud \
-                    steam
-
-                # NVIDIA driver handling
-                sudo rpm-ostree kargs --append=rd.driver.blacklist=nouveau,nova_core --append=modprobe.blacklist=nouveau,nova_core
-            fi
+            # Install base packages
+            sudo dnf install -y "${DISTRO_PACKAGES[@]}"
 
             # Firewall handling
             sudo systemctl enable --now firewalld

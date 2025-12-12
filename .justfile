@@ -53,68 +53,6 @@ installs-common:
     # Install all Flatpaks
     flatpak install -y --noninteractive flathub "${FLATPAK_APPS[@]}" > /dev/null
 
-# Installs the Docker application
-installs-docker:
-    #!/bin/bash
-    echo -e "\n\t Installing the Docker application \n"
-
-    # Main packages to install
-    DEPENDENCIES=(
-        apt-transport-https
-        ca-certificates
-        gnupg
-    )
-
-    DOCKER_PACKAGES=(
-        docker-ce
-        docker-ce-cli
-        containerd.io
-        docker-buildx-plugin
-        docker-compose-plugin
-    )
-
-    # Install based on distro
-    DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
-    case "$DISTRO" in
-        ubuntu)
-            # Ensure compatibility
-            CODENAME=$(lsb_release -cs)
-
-            # Ensure all dependencies
-            sudo apt update && sudo apt install -y "${DEPENDENCIES[@]}"
-
-            # Enable the Docker repo
-            curl -fsSL https://download.docker.com/linux/$DISTRO/gpg \
-                | sudo tee /etc/apt/trusted.gpg.d/docker.asc
-            echo "deb [arch=amd64] https://download.docker.com/linux/$DISTRO $CODENAME stable" \
-                | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-            # Install Docker packages
-            sudo apt update && sudo apt install -y "${DOCKER_PACKAGES[@]}"
-            ;;
-        fedora)
-            DOCKER_REPO=https://download.docker.com/linux/$DISTRO/docker-ce.repo
-
-            # Ensure compatibility
-            if command -v dnf &> /dev/null; then
-                sudo dnf install -y dnf-plugins-core
-                sudo dnf config-manager --add-repo $DOCKER_REPO
-                sudo dnf install -y "${DOCKER_PACKAGES[@]}"
-            else
-                sudo curl -o /etc/yum.repos.d/docker-ce.repo $DOCKER_REPO
-                sudo rpm-ostree install "${DOCKER_PACKAGES[@]}"
-            fi
-            ;;
-        *)
-            echo -e "\t Unsupported system, operation failed... \n"
-            exit 1
-            ;;
-    esac
-
-    # Post install configuration
-    sudo systemctl enable --now docker
-    sudo usermod -aG docker $USER
-
 # Installs distro specific apps
 installs-specific:
     #!/bin/bash

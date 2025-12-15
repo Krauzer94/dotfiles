@@ -73,6 +73,8 @@ installs-specific:
             # Install base packages
             sudo dpkg --add-architecture i386
             sudo apt update && sudo apt install -y "${DISTRO_PACKAGES[@]}"
+
+            # GPU driver handling
             sudo ubuntu-drivers install
 
             # Firewall handling
@@ -82,6 +84,9 @@ installs-specific:
         fedora)
             # Install base packages
             sudo dnf install -y "${DISTRO_PACKAGES[@]}"
+
+            # GPU driver handling
+            sudo dnf install -y akmod-nvidia
 
             # Firewall handling
             sudo systemctl enable --now firewalld

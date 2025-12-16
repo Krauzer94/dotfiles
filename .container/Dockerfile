@@ -1,5 +1,5 @@
 # Container base
-FROM ubuntu:latest
+FROM ubuntu:devel
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies

@@ -13,9 +13,6 @@ install_base() {
         ubuntu)
             sudo apt install -y git
             ;;
-        fedora)
-            sudo dnf install -y git
-            ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"
             exit 1
@@ -51,7 +48,7 @@ remaining_apps() {
         steamdeck)
             just installs-common
             ;;
-        ubuntu|fedora)
+        ubuntu)
             just installs-specific
             ;;
         *)

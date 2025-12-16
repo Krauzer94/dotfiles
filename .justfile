@@ -64,6 +64,7 @@ installs-specific:
         flatpak
         podman
         steam
+        ufw
     )
 
     # Install based on distro
@@ -78,18 +79,7 @@ installs-specific:
             sudo ubuntu-drivers install
 
             # Firewall handling
-            sudo apt install -y ufw
             sudo ufw enable
-            ;;
-        fedora)
-            # Install base packages
-            sudo dnf install -y "${DISTRO_PACKAGES[@]}"
-
-            # GPU driver handling
-            sudo dnf install -y akmod-nvidia
-
-            # Firewall handling
-            sudo systemctl enable --now firewalld
             ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"

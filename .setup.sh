@@ -52,7 +52,7 @@ remaining_apps() {
             just installs-specific
             ;;
         *)
-            sudo apt install -y wget podman
+            sudo apt install -y wget podman distrobox
             just setup-devenv
             ;;
     esac

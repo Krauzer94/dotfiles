@@ -11,7 +11,7 @@ install_base() {
             flatpak uninstall --all -y
             ;;
         ubuntu)
-            sudo apt install -y git wget
+            sudo apt install -y git
             ;;
         *)
             echo -e "\t Unsupported system, operation failed... \n"
@@ -49,6 +49,7 @@ remaining_apps() {
             just installs-common
             ;;
         ubuntu)
+            sudo apt install -y wget podman distrobox
             just installs-specific
             ;;
         *)

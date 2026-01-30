@@ -45,8 +45,10 @@ installs-specific:
 
     # Main packages to install
     DISTRO_PACKAGES=(
+        distrobox
         mangohud
         flatpak
+        podman
         steam
         ufw
     )

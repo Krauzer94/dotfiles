@@ -16,6 +16,6 @@
   alias ll='ls -l --color=auto'
   alias aliases='cat ~/.bash_aliases'
   alias vs='flatpak run com.visualstudio.code'
-  alias save='just upload-savegame'
+  alias save='commit -m "Save game upload" && push'
   alias wclean='find ~/ -type f -name "*.Identifier" -delete'
   alias tbin='nc termbin.com 9999'

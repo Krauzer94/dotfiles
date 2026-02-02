@@ -94,12 +94,3 @@ setup-themes:
     # Copy system files over
     cp -r /usr/share/themes/* $HOME/.themes/
     cp -r /usr/share/icons/* $HOME/.icons/
-
-# Upload savegame folder files
-[no-cd]
-upload-savegame:
-    #!/bin/bash
-
-    git add .
-    git commit -m "Save game upload"
-    git push

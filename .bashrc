@@ -25,11 +25,9 @@ fi
 
 # Terminal Pastebin
 function paste() {
-    echo ""
     local file=${1:-/dev/stdin}
     curl --data-binary @${file} https://paste.rs
-    echo ""
-    echo ""
+    echo
 }
 
 # Enable NVM and Node

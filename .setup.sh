@@ -6,7 +6,7 @@ log() {
 
 # Install base packages
 install_base() {
-    echo -e "\n\t Installing base packages \n"
+    log "Installing base packages"
 
     # Install based on distro
     DISTRO=$(source /etc/os-release && echo "$ID")
@@ -18,7 +18,7 @@ install_base() {
             sudo apt install -y git wget
             ;;
         *)
-            echo -e "\t Unsupported system, operation failed... \n"
+            log "Unsupported system, operation failed"
             exit 1
             ;;
     esac
@@ -26,7 +26,7 @@ install_base() {
 
 # Set up dotfiles
 setup_dotfiles() {
-    echo -e "\n\t Setting up the dotfiles \n"
+    log "Setting up the dotfiles"
 
     # Clone and restore files
     git clone https://github.com/Krauzer94/dotfiles.git
@@ -36,7 +36,7 @@ setup_dotfiles() {
 
 # Install Just CLI
 install_just () {
-    echo -e "\n\t Installing just CLI tool \n"
+    log "Installing just CLI tool"
 
     # Ensure binary in $PATH
     mkdir -p ~/.local/bin

@@ -5,7 +5,7 @@ log() {
 }
 
 # Install base packages
-install_base() {
+installs_base() {
     log "Installing base packages"
 
     # Install based on distro
@@ -62,7 +62,7 @@ remaining_apps() {
 }
 
 # Execute all functions
-install_base
+installs_base
 setup_dotfiles
 install_just
 remaining_apps

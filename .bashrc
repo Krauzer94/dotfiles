@@ -24,7 +24,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Terminal Pastebin
-function paste() {
+paste() {
     local file=${1:-/dev/stdin}
     curl --data-binary @${file} https://paste.rs
     echo

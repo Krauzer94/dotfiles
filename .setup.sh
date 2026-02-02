@@ -1,5 +1,8 @@
 #!/bin/bash
 set -euo pipefail
+log() {
+    printf "\n==> %s\n" "$1"
+}
 
 # Install base packages
 install_base() {

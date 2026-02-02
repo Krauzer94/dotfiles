@@ -7,7 +7,7 @@ install_base() {
     echo -e "\n\t Installing base packages \n"
 
     # Install based on distro
-    DISTRO=$(lsb_release -is 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    DISTRO=$(source /etc/os-release && echo "$ID")
     case "$DISTRO" in
         steamos)
             flatpak uninstall --all -y

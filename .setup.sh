@@ -86,7 +86,8 @@ installs_specific() {
     case "$DISTRO" in
         ubuntu)
             sudo dpkg --add-architecture i386
-            sudo apt update && sudo apt install -y "${DISTRO_PACKAGES[@]}"
+            sudo apt update
+            sudo apt install -y "${DISTRO_PACKAGES[@]}"
             sudo ubuntu-drivers install
             sudo ufw enable
             ;;

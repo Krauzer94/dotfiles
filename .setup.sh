@@ -105,15 +105,18 @@ installs_specific() {
 setup_devenv() {
     log "Setting up development environment"
 
-    # Installing NVM
-    mkdir -p "$HOME/.nvm"
-    export NVM_DIR="$HOME/.nvm"
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    # User specific environment
+    mkdir -p "$HOME/.local/bin"
 
-    # Installing Node
-    nvm install --lts
-    nvm use --lts
+    # Installing NVM and Node
+    if [[ "$DISTRO" == "ubuntu" ]]; then
+        mkdir -p "$HOME/.nvm"
+        export NVM_DIR="$HOME/.nvm"
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+        nvm install --lts
+        nvm use --lts
+    fi
 
     # Ensure Github SSH connection
     ssh-keygen -t ed25519 -C 13894059+Krauzer94@users.noreply.github.com

@@ -35,12 +35,35 @@ setup_dotfiles() {
     rm -rdf ~/dotfiles && git restore .
 }
 
+# Set up application theming
+setup_themes() {
+    # Create necessary folders
+    mkdir -p $HOME/{.themes,.icons}
+
+    # Copy system files over
+    cp -r /usr/share/themes/* $HOME/.themes/
+    cp -r /usr/share/icons/* $HOME/.icons/
+}
+
+# Install remaining apps
+remaining_apps() {
+    # Install based on hostname
+    case "$HOST" in
+        steamdeck)
+            installs_common
+            ;;
+        ubuntu)
+            installs_specific
+            ;;
+        *)
+            setup_devenv
+            ;;
+    esac
+}
+
 # Installs common applications
 installs_common() {
     log "Installing common applications"
-
-    # Ensure app theming
-    setup_themes
 
     # Flatpak apps to install
     FLATPAK_APPS=(
@@ -120,36 +143,11 @@ setup_devenv() {
     git remote set-url origin git@github.com:Krauzer94/dotfiles.git
 }
 
-# Set up application theming
-setup_themes() {
-    # Create necessary folders
-    mkdir -p $HOME/{.themes,.icons}
-
-    # Copy system files over
-    cp -r /usr/share/themes/* $HOME/.themes/
-    cp -r /usr/share/icons/* $HOME/.icons/
-}
-
-# Install remaining apps
-remaining_apps() {
-    # Install based on hostname
-    case "$HOST" in
-        steamdeck)
-            installs_common
-            ;;
-        ubuntu)
-            installs_specific
-            ;;
-        *)
-            setup_devenv
-            ;;
-    esac
-}
-
 # Execute all routines
 main() {
     installs_base
     setup_dotfiles
+    setup_themes
     remaining_apps
 }
 

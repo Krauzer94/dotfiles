@@ -131,9 +131,12 @@ setup_devenv() {
     # User specific environment
     mkdir -p "$HOME/.local/bin"
 
-    # Installing NVM and Node
+    # Installing the latest NVM
     if [[ "$DISTRO" == "ubuntu" ]]; then
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+        NVM_LATEST=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest \
+        | grep '"tag_name"' \
+        | cut -d '"' -f 4)
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_LATEST/install.sh | bash
     fi
 
     # Ensure Github SSH connection

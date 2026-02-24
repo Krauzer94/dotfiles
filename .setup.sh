@@ -15,7 +15,7 @@ installs_base() {
         steamos)
             flatpak uninstall --all -y
             ;;
-        ubuntu)
+        ubuntu|debian)
             sudo apt install -y git wget
             ;;
         *)
@@ -52,7 +52,7 @@ remaining_apps() {
         steamdeck)
             installs_common
             ;;
-        ubuntu)
+        ubuntu|debian)
             installs_specific
             ;;
         *)
@@ -105,14 +105,27 @@ installs_specific() {
         ufw
     )
 
+    # NVIDIA driver packages
+    NVIDIA_PACKAGES=(
+        nvidia-open-kernel-dkms
+        firmware-misc-nonfree
+        linux-headers-amd64
+        nvidia-driver
+    )
+
+    # Shared bootstraping
+    sudo dpkg --add-architecture i386
+    sudo apt update
+    sudo apt install -y "${DISTRO_PACKAGES[@]}"
+    sudo ufw enable
+
     # Install based on distro
     case "$DISTRO" in
         ubuntu)
-            sudo dpkg --add-architecture i386
-            sudo apt update
-            sudo apt install -y "${DISTRO_PACKAGES[@]}"
             sudo ubuntu-drivers install
-            sudo ufw enable
+            ;;
+        debian)
+            sudo apt install -y "${NVIDIA_PACKAGES[@]}"
             ;;
         *)
             log "Unsupported system, operation failed"
@@ -132,7 +145,7 @@ setup_devenv() {
     mkdir -p "$HOME/.local/bin"
 
     # Installing the latest NVM
-    if [[ "$DISTRO" == "ubuntu" ]]; then
+    if [[ "$DISTRO" != "steamos" ]]; then
         NVM_LATEST=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest \
         | grep '"tag_name"' \
         | cut -d '"' -f 4)

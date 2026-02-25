@@ -57,6 +57,7 @@ remaining_apps() {
             ;;
         *)
             setup_devenv
+            exit 1
             ;;
     esac
 }
@@ -163,8 +164,8 @@ setup_devenv() {
 main() {
     installs_base
     setup_dotfiles
-    setup_themes
     remaining_apps
+    setup_themes
 }
 
 # Enable function calling

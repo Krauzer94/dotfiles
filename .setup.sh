@@ -16,7 +16,7 @@ installs_base() {
             flatpak uninstall --all -y
             ;;
         ubuntu|debian)
-            sudo apt install -y git wget
+            sudo apt-get install -y git wget
             ;;
         *)
             log "Unsupported system, operation failed"
@@ -116,8 +116,8 @@ installs_specific() {
 
     # Shared bootstraping
     sudo dpkg --add-architecture i386
-    sudo apt update
-    sudo apt install -y "${DISTRO_PACKAGES[@]}"
+    sudo apt-get update
+    sudo apt-get install -y "${DISTRO_PACKAGES[@]}"
     sudo ufw enable
 
     # Install based on distro
@@ -126,7 +126,7 @@ installs_specific() {
             sudo ubuntu-drivers install
             ;;
         debian)
-            sudo apt install -y "${NVIDIA_PACKAGES[@]}"
+            sudo apt-get install -y "${NVIDIA_PACKAGES[@]}"
             ;;
         *)
             log "Unsupported system, operation failed"

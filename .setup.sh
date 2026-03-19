@@ -15,7 +15,7 @@ installs_base() {
         steamos)
             flatpak uninstall --all -y
             ;;
-        ubuntu|debian)
+        ubuntu)
             sudo apt-get install -y git wget
             ;;
         *)
@@ -52,7 +52,7 @@ remaining_apps() {
         steamdeck)
             installs_common
             ;;
-        ubuntu|debian)
+        ubuntu)
             installs_specific
             ;;
         *)
@@ -106,27 +106,14 @@ installs_specific() {
         ufw
     )
 
-    # NVIDIA driver packages
-    NVIDIA_PACKAGES=(
-        nvidia-open-kernel-dkms
-        firmware-misc-nonfree
-        linux-headers-amd64
-        nvidia-driver
-    )
-
-    # Shared bootstraping
-    sudo dpkg --add-architecture i386
-    sudo apt-get update
-    sudo apt-get install -y "${DISTRO_PACKAGES[@]}"
-    sudo ufw enable
-
     # Install based on distro
     case "$DISTRO" in
         ubuntu)
+            sudo dpkg --add-architecture i386
+            sudo apt-get update
+            sudo apt-get install -y "${DISTRO_PACKAGES[@]}"
+            sudo ufw enable
             sudo ubuntu-drivers install
-            ;;
-        debian)
-            sudo apt-get install -y "${NVIDIA_PACKAGES[@]}"
             ;;
         *)
             log "Unsupported system, operation failed"

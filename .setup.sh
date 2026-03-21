@@ -18,6 +18,9 @@ installs_base() {
         ubuntu)
             sudo apt-get install -y git wget
             ;;
+        fedora)
+            sudo dnf install -y git
+            ;;
         *)
             log "Unsupported system, operation failed"
             exit 1
@@ -52,7 +55,7 @@ remaining_apps() {
         steamdeck)
             installs_common
             ;;
-        ubuntu)
+        ubuntu|fedora)
             installs_specific
             ;;
         *)
@@ -99,21 +102,20 @@ installs_specific() {
     log "Installing distro specific apps"
 
     # Main packages to install
-    DISTRO_PACKAGES=(
-        mangohud
-        flatpak
-        steam
-        ufw
-    )
+    DISTRO_PACKAGES=( mangohud flatpak steam )
 
     # Install based on distro
     case "$DISTRO" in
         ubuntu)
             sudo dpkg --add-architecture i386
             sudo apt-get update
-            sudo apt-get install -y "${DISTRO_PACKAGES[@]}"
+            sudo apt-get install -y "${DISTRO_PACKAGES[@]}" ufw
             sudo ufw enable
             sudo ubuntu-drivers install
+            ;;
+        fedora)
+            sudo dnf install -y "${DISTRO_PACKAGES[@]}" firewalld
+            sudo systemctl enable --now firewalld
             ;;
         *)
             log "Unsupported system, operation failed"

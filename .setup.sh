@@ -105,17 +105,18 @@ installs_specific() {
     log "Installing distro specific apps"
 
     # Main packages to install
-    DISTRO_PACKAGES=(
-        firewalld
-        mangohud
-        flatpak
-        steam
-    )
+    DISTRO_PACKAGES=( mangohud flatpak steam )
 
     # Install based on distro
     case "$DISTRO" in
+        ubuntu)
+            sudo dpkg --add-architecture i386
+            sudo apt-get update
+            sudo apt-get install -y "${DISTRO_PACKAGES[@]}" ufw
+            sudo ufw enable
+            ;;
         fedora)
-            sudo dnf install -y "${DISTRO_PACKAGES[@]}"
+            sudo dnf install -y "${DISTRO_PACKAGES[@]}" firewalld
             sudo systemctl enable --now firewalld
             ;;
         *)

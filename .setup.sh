@@ -10,16 +10,19 @@ HOST="${HOSTNAME:-$(hostname)}"
 installs_base() {
     log "Installing base packages"
 
+    # Base packages to install
+    BASE_PACKAGES=( podman wget git )
+
     # Install based on distro
     case "$DISTRO" in
         steamos)
             flatpak uninstall --all -y
             ;;
         ubuntu)
-            sudo apt-get install -y git wget podman
+            sudo apt-get install -y "${BASE_PACKAGES[@]}"
             ;;
         fedora)
-            sudo dnf install -y git
+            sudo dnf install -y "${BASE_PACKAGES[@]}"
             ;;
         *)
             log "Unsupported system, operation failed"
@@ -106,7 +109,6 @@ installs_specific() {
         firewalld
         mangohud
         flatpak
-        podman
         steam
     )
 

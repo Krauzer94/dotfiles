@@ -16,7 +16,7 @@ installs_base() {
             flatpak uninstall --all -y
             ;;
         ubuntu)
-            sudo apt-get install -y git wget
+            sudo apt-get install -y git wget podman
             ;;
         fedora)
             sudo dnf install -y git
@@ -55,7 +55,7 @@ remaining_apps() {
         steamdeck)
             installs_common
             ;;
-        ubuntu|fedora)
+        fedora)
             installs_specific
             ;;
         *)
@@ -102,19 +102,18 @@ installs_specific() {
     log "Installing distro specific apps"
 
     # Main packages to install
-    DISTRO_PACKAGES=( mangohud flatpak steam )
+    DISTRO_PACKAGES=(
+        firewalld
+        mangohud
+        flatpak
+        podman
+        steam
+    )
 
     # Install based on distro
     case "$DISTRO" in
-        ubuntu)
-            sudo dpkg --add-architecture i386
-            sudo apt-get update
-            sudo apt-get install -y "${DISTRO_PACKAGES[@]}" ufw
-            sudo ufw enable
-            sudo ubuntu-drivers install
-            ;;
         fedora)
-            sudo dnf install -y "${DISTRO_PACKAGES[@]}" firewalld
+            sudo dnf install -y "${DISTRO_PACKAGES[@]}"
             sudo systemctl enable --now firewalld
             ;;
         *)

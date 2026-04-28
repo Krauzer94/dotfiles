@@ -23,6 +23,16 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Reset GNOME appearance
+greset() {
+    # Themes, icons, and window buttons
+    local keys=( gtk-theme icon-theme cursor-theme )
+    for key in "${keys[@]}"; do
+        gsettings reset org.gnome.desktop.interface "$key"
+    done
+    gsettings set org.gnome.desktop.wm.preferences button-layout ":close"
+}
+
 # Enable NVM and Node
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"

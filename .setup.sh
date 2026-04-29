@@ -106,6 +106,7 @@ installs_specific() {
 
     # Main packages to install
     DISTRO_PACKAGES=( mangohud flatpak steam )
+    PLASMA_PACKAGES=( kde-plasma-desktop kde-spectacle ark )
 
     # Install based on distro
     case "$DISTRO" in
@@ -114,7 +115,7 @@ installs_specific() {
             sudo apt-get update
             sudo apt-get install -y "${DISTRO_PACKAGES[@]}" ufw
             sudo ufw enable
-            sudo apt-get install -y kde-plasma-desktop kde-spectacle
+            sudo apt-get install -y "${PLASMA_PACKAGES[@]}"
             ;;
         fedora)
             sudo dnf install -y "${DISTRO_PACKAGES[@]}" firewalld

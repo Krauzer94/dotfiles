@@ -114,7 +114,7 @@ installs_specific() {
             sudo apt-get update
             sudo apt-get install -y "${DISTRO_PACKAGES[@]}" ufw
             sudo ufw enable
-            sudo apt-get install -y kde-plasma-desktop
+            sudo apt-get install -y kde-plasma-desktop kde-spectacle
             ;;
         fedora)
             sudo dnf install -y "${DISTRO_PACKAGES[@]}" firewalld

@@ -19,6 +19,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Reset GNOME
 greset() {
     # Themes, icons, cursor
     local keys=( gtk-theme icon-theme cursor-theme )

@@ -1,7 +1,3 @@
-#
-# ~/.bashrc
-#
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -23,13 +19,20 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Reset GNOME appearance
 greset() {
-    # Themes, icons, and window buttons
+    # Themes, icons, cursor
     local keys=( gtk-theme icon-theme cursor-theme )
     for key in "${keys[@]}"; do
         gsettings reset org.gnome.desktop.interface "$key"
     done
+
+    # Reset fonts to default
+    local font_keys=( font-name document-font-name monospace-font-name )
+    for key in "${font_keys[@]}"; do
+        gsettings reset org.gnome.desktop.interface "$key"
+    done
+
+    # Window buttons
     gsettings set org.gnome.desktop.wm.preferences button-layout ":close"
 }
 

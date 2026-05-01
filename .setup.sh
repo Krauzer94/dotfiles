@@ -22,7 +22,7 @@ installs_base() {
             sudo apt-get install -y "${BASE_PACKAGES[@]}"
             ;;
         fedora)
-            sudo dnf install -y "${BASE_PACKAGES[@]}"
+            sudo dnf install -y "${BASE_PACKAGES[@]}" awk
             ;;
         *)
             log "Unsupported system, operation failed"

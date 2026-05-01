@@ -11,18 +11,15 @@ installs_base() {
     log "Installing base packages"
 
     # Base packages to install
-    BASE_PACKAGES=( podman wget git )
+    BASE_PACKAGES=( podman wget git awk )
 
     # Install based on distro
     case "$DISTRO" in
         steamos)
             flatpak uninstall --all -y
             ;;
-        ubuntu)
-            sudo apt-get install -y "${BASE_PACKAGES[@]}"
-            ;;
         fedora)
-            sudo dnf install -y "${BASE_PACKAGES[@]}" awk
+            sudo dnf install -y "${BASE_PACKAGES[@]}"
             ;;
         *)
             log "Unsupported system, operation failed"
@@ -58,7 +55,7 @@ remaining_apps() {
         steamdeck)
             installs_common
             ;;
-        ubuntu|fedora)
+        fedora)
             installs_specific
             ;;
         *)
@@ -105,20 +102,12 @@ installs_specific() {
     log "Installing distro specific apps"
 
     # Main packages to install
-    DISTRO_PACKAGES=( mangohud flatpak steam )
-    PLASMA_PACKAGES=( kde-plasma-desktop kde-spectacle ark )
+    DISTRO_PACKAGES=( mangohud steam )
 
     # Install based on distro
     case "$DISTRO" in
-        ubuntu)
-            sudo dpkg --add-architecture i386
-            sudo apt-get update
-            sudo apt-get install -y "${DISTRO_PACKAGES[@]}" ufw
-            sudo ufw enable
-            sudo apt-get install -y "${PLASMA_PACKAGES[@]}"
-            ;;
         fedora)
-            sudo dnf install -y "${DISTRO_PACKAGES[@]}" firewalld
+            sudo dnf install -y "${DISTRO_PACKAGES[@]}"
             sudo systemctl enable --now firewalld
             sudo dnf group install -y kde-desktop
             ;;

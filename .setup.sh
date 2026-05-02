@@ -109,7 +109,6 @@ installs_specific() {
         fedora)
             sudo dnf install -y "${DISTRO_PACKAGES[@]}"
             sudo systemctl enable --now firewalld
-            sudo dnf group install -y kde-desktop
             ;;
         *)
             log "Unsupported system, operation failed"

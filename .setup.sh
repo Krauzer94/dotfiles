@@ -107,6 +107,7 @@ installs_specific() {
 
     # Main packages to install
     DISTRO_PACKAGES=( mangohud steam )
+    NVIDIA_PACKAGES=( akmod-nvidia xorg-x11-drv-nvidia )
 
     # Install based on distro
     case "$DISTRO" in
@@ -114,7 +115,8 @@ installs_specific() {
             if command -v dnf &> /dev/null; then
                 sudo dnf install -y "${DISTRO_PACKAGES[@]}"
             else
-                sudo rpm-ostree install "${DISTRO_PACKAGES[@]}"
+                sudo rpm-ostree install "${DISTRO_PACKAGES[@]}" "${NVIDIA_PACKAGES[@]}"
+                sudo rpm-ostree kargs --append=rd.driver.blacklist=nouveau,nova_core --append=modprobe.blacklist=nouveau,nova_core
             fi
             sudo systemctl enable --now firewalld
             ;;

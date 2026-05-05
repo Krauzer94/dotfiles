@@ -19,7 +19,11 @@ installs_base() {
             flatpak uninstall --all -y
             ;;
         fedora)
-            sudo dnf install -y "${BASE_PACKAGES[@]}"
+            if command -v dnf &> /dev/null; then
+                sudo dnf install -y "${BASE_PACKAGES[@]}"
+            else
+                flatpak uninstall --all -y
+            fi
             ;;
         *)
             log "Unsupported system, operation failed"
@@ -107,7 +111,11 @@ installs_specific() {
     # Install based on distro
     case "$DISTRO" in
         fedora)
-            sudo dnf install -y "${DISTRO_PACKAGES[@]}"
+            if command -v dnf &> /dev/null; then
+                sudo dnf install -y "${DISTRO_PACKAGES[@]}"
+            else
+                sudo rpm-ostree install "${DISTRO_PACKAGES[@]}"
+            fi
             sudo systemctl enable --now firewalld
             ;;
         *)

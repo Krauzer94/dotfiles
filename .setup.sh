@@ -38,8 +38,8 @@ setup_dotfiles() {
 
     # Clone and restore files
     git clone https://github.com/Krauzer94/dotfiles.git
-    mv ~/dotfiles/.git ~/dotfiles/.gitignore ~/
-    rm -rdf ~/dotfiles && git restore .
+    mv $HOME/dotfiles/.git $HOME/dotfiles/.gitignore $HOME/
+    rm -rdf $HOME/dotfiles && git restore .
 }
 
 # Set up application theming
@@ -148,7 +148,7 @@ setup_devenv() {
     # Ensure Github SSH connection
     ssh-keygen -t ed25519 -C 13894059+Krauzer94@users.noreply.github.com
     log "Generated SSH key"
-    cat ~/.ssh/id_ed25519.pub
+    cat $HOME/.ssh/id_ed25519.pub
     git remote set-url origin git@github.com:Krauzer94/dotfiles.git
 }
 

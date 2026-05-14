@@ -19,6 +19,13 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Terminal pastebin
+function paste() {
+    local file=${1:-/dev/stdin}
+    curl --data-binary @${file} https://paste.rs
+    echo
+}
+
 # Enable NVM and Node
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"

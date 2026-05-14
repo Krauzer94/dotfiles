@@ -18,4 +18,3 @@
   alias vs='flatpak run com.visualstudio.code'
   alias save='commit -m "Save game upload" && push'
   alias wclean='find ~/ -type f -name "*.Identifier" -delete'
-  alias tbin='nc termbin.com 9999'

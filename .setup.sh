@@ -89,8 +89,8 @@ installs_common() {
         org.bleachbit.BleachBit
         org.flameshot.Flameshot
         org.gimp.GIMP
+        org.gnome.Calculator
         org.kde.gwenview
-        org.kde.kcalc
         org.mozilla.firefox
         org.onlyoffice.desktopeditors
         org.qbittorrent.qBittorrent

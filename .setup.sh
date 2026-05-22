@@ -75,6 +75,7 @@ installs_common() {
 
     # Flatpak apps to install
     FLATPAK_APPS=(
+        be.alexandervanhee.gradia
         com.dec05eba.gpu_screen_recorder
         com.discordapp.Discord
         com.github.tchx84.Flatseal
@@ -87,7 +88,6 @@ installs_common() {
         io.github.flattool.Warehouse
         io.missioncenter.MissionCenter
         org.bleachbit.BleachBit
-        org.flameshot.Flameshot
         org.gimp.GIMP
         org.gnome.Calculator
         org.gnome.Loupe

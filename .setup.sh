@@ -83,9 +83,9 @@ installs_common() {
         com.spotify.Client
         com.stremio.Stremio
         com.visualstudio.code
+        com.vysp3r.ProtonPlus
         io.github.flattool.Warehouse
         io.missioncenter.MissionCenter
-        net.davidotek.pupgui2
         org.bleachbit.BleachBit
         org.flameshot.Flameshot
         org.gimp.GIMP

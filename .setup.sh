@@ -11,7 +11,7 @@ installs_base() {
     log "Installing base packages"
 
     # Base packages to install
-    BASE_PACKAGES=( podman wget git awk )
+    BASE_PACKAGES=( wget git awk )
 
     # Install based on distro
     case "$DISTRO" in

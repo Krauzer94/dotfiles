@@ -103,6 +103,8 @@ installs_specific() {
             sudo systemctl enable --now firewalld
             ;;
         ubuntu)
+            sudo dpkg --add-architecture i386
+            sudo apt-get update
             sudo apt-get install -y "${PKGS[@]}" ufw
             sudo ufw enable
             ;;

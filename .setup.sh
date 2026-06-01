@@ -19,11 +19,7 @@ installs_base() {
             flatpak uninstall --all -y
             ;;
         fedora)
-            if command -v dnf &> /dev/null; then
-                sudo dnf install -y "${BASE_PACKAGES[@]}"
-            else
-                flatpak uninstall --all -y
-            fi
+            sudo dnf install -y "${BASE_PACKAGES[@]}"
             ;;
         *)
             log "Unsupported system, operation failed"
@@ -96,17 +92,11 @@ installs_specific() {
 
     # Main packages to install
     DISTRO_PACKAGES=( mangohud steam )
-    NVIDIA_PACKAGES=( akmod-nvidia xorg-x11-drv-nvidia )
 
     # Install based on distro
     case "$DISTRO" in
         fedora)
-            if command -v dnf &> /dev/null; then
-                sudo dnf install -y "${DISTRO_PACKAGES[@]}"
-            else
-                sudo rpm-ostree install "${DISTRO_PACKAGES[@]}" "${NVIDIA_PACKAGES[@]}"
-                sudo rpm-ostree kargs --append=rd.driver.blacklist=nouveau,nova_core --append=modprobe.blacklist=nouveau,nova_core
-            fi
+            sudo dnf install -y "${DISTRO_PACKAGES[@]}" firewalld
             sudo systemctl enable --now firewalld
             ;;
         *)

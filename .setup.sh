@@ -11,7 +11,7 @@ installs_base() {
     log "Installing base packages"
 
     # Base packages to install
-    PKGS=( wget git )
+    local PKGS=( wget git )
 
     # Install based on distro
     case "$DISTRO" in
@@ -94,7 +94,7 @@ installs_specific() {
     log "Installing distro specific apps"
 
     # Main packages to install
-    PKGS=( mangohud steam )
+    local PKGS=( mangohud steam )
 
     # Install based on distro
     case "$DISTRO" in

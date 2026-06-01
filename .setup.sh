@@ -42,16 +42,6 @@ setup_dotfiles() {
     rm -rdf $HOME/dotfiles && git restore .
 }
 
-# Set up application theming
-setup_themes() {
-    # Create necessary folders
-    mkdir -p $HOME/{.themes,.icons}
-
-    # Copy system files over
-    cp -r /usr/share/themes/* $HOME/.themes/
-    cp -r /usr/share/icons/* $HOME/.icons/
-}
-
 # Install remaining apps
 remaining_apps() {
     # Install based on hostname
@@ -92,7 +82,6 @@ installs_common() {
         org.gnome.Calculator
         org.gnome.Loupe
         org.mozilla.firefox
-        org.onlyoffice.desktopeditors
         org.qbittorrent.qBittorrent
         org.videolan.VLC
     )
@@ -157,7 +146,6 @@ main() {
     installs_base
     setup_dotfiles
     remaining_apps
-    setup_themes
 }
 
 # Enable function calling

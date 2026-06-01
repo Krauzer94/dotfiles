@@ -11,7 +11,7 @@ installs_base() {
     log "Installing base packages"
 
     # Base packages to install
-    BASE_PACKAGES=( wget git awk )
+    PKGS=( wget git )
 
     # Install based on distro
     case "$DISTRO" in
@@ -19,7 +19,10 @@ installs_base() {
             flatpak uninstall --all -y
             ;;
         fedora)
-            sudo dnf install -y "${BASE_PACKAGES[@]}"
+            sudo dnf install -y "${PKGS[@]}" awk
+            ;;
+        ubuntu)
+            sudo apt-get install -y "${PKGS[@]}"
             ;;
         *)
             log "Unsupported system, operation failed"
@@ -45,7 +48,7 @@ remaining_apps() {
         steamdeck)
             installs_common
             ;;
-        fedora)
+        fedora|ubuntu)
             installs_specific
             ;;
         *)
@@ -91,13 +94,17 @@ installs_specific() {
     log "Installing distro specific apps"
 
     # Main packages to install
-    DISTRO_PACKAGES=( mangohud steam )
+    PKGS=( mangohud steam )
 
     # Install based on distro
     case "$DISTRO" in
         fedora)
-            sudo dnf install -y "${DISTRO_PACKAGES[@]}" firewalld
+            sudo dnf install -y "${PKGS[@]}" firewalld
             sudo systemctl enable --now firewalld
+            ;;
+        ubuntu)
+            sudo apt-get install -y "${PKGS[@]}" ufw
+            sudo ufw enable
             ;;
         *)
             log "Unsupported system, operation failed"

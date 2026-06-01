@@ -81,6 +81,7 @@ installs_common() {
         org.gnome.Calculator
         org.gnome.Loupe
         org.mozilla.firefox
+        org.onlyoffice.desktopeditors
         org.qbittorrent.qBittorrent
         org.videolan.VLC
     )

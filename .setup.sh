@@ -18,11 +18,8 @@ installs_base() {
         steamos)
             flatpak uninstall --all -y
             ;;
-        fedora)
-            sudo dnf install -y "${PKGS[@]}" awk
-            ;;
-        ubuntu)
-            sudo apt-get install -y "${PKGS[@]}"
+        debian|ubuntu)
+            sudo apt install -y "${PKGS[@]}"
             ;;
         *)
             log "Unsupported system, operation failed"
@@ -48,7 +45,7 @@ remaining_apps() {
         steamdeck)
             installs_common
             ;;
-        fedora|ubuntu)
+        debian|ubuntu)
             installs_specific
             ;;
         *)
@@ -95,19 +92,25 @@ installs_specific() {
     log "Installing distro specific apps"
 
     # Main packages to install
-    local PKGS=( mangohud steam )
+    local PAKGS=( mangohud steam ufw )
+    local NVDRV=( linux-headers-generic nvidia-open-kernel-dkms nvidia-driver )
+
+    # Shared bootstrap routine
+    shared_bootstrap() {
+        sudo dpkg --add-architecture i386
+        sudo apt update
+        sudo apt install -y "${PAKGS[@]}"
+        sudo ufw enable
+    }
 
     # Install based on distro
     case "$DISTRO" in
-        fedora)
-            sudo dnf install -y "${PKGS[@]}" firewalld
-            sudo systemctl enable --now firewalld
+        debian)
+            shared_bootstrap
+            sudo apt install -y "${NVDRV[@]}"
             ;;
         ubuntu)
-            sudo dpkg --add-architecture i386
-            sudo apt-get update
-            sudo apt-get install -y "${PKGS[@]}" ufw
-            sudo ufw enable
+            shared_bootstrap
             ;;
         *)
             log "Unsupported system, operation failed"

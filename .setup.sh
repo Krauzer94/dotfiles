@@ -93,7 +93,7 @@ installs_specific() {
 
     # Main packages to install
     local PAKGS=( mangohud steam ufw )
-    local NVDRV=( linux-headers-generic nvidia-open-kernel-dkms nvidia-driver )
+    local NVDRV=( linux-headers-amd64 nvidia-open-kernel-dkms nvidia-driver )
 
     # Shared bootstrap routine
     shared_bootstrap() {

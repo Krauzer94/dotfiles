@@ -18,7 +18,7 @@ installs_base() {
         steamos)
             flatpak uninstall --all -y
             ;;
-        debian|ubuntu)
+        ubuntu)
             sudo apt install -y "${PKGS[@]}"
             ;;
         *)
@@ -45,7 +45,7 @@ remaining_apps() {
         steamdeck)
             installs_common
             ;;
-        debian|ubuntu)
+        ubuntu)
             installs_specific
             ;;
         *)
@@ -93,24 +93,14 @@ installs_specific() {
 
     # Main packages to install
     local PAKGS=( mangohud steam ufw )
-    local NVDRV=( linux-headers-amd64 nvidia-open-kernel-dkms nvidia-driver )
-
-    # Shared bootstrap routine
-    shared_bootstrap() {
-        sudo dpkg --add-architecture i386
-        sudo apt update
-        sudo apt install -y "${PAKGS[@]}"
-        sudo ufw enable
-    }
 
     # Install based on distro
     case "$DISTRO" in
-        debian)
-            shared_bootstrap
-            sudo apt install -y "${NVDRV[@]}"
-            ;;
         ubuntu)
-            shared_bootstrap
+            sudo dpkg --add-architecture i386
+            sudo apt update
+            sudo apt install -y "${PAKGS[@]}"
+            sudo ufw enable
             ;;
         *)
             log "Unsupported system, operation failed"

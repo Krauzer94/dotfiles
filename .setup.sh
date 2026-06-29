@@ -21,6 +21,9 @@ installs_base() {
         ubuntu)
             sudo apt install -y "${PKGS[@]}"
             ;;
+        arch)
+            sudo pacman -Syu --needed --noconfirm "${PKGS[@]}"
+            ;;
         *)
             log "Unsupported system, operation failed"
             exit 1
@@ -45,7 +48,7 @@ remaining_apps() {
         steamdeck)
             installs_common
             ;;
-        ubuntu)
+        ubuntu|archlinux)
             installs_specific
             ;;
         *)
@@ -93,14 +96,17 @@ installs_specific() {
 
     # Main packages to install
     local PAKGS=( mangohud steam ufw )
+    local SERVS=( NetworkManager bluetooth )
 
     # Install based on distro
     case "$DISTRO" in
         ubuntu)
-            sudo dpkg --add-architecture i386
-            sudo apt update
+            sudo dpkg --add-architecture i386 && sudo apt update
             sudo apt install -y "${PAKGS[@]}"
-            sudo ufw enable
+            ;;
+        arch)
+            sudo pacman -Syu --needed --noconfirm "${PAKGS[@]}"
+            sudo systemctl enable --now "${SERVS[@]}"
             ;;
         *)
             log "Unsupported system, operation failed"
@@ -108,7 +114,10 @@ installs_specific() {
             ;;
     esac
 
-    # Install remaining apps
+    # Enable firewall
+    sudo ufw enable
+
+    # Remaining apps
     installs_common
 }
 

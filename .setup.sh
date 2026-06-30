@@ -94,7 +94,7 @@ installs_common() {
 installs_specific() {
     log "Installing distro specific apps"
 
-    # Main packages to install
+    # Packages and services
     local PAKGS=( mangohud steam ufw )
     local SERVS=( NetworkManager bluetooth )
 

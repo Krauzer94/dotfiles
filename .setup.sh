@@ -38,6 +38,16 @@ setup_dotfiles() {
     rm -rdf $HOME/dotfiles && git restore .
 }
 
+# Set up application theming
+setup_themes() {
+    # Create necessary folders
+    mkdir -p $HOME/{.themes,.icons}
+
+    # Copy system files over
+    cp -r /usr/share/themes/* $HOME/.themes/
+    cp -r /usr/share/icons/* $HOME/.icons/
+}
+
 # Install remaining apps
 remaining_apps() {
     # Install based on hostname
@@ -138,6 +148,7 @@ main() {
     installs_base
     setup_dotfiles
     remaining_apps
+    setup_themes
 }
 
 # Enable function calling

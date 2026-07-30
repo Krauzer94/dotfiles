@@ -21,6 +21,9 @@ installs_base() {
         ubuntu)
             sudo apt install -y "${PKGS[@]}"
             ;;
+        fedora)
+            sudo dnf install -y "${PKGS[@]}"
+            ;;
         *)
             log "Unsupported system, operation failed"
             exit 1
@@ -55,7 +58,7 @@ remaining_apps() {
         steamdeck)
             installs_common
             ;;
-        ubuntu)
+        ubuntu|fedora)
             installs_specific
             ;;
         *)
@@ -102,14 +105,18 @@ installs_specific() {
     log "Installing distro specific apps"
 
     # Main packages to install
-    local PAKGS=( mangohud steam ufw )
+    local PAKGS=( mangohud steam )
 
     # Install based on distro
     case "$DISTRO" in
         ubuntu)
             sudo dpkg --add-architecture i386 && sudo apt update
-            sudo apt install -y "${PAKGS[@]}"
+            sudo apt install -y "${PAKGS[@]}" ufw
             sudo ufw enable
+            ;;
+        fedora)
+            sudo dnf install -y "${PAKGS[@]}" firewalld
+            sudo systemctl enable --now firewalld
             ;;
         *)
             log "Unsupported system, operation failed"
